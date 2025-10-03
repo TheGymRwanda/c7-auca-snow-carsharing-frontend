@@ -3,7 +3,7 @@ import ProfileIcon from '../assets/ProfileIcon'
 export default function Header() {
   return (
     <>
-      <header className="flex items-center justify-between bg-[#111827] p-1 text-[#F9FAFB]">
+      <header className="flex items-center justify-between rounded-b-lg bg-[#111827] p-1 text-[#F9FAFB]">
         <button className="" onClick={() => {}}>
           Menu
         </button>
