@@ -3,11 +3,11 @@ import LoaderComponent from './loaderComponent'
 
 type ButtonComponentProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string
-  loadingText: string
+  loadingText?: string
   isPrimary: boolean
   className?: string
   loading?: boolean
-  disabled: boolean
+  disabled?: boolean
 }
 
 function ButtonComponent({
