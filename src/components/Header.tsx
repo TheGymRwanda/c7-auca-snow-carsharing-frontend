@@ -10,7 +10,7 @@ export default function Header() {
         <Logo className="relative z-10" />
         <ProfileIcon />
         {/* eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values */}
-        <div className="z-1 absolute ml-[50%] h-20 w-20 -translate-x-[50%] rounded-full bg-[#111827]"></div>
+        <div className="z-1 absolute ml-[50%] size-20 -translate-x-[50%] rounded-full bg-[#111827]"></div>
       </header>
     </>
   )
