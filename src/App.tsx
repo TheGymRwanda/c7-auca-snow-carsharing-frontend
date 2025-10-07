@@ -1,7 +1,8 @@
 import { ReactElement } from 'react'
 import { configure } from 'axios-hooks'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import NotFound from './components/NotFound'
+import NotFound from './pages/NotFound'
+import Home from './pages/Home'
 import AppLayout from './ui/AppLayout'
 
 // Configure axios hooks
@@ -17,7 +18,7 @@ function App(): ReactElement {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route index element={<h1>Home</h1>} />
+          <Route index element={<Home />} />
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
           <Route path="car" element={<h1>All cars</h1>} />
