@@ -9,7 +9,7 @@ export default function Header() {
           Menu
         </button>
         <Link to={'/'}>
-          <Logo className="relative z-10 ml-4" />
+          <Logo className="relative z-10 ml-5" />
         </Link>
         <ProfileIcon />
         {/* eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values */}
