@@ -1,10 +1,8 @@
-import Header from '../components/Header'
 import ButtonComponent from '../ui/buttonComponent'
 import { Link } from 'react-router-dom'
 
 const Home = () => (
-  <div className="min-h-screen text-center text-white bg-[#265E78] font-[Lora]">
-    <Header />
+  <div className="min-h-screen grid items-center text-center text-white bg-[#265E78] font-[Lora]">
     <div className="bg-[#265E78] p-6 ">
       <h1 className="font-bold text-4xl mt-3">MONI</h1>
       <h2 className="italic text-3xl mb-6">Share</h2>

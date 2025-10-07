@@ -3,8 +3,12 @@ import Header from '../components/Header'
 
 const AppLayout = () => (
   <div>
-    <Header />
-    <Outlet />
+    <div className="fixed top-0 w-full">
+      <Header />
+    </div>
+    <main>
+      <Outlet />
+    </main>
   </div>
 )
 
