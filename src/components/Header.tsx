@@ -12,7 +12,7 @@ export default function Header() {
           {isDropDownOpen ? 'Close' : 'Menu'}
         </button>
         <Link to={'/'}>
-          <Logo className={`relative z-10 ${isDropDownOpen ? 'ml-6' : 'ml-5'}`} />
+          <Logo className={`relative z-10 ${isDropDownOpen ? 'ml-[22px]' : 'ml-5'}`} />
         </Link>
         <ProfileIcon />
         {/* eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values */}
