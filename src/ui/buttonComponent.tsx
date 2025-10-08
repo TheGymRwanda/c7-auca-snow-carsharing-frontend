@@ -22,7 +22,7 @@ function ButtonComponent({
     <button
       {...props}
       disabled={loading || props.disabled}
-      className={`w-full rounded-full py-3 font-semibold ${className ?? ''} ${
+      className={`w-full rounded-full py-3 font-[Inter] font-bold ${className ?? ''} ${
         loading || props.disabled
           ? 'cursor-not-allowed bg-gray-200/80 text-[#265E78]/100'
           : isPrimary
