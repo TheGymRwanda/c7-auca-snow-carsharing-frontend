@@ -2,6 +2,7 @@ import { ReactElement } from 'react'
 import { configure } from 'axios-hooks'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './ui/AppLayout'
+import CarDetails from './pages/CarDetails'
 
 // Configure axios hooks
 // Do not delete this if you want to use the provided API hooks in `src/hooks`
@@ -20,7 +21,7 @@ function App(): ReactElement {
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
           <Route path="car" element={<h1>All cars</h1>} />
-          <Route path="car/:id" element={<h1>Car details</h1>} />
+          <Route path="car/:id" element={<CarDetails />} />
         </Route>
         <Route path="/login" element={<h1>Login</h1>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
