@@ -1,15 +1,9 @@
-import React from 'react'
 import { ChevronBackIcon } from '../assets/ChevronBackIcon'
-import ProfileIcon from '../assets/ProfileIcon'
-import CarPlusIcon from '../assets/CarPlusIcon'
-import CarsIcon from '../assets/CarsIcon'
 import CarIcon from '../assets/CarIcon'
 import HorseIcon from '../assets/HorseIcon'
 import FuelIcon from '../assets/FuelIcon'
-import ErrorIcon from '../assets/ErrorIcon'
 import XIcon from '../assets/XIcon'
-import UnlockIcon from '../assets/UnlockIcon'
-import PenIcon from '../assets/PenIcon'
+import ProfileIcon from '../assets/ProfileIcon'
 
 const car = [
   {
@@ -47,20 +41,21 @@ const car = [
   },
 ][0]
 
+// eslint-disable-next-line arrow-body-style
 const CarDetails = () => {
-  console.log(car)
+  
   return (
-    <div className="text-[#F9FAFB] h-screen mt-10 space-y-11">
-      <div className="text-2xl pl-5 flex  items-center justify-between md:text-5xl">
+    <div className="mt-10 h-screen space-y-11 text-[#F9FAFB]">
+      <div className="flex items-center justify-between pl-5  pt-5 text-2xl md:text-5xl">
         <ChevronBackIcon className="text-[#F8FCAD]" />
         <h1 className="font-bold">Details</h1>
         <p></p>
       </div>
-      <div className="pl-11  space-y-11 items-center sm:flex gap-32 lg:gap-64">
+      <div className="items-center  gap-32 space-y-11 pl-11 sm:flex lg:gap-64">
         <img src="../../public/img/car.png" className="w-[80%] sm:w-[40%]" />
         <div>
-          <h2 className="text-xl md:text-3xl font-medium">Tini Titan</h2>
-          <ul className="space-y-2 mt-7 text-md md:text-xl">
+          <h2 className="text-xl font-medium md:text-3xl">Tini Titan</h2>
+          <ul className="text-md mt-7 space-y-2 md:text-xl">
             <li className="flex items-center gap-2">
               <ProfileIcon /> {car.name}
             </li>
