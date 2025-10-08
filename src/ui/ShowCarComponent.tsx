@@ -35,11 +35,11 @@ export default function ShowCarComponent({
             </h2>
             <div className="flex flex-col gap-4 text-[18px] font-light text-gray-100">
               <div className="flex items-center gap-3">
-                <ProfileIcon className="h-7 w-7" />
+                <ProfileIcon className="size-7" />
                 <span>{owner}</span>
               </div>
               <div className="flex items-center gap-3">
-                <CarIcon className="h-7 w-7" />
+                <CarIcon className="size-7" />
                 <span>{location}</span>
               </div>
             </div>

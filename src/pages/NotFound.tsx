@@ -3,7 +3,7 @@ import ButtonComponent from '../ui/buttonComponent'
 import { Link } from 'react-router-dom'
 
 const NotFound = () => (
-  <div className="flex min-h-screen items-center justify-center font-[Lora] bg-[#265E78]">
+  <div className="flex min-h-screen items-center justify-center bg-[#265E78] font-[Lora]">
     <div className="p-4">
       <h1 className="mb-6 text-center text-4xl font-bold text-white">OOOOOPS!</h1>
       <div className="mx-7">
