@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import Header from '../components/Header'
 
 const AppLayout = () => (
-  <div>
+  <div className="bg-[#265E78]">
     <div className="fixed top-0 w-full">
       <Header />
     </div>
