@@ -3,10 +3,12 @@ import ButtonComponent from '../ui/buttonComponent'
 import { Link } from 'react-router-dom'
 
 const NotFound = () => (
-  <div className="flex min-h-screen items-center justify-center bg-[#265E78] font-[Lora]">
+  <div className="flex min-h-screen items-center justify-center font-[Lora] bg-[#265E78]">
     <div className="p-4">
-      <h1 className="mb-6 text-center text-4xl font-bold text-white">OOOOPS!</h1>
-      <ErrorPageIcon />
+      <h1 className="mb-6 text-center text-4xl font-bold text-white">OOOOOPS!</h1>
+      <div className="mx-7">
+        <ErrorPageIcon />
+      </div>
       <p className="mb-12 mt-6 text-center text-lg text-white">
         Something went wrong.
         <br />

@@ -23,9 +23,9 @@ function App(): ReactElement {
           <Route path="bookings" element={<h1>Bookings</h1>} />
           <Route path="car" element={<h1>All cars</h1>} />
           <Route path="car/:id" element={<h1>Car details</h1>} />
+          <Route path="/login" element={<h1>Login</h1>} />
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="/login" element={<h1>Login</h1>} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
