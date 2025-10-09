@@ -45,7 +45,7 @@ export default function CarDetails({
             </div>
           </div>
           <div className="mt-1 font-semibold">
-            <Link to={`car/${index}`} className="text-[17px] text-[#F8FCAD]">
+            <Link to={`/car/${index}`} className="text-[17px] text-[#F8FCAD]">
               Show details
             </Link>
           </div>
