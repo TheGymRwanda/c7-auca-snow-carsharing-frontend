@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import AppLayout from './ui/AppLayout'
+import { ProtectedRoute } from './components/ProtectedRoute'
+import CarsListPage from './components/CarsList'
 import CarDetails from './pages/CarDetails'
 
 // Configure axios hooks
@@ -22,7 +24,14 @@ function App(): ReactElement {
           <Route index element={<Home />} />
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
-          <Route path="car" element={<h1>All cars</h1>} />
+          <Route
+            path="car"
+            element={
+              <ProtectedRoute>
+                <CarsListPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<h1>Login</h1>} />
           <Route path="*" element={<NotFound />} />

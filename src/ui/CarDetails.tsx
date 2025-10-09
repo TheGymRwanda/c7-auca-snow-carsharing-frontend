@@ -30,22 +30,22 @@ export default function CarDetails({
         </div>
         <div className="grid gap-4">
           <div className="grid gap-4">
-            <h2 className="mt-2 whitespace-pre-line text-center text-xl leading-tight text-white">
+            <h2 className="mt-2 whitespace-pre-line text-center text-xl leading-tight font-[Lora] text-white">
               {title}
             </h2>
             <div className="flex flex-col gap-4 text-[18px] font-light text-gray-100">
               <div className="flex items-center gap-3">
-                <ProfileIcon className="h-7 w-7" />
+                <ProfileIcon className="size-7" />
                 <span>{owner}</span>
               </div>
               <div className="flex items-center gap-3">
-                <CarIcon className="h-7 w-7" />
+                <CarIcon className="size-7" />
                 <span>{location}</span>
               </div>
             </div>
           </div>
           <div className="mt-1 font-semibold">
-            <Link to={`car/${index}`} className="text-[17px] text-[#F8FCAD]">
+            <Link to={`/car/${index}`} className="text-[17px] text-[#F8FCAD]">
               Show details
             </Link>
           </div>
