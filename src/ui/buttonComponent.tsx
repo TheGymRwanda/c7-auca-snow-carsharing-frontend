@@ -26,8 +26,8 @@ function ButtonComponent({
         loading || props.disabled
           ? 'cursor-not-allowed bg-gray-200/80 text-[#265E78]/100'
           : isPrimary
-          ? 'bg-gray-100 text-[#265E78]'
-          : 'border-2 bg-[#265E78] text-white'
+            ? 'bg-gray-100 text-[#265E78]'
+            : 'border-2 bg-[#265E78] text-white'
       }`}
     >
       {loading ? (

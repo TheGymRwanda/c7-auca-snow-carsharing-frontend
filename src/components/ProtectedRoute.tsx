@@ -13,7 +13,6 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { isAuthenticated, loading, refreshUser } = useAuth()
   const [loginLoading, setLoginLoading] = useState(false)
 
-  console.log(apiUrl)
   useEffect(() => {
     const autoLogin = async () => {
       const token = localStorage.getItem('token')
@@ -24,7 +23,6 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
             username: 'Snow',
             password: 'beatrice-PW',
           })
-          console.log(response)
           localStorage.setItem('token', response.data.token)
           await refreshUser()
         } catch (error) {
