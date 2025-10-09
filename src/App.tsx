@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import AppLayout from './ui/AppLayout'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import CarsListPage from './components/CarsList'
+import CarDetails from './pages/CarDetails'
 
 // Configure axios hooks
 // Do not delete this if you want to use the provided API hooks in `src/hooks`
@@ -31,7 +32,7 @@ function App(): ReactElement {
               </ProtectedRoute>
             }
           />
-          <Route path="car/:id" element={<h1>Car details</h1>} />
+          <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<h1>Login</h1>} />
           <Route path="*" element={<NotFound />} />
         </Route>

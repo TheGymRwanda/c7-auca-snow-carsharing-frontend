@@ -1,4 +1,4 @@
-import ButtonComponent from '../ui/buttonComponent'
+import ButtonComponent from './buttonComponent'
 import CarIcon from '../assets/CarIcon'
 import ProfileIcon from '../assets/ProfileIcon'
 import { Link } from 'react-router-dom'
@@ -11,7 +11,7 @@ interface ShowCarComponentProps {
   location: string
 }
 
-export default function ShowCarComponent({
+export default function CarDetails({
   index,
   title,
   image,
