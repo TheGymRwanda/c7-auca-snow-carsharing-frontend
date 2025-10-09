@@ -28,7 +28,7 @@ const CarDetails = () => {
     return (
       <div className="mt-10 flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <div className="mx-auto mb-4 size-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+          <div className="mx-auto mb-4 w-12 h-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
           <p className="text-lg text-white">Loading car details...</p>
         </div>
       </div>
@@ -53,7 +53,7 @@ const CarDetails = () => {
   }
 
   return (
-    <div className="mt-10 h-screen space-y-11 text-[#F9FAFB]">
+    <div className=" pt-14 min-h-screen overflow-y-hidden space-y-8 text-[#F9FAFB]">
       <div className="flex items-center justify-between pl-5 pt-5 text-2xl md:text-5xl">
         <button
           onClick={() => navigate('/car')}
@@ -64,14 +64,14 @@ const CarDetails = () => {
         <h1 className="font-bold">Details</h1>
         <p></p>
       </div>
-      <div className="items-center gap-32 space-y-11 pl-11 sm:flex lg:gap-64">
+      <div className="items-center space-y-1 pl-11 sm:flex lg:gap-64">
         <img
           src={carType?.imageUrl || '/img/car.png'}
           alt={car.name}
           className="w-[80%] sm:w-[40%]"
         />
         <div>
-          <h2 className="text-xl font-medium md:text-3xl">{car.name}</h2>
+          <h2 className="text-3xl font-medium font-[Lora]">{car.name}</h2>
           <ul className="text-md mt-7 space-y-2 md:text-xl">
             {/* Owner name */}
             <li className="flex items-center gap-2">

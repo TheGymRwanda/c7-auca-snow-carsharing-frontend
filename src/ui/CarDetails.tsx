@@ -30,7 +30,7 @@ export default function CarDetails({
         </div>
         <div className="grid gap-4">
           <div className="grid gap-4">
-            <h2 className="mt-2 whitespace-pre-line text-center text-xl leading-tight text-white">
+            <h2 className="mt-2 whitespace-pre-line text-center text-xl leading-tight font-[Lora] text-white">
               {title}
             </h2>
             <div className="flex flex-col gap-4 text-[18px] font-light text-gray-100">

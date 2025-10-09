@@ -47,7 +47,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     )
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !loginLoading) {
     return <Navigate to="/login" replace />
   }
 
