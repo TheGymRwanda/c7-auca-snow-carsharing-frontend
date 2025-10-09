@@ -26,7 +26,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const response = await axios.get<UserDto>(`${apiUrl}/users/me`, {
+      const response = await axios.get<UserDto>(`${apiUrl}/auth`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       setUser(response.data)
