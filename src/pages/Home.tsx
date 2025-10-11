@@ -1,9 +1,9 @@
-import ButtonComponent from '../ui/buttonComponent'
+import ButtonComponent from '../components/ui/Button'
 import { Link } from 'react-router-dom'
 
 const Home = () => (
-  <div className="grid min-h-screen items-center bg-[#265E78] text-center font-[Lora] text-white">
-    <div className="bg-[#265E78] p-6 ">
+  <div className="grid min-h-screen items-center bg-primary-dark text-center font-lora text-white">
+    <div className="bg-primary-dark p-6 ">
       <h1 className="mt-3 text-5xl font-bold">MONI</h1>
       <h2 className="mb-6 text-5xl italic">Share</h2>
       <p className="mb-12  text-xl">

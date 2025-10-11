@@ -1,10 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
   @apply box-border;
 }
 
 body {
   @apply font-normal text-left text-sm relative text-gray-700;
+}
+
+@layer utilities {
+  .shadow-card {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+  }
+  
+  .shadow-button {
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.18);
+  }
 }
