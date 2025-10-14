@@ -2,7 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import ProtectedRoute from '../ProtectedRoute'
 import Header from '../Header'
 
-const publicRoutes = ['/login']
+const publicRoutes = ['/login', '*']
 
 const AppLayout = () => {
   const location = useLocation()
