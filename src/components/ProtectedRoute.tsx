@@ -1,15 +1,14 @@
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../util/AuthContext'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
-import type { ReactNode } from 'react'
 
 interface ProtectedRouteProps {
   children: ReactNode
 }
 
-export function ProtectedRoute({ children }: ProtectedRouteProps) {
+function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { isAuthenticated, loading, refreshUser } = useAuth()
   const [loginLoading, setLoginLoading] = useState(false)
 
@@ -36,20 +35,18 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     autoLogin()
   }, [loading, isAuthenticated, refreshUser])
 
-  if (loading || loginLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <div className="mx-auto mb-4 size-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"></div>
-          <p className="text-lg text-gray-600">Loading...</p>
-        </div>
+  return loading || loginLoading ? (
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="text-center">
+        <div className="mx-auto mb-4 size-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"></div>
+        <p className="text-lg text-gray-600">Loading...</p>
       </div>
-    )
-  }
-
-  if (!isAuthenticated && !loginLoading) {
-    return <Navigate to="/login" replace />
-  }
-
-  return <>{children}</>
+    </div>
+  ) : !isAuthenticated && !loginLoading ? (
+    <Navigate to="/login" replace />
+  ) : (
+    <>{children}</>
+  )
 }
+
+export default ProtectedRoute

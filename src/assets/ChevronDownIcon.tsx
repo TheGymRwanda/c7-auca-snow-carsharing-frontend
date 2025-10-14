@@ -4,7 +4,7 @@ interface ChevronDownIconProps {
   className?: string
 }
 
-export function ChevronDownIcon({ className }: ChevronDownIconProps): ReactElement {
+export default function ChevronDownIcon({ className }: ChevronDownIconProps): ReactElement {
   return (
     <svg
       width="24"

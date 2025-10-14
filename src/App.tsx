@@ -1,22 +1,19 @@
-import { ReactElement } from 'react'
 import { configure } from 'axios-hooks'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
-import AppLayout from './ui/AppLayout'
-import { ProtectedRoute } from './components/ProtectedRoute'
+import AppLayout from './components/ui/AppLayout'
+import ProtectedRoute from './components/ProtectedRoute'
 import CarsListPage from './components/CarsList'
 import CarDetails from './pages/CarDetails'
 
-// Configure axios hooks
-// Do not delete this if you want to use the provided API hooks in `src/hooks`
 configure({
   defaultOptions: {
     autoCancel: false,
   },
 })
 
-function App(): ReactElement {
+function App() {
   return (
     <BrowserRouter>
       <Routes>

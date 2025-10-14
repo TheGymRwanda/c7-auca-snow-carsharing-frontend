@@ -1,14 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ChevronBackIcon } from '../assets/ChevronBackIcon'
-import CarIcon from '../assets/CarIcon'
-import HorseIcon from '../assets/HorseIcon'
-import FuelIcon from '../assets/FuelIcon'
-import XIcon from '../assets/XIcon'
-import ProfileIcon from '../assets/ProfileIcon'
-import useCars from '../hooks/useCars'
-import useCarTypes from '../hooks/useCarTypes'
-import useUser from '../hooks/useUser'
-
+import { ChevronBackIcon, CarIcon, HorseIcon, FuelIcon, XIcon, ProfileIcon } from '../assets/index'
+import { useCars, useCarTypes, useUser } from '../hooks/index'
 // eslint-disable-next-line max-lines-per-function
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()
@@ -23,7 +15,6 @@ const CarDetails = () => {
 
   const [{ data: owner, loading: ownerLoading }] = useUser(car?.ownerId || 0)
 
-  // Loading state for main data
   if (carsLoading || typesLoading) {
     return (
       <div className="mt-10 flex min-h-screen items-center justify-center">
@@ -35,7 +26,6 @@ const CarDetails = () => {
     )
   }
 
-  // Error state or car not found
   if (carsError || !car) {
     return (
       <div className="mt-10 flex min-h-screen items-center justify-center">
@@ -59,19 +49,19 @@ const CarDetails = () => {
           onClick={() => navigate('/car')}
           className="cursor-pointer transition hover:opacity-80"
         >
-          <ChevronBackIcon className="text-[#F8FCAD]" />
+          <ChevronBackIcon className="text-accent" />
         </button>
         <h1 className="font-bold">Details</h1>
         <p></p>
       </div>
-      <div className="items-center space-y-1 pl-11 sm:flex lg:gap-64">
+      <div className="items-center space-y-1 pl-11 lg:gap-64">
         <img
           src={carType?.imageUrl || '/img/car.png'}
           alt={car.name}
           className="w-[80%] sm:w-[40%]"
         />
         <div>
-          <h2 className="text-3xl font-medium font-[Lora]">{car.name}</h2>
+          <h2 className="text-3xl font-medium font-lora">{car.name}</h2>
           <ul className="text-md mt-7 space-y-2 md:text-xl">
             {/* Owner name */}
             <li className="flex items-center gap-2">
