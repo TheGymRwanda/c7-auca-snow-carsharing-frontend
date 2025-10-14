@@ -1,4 +1,4 @@
-import CarCard from './carCard'
+import CarCard from './CarCard'
 import { useCarTypes, useCars } from '../hooks/index'
 
 function CarsListPage() {
