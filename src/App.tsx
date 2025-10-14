@@ -4,7 +4,6 @@ import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import AppLayout from './components/ui/AppLayout'
-import ProtectedRoute from './components/ProtectedRoute'
 import CarsListPage from './components/CarsList'
 import CarDetails from './pages/CarDetails'
 
@@ -19,11 +18,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route index element={<ProtectedRoute><Home /></ProtectedRoute>} />
-          <Route path="menu" element={<ProtectedRoute><h1>Menu</h1></ProtectedRoute>} />
-          <Route path="bookings" element={<ProtectedRoute><h1>Bookings</h1></ProtectedRoute>} />
-          <Route path="car" element={<ProtectedRoute><CarsListPage /></ProtectedRoute>} />
-          <Route path="car/:id" element={<ProtectedRoute><CarDetails /></ProtectedRoute>} />
+          <Route index element={<Home />} />
+          <Route path="menu" element={<h1>Menu</h1>} />
+          <Route path="bookings" element={<h1>Bookings</h1>} />
+          <Route path="car" element={<CarsListPage />} />
+          <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Route>

@@ -6,7 +6,7 @@ export default function Header() {
   const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false)
   const location = useLocation()
   const isLoginPage = location.pathname === '/login'
-  
+
   return (
     <>
       <header className="relative flex items-center justify-between rounded-b-2xl bg-nav p-1 px-4 text-[#F9FAFB]">
