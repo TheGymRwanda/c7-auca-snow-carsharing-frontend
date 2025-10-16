@@ -3,7 +3,7 @@ import Header from '../Header'
 
 const AppLayout = () => (
   <div className="mx-auto max-w-md bg-primary-dark">
-    <div className="mx-auto max-w-md fixed top-0 inset-x-0 z-40 w-full">
+    <div className="fixed inset-x-0 top-0 z-40 mx-auto w-full max-w-md">
       <Header />
     </div>
     <main>
