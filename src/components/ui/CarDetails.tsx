@@ -14,7 +14,7 @@ function CarDetails({ index, title, image, owner, location }: ShowCarComponentPr
   return (
     <div
       key={index}
-      className="mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light p-4 px-8 shadow-card"
+      className="shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light p-4 px-8"
     >
       <div className="flex gap-6">
         <div className="my-1 ml-2 flex h-44 scale-115 items-center justify-center">
@@ -22,7 +22,7 @@ function CarDetails({ index, title, image, owner, location }: ShowCarComponentPr
         </div>
         <div className="grid gap-4">
           <div className="grid gap-4">
-            <h2 className="mt-2 whitespace-pre-line text-center text-xl leading-tight font-lora text-white">
+            <h2 className="mt-2 whitespace-pre-line text-center font-lora text-xl leading-tight text-white">
               {title}
             </h2>
             <div className="flex flex-col gap-4 text-18 font-light text-gray-100">
@@ -47,7 +47,7 @@ function CarDetails({ index, title, image, owner, location }: ShowCarComponentPr
         <ButtonComponent
           text="Book Car"
           isPrimary={true}
-          className="text-17 drop-shadow-2xl shadow-button"
+          className="shadow-button text-17 drop-shadow-2xl"
           // Use Onclick event for Adding the Booking Logic
         />
       </div>

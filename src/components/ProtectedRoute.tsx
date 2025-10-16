@@ -38,7 +38,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
   return loading || loginLoading ? (
     <div className="flex min-h-screen items-center justify-center">
       <div className="text-center">
-        <div className="mx-auto mb-4 size-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"></div>
+        <div className="size-12 mx-auto mb-4 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"></div>
         <p className="text-lg text-gray-600">Loading...</p>
       </div>
     </div>

@@ -19,7 +19,7 @@ const CarDetails = () => {
     return (
       <div className="mt-10 flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <div className="mx-auto mb-4 w-12 h-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
           <p className="text-lg text-white">Loading car details...</p>
         </div>
       </div>
@@ -43,7 +43,7 @@ const CarDetails = () => {
   }
 
   return (
-    <div className=" pt-14 min-h-screen overflow-y-hidden space-y-8 text-[#F9FAFB]">
+    <div className=" min-h-screen space-y-8 overflow-y-hidden pt-14 text-[#F9FAFB]">
       <div className="flex items-center justify-between pl-5 pt-5 text-2xl md:text-5xl">
         <button
           onClick={() => navigate('/car')}
@@ -61,7 +61,7 @@ const CarDetails = () => {
           className="w-[80%] sm:w-[40%]"
         />
         <div>
-          <h2 className="text-3xl font-medium font-lora">{car.name}</h2>
+          <h2 className="font-lora text-3xl font-medium">{car.name}</h2>
           <ul className="text-md mt-7 space-y-2 md:text-xl">
             {/* Owner name */}
             <li className="flex items-center gap-2">
