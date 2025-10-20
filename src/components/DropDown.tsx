@@ -1,9 +1,12 @@
 import { CarIcon, ListIcon, CarsIcon, CarPlusIcon, LogoutIcon, MenuIcon } from '../assets/index'
 import { Link } from 'react-router-dom'
 
-export default function DropDown() {
+export default function DropDown({ dropDownRef }: { dropDownRef: React.LegacyRef<HTMLElement> }) {
   return (
-    <nav className="absolute left-5 top-14 z-40 rounded-md bg-primary-light px-6 pb-2 pt-4 text-sm text-white ">
+    <nav
+      ref={dropDownRef}
+      className="absolute left-5 top-14 z-40 rounded-md bg-primary-light px-6 pb-2 pt-4 text-sm text-white "
+    >
       <div>
         <ul>
           <Link to="/">
