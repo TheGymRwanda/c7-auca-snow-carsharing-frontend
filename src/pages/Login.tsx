@@ -4,6 +4,7 @@ import { ProfileIcon, KeyIcon } from '../assets'
 import { useAuth } from '../util/AuthContext'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
+import ButtonComponent from '../components/ui/Button'
 
 export default function Login() {
   const [username, setUsername] = useState('')
@@ -77,13 +78,12 @@ export default function Login() {
 
           {error && <p className="text-red-200 text-sm text-center">{error}</p>}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-white text-primary font-bold py-3 rounded-full mt-14 hover:bg-gray-100 transition-colors disabled:opacity-50"
-          >
-            {loading ? 'Logging in...' : 'Log in'}
-          </button>
+          <ButtonComponent
+            text="Login"
+            isPrimary={true}
+            loadingText="Logging In ..."
+            loading={loading}
+          />
         </form>
       </div>
     </div>
