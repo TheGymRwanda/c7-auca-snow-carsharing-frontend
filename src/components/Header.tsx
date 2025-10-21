@@ -42,7 +42,7 @@ export default function Header() {
         )}
       </div>
 
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex ml-1.5 items-center justify-center">
         <Link to="/">
           <Logo className="relative z-10" />
         </Link>
