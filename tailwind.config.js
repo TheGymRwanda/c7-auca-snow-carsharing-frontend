@@ -13,6 +13,7 @@ module.exports = {
           },
         },
         accent: '#F8FCAD',
+        delete: '#FFC28A',
         nav: '#111827',
       },
       fontSize: {

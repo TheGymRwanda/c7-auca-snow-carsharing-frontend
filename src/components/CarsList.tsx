@@ -1,17 +1,20 @@
 import CarCard from './CarCard'
 import { useCarTypes, useCars } from '../hooks/index'
+import { useNavigate } from 'react-router-dom'
+import { ChevronBackIcon } from '../assets'
 
 function CarsListPage() {
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
   const [{ data: carTypes }] = useCarTypes()
+  const navigate = useNavigate()
 
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
 
   return carsLoading ? (
     <div className="flex min-h-screen items-center justify-center bg-primary">
       <div className="text-center">
-        <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
-        <p className="text-lg text-white">Loading available cars...</p>
+        <div className="mx-auto mb-4 w-12 h-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+        <p className="text-lg text-white">Loading ...</p>
       </div>
     </div>
   ) : carsError ? (
@@ -38,6 +41,17 @@ function CarsListPage() {
   ) : (
     <div className="min-h-screen bg-primary pb-8 pt-24">
       <div className="container mx-auto px-4">
+        <div className="mx-2 flex content-center text-center">
+          <button
+            onClick={() => navigate('/')}
+            className="cursor-pointer transition hover:opacity-80"
+          >
+            <ChevronBackIcon className="text-accent w-5 h-5" />
+          </button>
+          <div className="w-full text-center">
+            <h1 className="font-lora text-3xl uppercase text-gray-200">Available Car</h1>
+          </div>
+        </div>
         <div className="space-y-6">
           {cars.map(car => {
             const carType = getCarType(car.carTypeId)

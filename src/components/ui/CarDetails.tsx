@@ -14,15 +14,15 @@ function CarDetails({ index, title, image, owner, location }: ShowCarComponentPr
   return (
     <div
       key={index}
-      className="shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light p-4 px-8"
+      className="mt-8 flex w-full min-h-60 flex-col self-center rounded-2xl bg-primary-light p-4 px-8 shadow-card"
     >
-      <div className="flex gap-6">
-        <div className="my-1 ml-2 flex h-44 scale-115 items-center justify-center">
+      <div className="grid grid-cols-2 gap-20">
+        <div className="my-1 flex w-52 items-center justify-center pr-4">
           <img src={image} alt={`${title}'s Picture`} className="max-h-full" />
         </div>
-        <div className="grid gap-4">
-          <div className="grid gap-4">
-            <h2 className="mt-2 whitespace-pre-line text-center font-lora text-xl leading-tight text-white">
+        <div className="flex flex-col min-h-52 justify-around gap-4">
+          <div className="flex flex-col gap-4">
+            <h2 className="mt-2 whitespace-normal overflow-wrap-anywhere text-xl leading-tight font-lora text-white">
               {title}
             </h2>
             <div className="flex flex-col gap-4 text-18 font-light text-gray-100">
@@ -36,7 +36,7 @@ function CarDetails({ index, title, image, owner, location }: ShowCarComponentPr
               </div>
             </div>
           </div>
-          <div className="mt-1 font-semibold">
+          <div className="mb-4 font-semibold">
             <Link to={`/car/${index}`} className="text-17 text-accent">
               Show details
             </Link>
