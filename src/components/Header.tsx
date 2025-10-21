@@ -35,7 +35,7 @@ export default function Header() {
           <button
             ref={btnRef}
             onClick={() => setIsDropDownOpen(prev => !prev)}
-            className="min-w-[64px] text-sm"
+            className="min-w-[64px] text-sm text-start"
           >
             {isDropDownOpen ? 'Close' : 'Menu'}
           </button>
