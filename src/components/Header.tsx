@@ -35,13 +35,15 @@ export default function Header() {
           </button>
         )}
         {isLoginPage && <div></div>}
-        <Link to={'/'}>
-          <Logo className={`relative z-10`} />
-        </Link>
+        <div className="relative">
+          <Link to={'/'}>
+            <Logo className={`relative z-10`} />
+          </Link>
+          <div className="z-1 size-20 absolute rounded-full bg-nav"></div>
+        </div>
         {!isLoginPage && <ProfileIcon />}
         {isLoginPage && <div></div>}
         {/* eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values */}
-        <div className="z-1 size-20 absolute left-1/2 rounded-full bg-nav"></div>
         {isDropDownOpen && <DropDown dropDownRef={dropDownRef} />}
       </header>
     </>
