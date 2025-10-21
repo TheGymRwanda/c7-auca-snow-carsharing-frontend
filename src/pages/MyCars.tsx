@@ -12,8 +12,6 @@ function MyCars() {
   const [{ data: carTypes }] = useCarTypes()
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
   const navigate = useNavigate()
-  console.log('Cars:', cars)
-  console.log('user:', user)
 
   if (error) {
     return (
@@ -26,7 +24,7 @@ function MyCars() {
     )
   }
 
-  //const myCars = cars?.filter(car => car.ownerId === user?.id) || []
+  const myCars = cars?.filter(car => car.ownerId === user?.id) || []
 
   const handleDeleteCar = (carId: number) => {
     alert(`Deleting car Comming soon: ${cars?.find(car => car.id === carId)?.name} (${carId})}`)
@@ -57,10 +55,10 @@ function MyCars() {
                 </div>
               </div>
               <div className="space-y-6 mb-6">
-                {cars.length === 0 && (
+                {myCars?.length === 0 && (
                   <p className="text-gray-200 mt-9 text-center">{"You don't have any cars yet."}</p>
                 )}
-                {cars?.map(car => {
+                {myCars?.map(car => {
                   const carType = getCarType(car.carTypeId)
                   return (
                     <MyCarCard
