@@ -6,7 +6,7 @@ export default function DropDown() {
     <nav className="absolute left-5 top-14 z-40 rounded-md bg-primary-light px-6 pb-2 pt-4 text-sm text-white">
       <div>
         <ul>
-          <Link to="/">
+          <Link to="/car">
             <li className="flex items-center gap-2 p-2 hover:bg-primary-light-hover">
               <CarIcon className="text-white" />
               Book A Car
@@ -22,7 +22,7 @@ export default function DropDown() {
         <hr />
         <p className="p-2 text-left font-semibold">My cars</p>
         <ul>
-          <Link to="/car">
+          <Link to="/myCars">
             <li className="flex items-center gap-2 p-2 hover:bg-primary-light-hover">
               <CarsIcon />
               See My Cars

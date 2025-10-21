@@ -46,7 +46,7 @@ export default function Header() {
         <Link to="/">
           <Logo className="relative z-10" />
         </Link>
-        <div className=" absolute left-1/2 -translate-x-1/2 bottom-[-22px]  /* adjust to your design */ h-20 w-20 rounded-full bg-nav z-0 " />
+        <div className=" absolute left-1/2 -translate-x-1/2 bottom-[-22px] h-20 w-20 rounded-full bg-nav z-0 " />
       </div>
 
       <div className="flex items-center justify-end">{!isLoginPage && <ProfileIcon />}</div>

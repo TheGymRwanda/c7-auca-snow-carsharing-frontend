@@ -17,7 +17,9 @@ const Home = () => (
 
         <p className="mb-10 text-sm">or</p>
         <div className="mt-4 flex w-full flex-col space-y-6">
-          <ButtonComponent text="See My Cars" isPrimary={false} />
+          <Link to="/myCars">
+            <ButtonComponent text="See My Cars" isPrimary={false} />
+          </Link>
           <Link to="/bookings" className="mt-2">
             <ButtonComponent text="See My Bookings" isPrimary={false} />
           </Link>

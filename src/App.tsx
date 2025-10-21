@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import AppLayout from './components/ui/AppLayout'
 import CarsListPage from './components/CarsList'
 import CarDetails from './pages/CarDetails'
+import MyCars from './pages/MyCars'
 
 configure({
   defaultOptions: {
@@ -22,6 +23,7 @@ function App() {
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
           <Route path="car" element={<CarsListPage />} />
+          <Route path="myCars" element={<MyCars />} />
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
         </Route>
