@@ -1,51 +1,61 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ProfileIcon, Logo } from '../assets/index'
+import { ProfileIcon, Logo } from '../assets'
 import DropDown from './DropDown'
+
 export default function Header() {
-  const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false)
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false)
   const location = useLocation()
-  const dropDownRef = useRef<HTMLElement>(null)
-  const btnRef = useRef<HTMLButtonElement>(null)
   const isLoginPage = location.pathname === '/login'
 
+  const dropDownRef = useRef<HTMLDivElement>(null)
+  const btnRef = useRef<HTMLButtonElement>(null)
+
+  // close when clicking outside
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (!dropDownRef.current || !btnRef.current) return
+    const onDocClick = (e: MouseEvent) => {
+      if (!isDropDownOpen) return
       if (
-        isDropDownOpen &&
+        dropDownRef.current &&
         !dropDownRef.current.contains(e.target as Node) &&
+        btnRef.current &&
         !btnRef.current.contains(e.target as Node)
       ) {
         setIsDropDownOpen(false)
       }
     }
-
-    document.addEventListener('click', handleClickOutside)
-
-    return () => document.removeEventListener('click', handleClickOutside)
+    document.addEventListener('mousedown', onDocClick)
+    return () => document.removeEventListener('mousedown', onDocClick)
   }, [isDropDownOpen])
 
   return (
-    <>
-      <header className="relative flex items-center justify-between rounded-b-2xl bg-nav p-1 px-4 text-[#F9FAFB]">
+    <header className=" relative overflow-visible grid grid-cols-[1fr_auto_1fr] items-center rounded-b-2xl bg-nav text-[#F9FAFB] px-4 py-2">
+      <div className="flex items-center">
         {!isLoginPage && (
-          <button ref={btnRef} className="" onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
+          <button
+            ref={btnRef}
+            onClick={() => setIsDropDownOpen(prev => !prev)}
+            className="min-w-[64px] text-sm"
+          >
             {isDropDownOpen ? 'Close' : 'Menu'}
           </button>
         )}
-        {isLoginPage && <div></div>}
-        <div className="relative">
-          <Link to={'/'}>
-            <Logo className={`relative z-10`} />
-          </Link>
-          <div className="z-1 size-20 absolute rounded-full bg-nav"></div>
+      </div>
+
+      <div className="relative flex items-center justify-center">
+        <Link to="/">
+          <Logo className="relative z-10" />
+        </Link>
+        <div className=" absolute left-1/2 -translate-x-1/2 bottom-[-22px]  /* adjust to your design */ h-20 w-20 rounded-full bg-nav z-0 " />
+      </div>
+
+      <div className="flex items-center justify-end">{!isLoginPage && <ProfileIcon />}</div>
+
+      {isDropDownOpen && (
+        <div ref={dropDownRef} className="absolute inset-x-1 top-full -mt-10 z-20">
+          <DropDown />
         </div>
-        {!isLoginPage && <ProfileIcon />}
-        {isLoginPage && <div></div>}
-        {/* eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values */}
-        {isDropDownOpen && <DropDown dropDownRef={dropDownRef} />}
-      </header>
-    </>
+      )}
+    </header>
   )
 }
