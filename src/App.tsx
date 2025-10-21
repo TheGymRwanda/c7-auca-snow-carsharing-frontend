@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import AppLayout from './components/ui/AppLayout'
 import CarsListPage from './components/CarsList'
 import CarDetails from './pages/CarDetails'
+import LandingPage from './pages/LandingPage'
 
 configure({
   defaultOptions: {
@@ -25,6 +26,7 @@ function App() {
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
         </Route>
+        <Route path="landing" element={<LandingPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

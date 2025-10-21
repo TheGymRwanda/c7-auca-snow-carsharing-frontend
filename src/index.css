@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply font-normal text-left text-sm relative text-gray-700;
+  @apply font-normal text-left text-sm relative text-gray-700 bg-primary-dark;
 }
 
 @layer utilities {
