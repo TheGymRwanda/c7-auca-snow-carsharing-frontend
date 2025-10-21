@@ -41,7 +41,7 @@ export default function Header() {
         {!isLoginPage && <ProfileIcon />}
         {isLoginPage && <div></div>}
         {/* eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values */}
-        <div className="z-1 size-20 absolute ml-[50%] -translate-x-[50%] rounded-full bg-nav"></div>
+        <div className="z-1 size-20 absolute justify-self-center rounded-full bg-nav"></div>
         {isDropDownOpen && <DropDown dropDownRef={dropDownRef} />}
       </header>
     </>
