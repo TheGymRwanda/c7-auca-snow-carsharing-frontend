@@ -47,7 +47,7 @@ function CarDetails({ index, title, image, owner, location }: ShowCarComponentPr
         <ButtonComponent
           text="Book Car"
           isPrimary={true}
-          className="text-17 drop-shadow-2xl shadow-button"
+          className="shadow-button text-17 drop-shadow-2xl"
           // Use Onclick event for Adding the Booking Logic
         />
       </div>
