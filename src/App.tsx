@@ -1,21 +1,33 @@
-import { ReactElement } from 'react'
 import { configure } from 'axios-hooks'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import NotFound from './pages/NotFound'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import AppLayout from './components/ui/AppLayout'
+import CarsListPage from './components/CarsList'
+import CarDetails from './pages/CarDetails'
 
-// Configure axios hooks
-// Do not delete this if you want to use the provided API hooks in `src/hooks`
 configure({
   defaultOptions: {
     autoCancel: false,
   },
 })
 
-function App(): ReactElement {
+function App() {
   return (
-    <main className="mx-auto flex min-h-screen w-1/3 flex-col gap-8 py-10">
-      <h1 className="text-4xl font-bold">Hello to CarSharing</h1>
-      <p>If you can read this, you have successfully started the base frontend repository!</p>
-      <p>Happy coding!</p>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<Home />} />
+          <Route path="menu" element={<h1>Menu</h1>} />
+          <Route path="bookings" element={<h1>Bookings</h1>} />
+          <Route path="car" element={<CarsListPage />} />
+          <Route path="car/:id" element={<CarDetails />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

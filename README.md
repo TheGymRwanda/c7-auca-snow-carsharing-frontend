@@ -7,8 +7,8 @@ Just for the interested reader, [here](./INITIAL_SETUP.md) you can find how the 
 
 External documentation for frontend libraries:
 
-* [React](https://legacy.reactjs.org/)
-* [TailwindCSS](https://tailwindcss.com/)
+- [React](https://legacy.reactjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
 
 ## Setup & Startup
 
@@ -30,7 +30,7 @@ This package provides you with unstyled components that solve very common requir
 For example, you can find a dropdown there that you can use to implement a menu or something similar.
 Unstyled means that you can assign all tailwind classes. Without this, the components still look like nothing.
 
-### Axios Hooks 
+### Axios Hooks
 
 Already installed.
 
@@ -41,11 +41,11 @@ Using the axios hooks makes your React components more readable and declarative.
 ```tsx
 import useAxios from 'axios-hooks'
 
-type TypeOfData = { page: number, total: number };
+type TypeOfData = { page: number; total: number }
 
 function App() {
   const [{ data, loading, error }, refetch] = useAxios<TypeOfData>(
-    'https://reqres.in/api/users?delay=1'
+    'https://reqres.in/api/users?delay=1',
   )
 
   if (loading) return <p>Loading...</p>
