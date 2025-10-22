@@ -1,9 +1,9 @@
-import ErrorPageIcon from '../assets/ErrorPageIcon'
-import ButtonComponent from '../ui/buttonComponent'
+import { ErrorPageIcon } from '../assets/index'
+import ButtonComponent from '../components/ui/Button'
 import { Link } from 'react-router-dom'
 
 const NotFound = () => (
-  <div className="flex min-h-screen items-center justify-center bg-[#265E78] font-[Lora]">
+  <div className="flex min-h-screen items-center justify-center bg-primary-dark font-lora">
     <div className="p-4">
       <h1 className="mb-6 text-center text-4xl font-bold text-white">OOOOOPS!</h1>
       <div className="mx-7">
@@ -14,7 +14,6 @@ const NotFound = () => (
         <br />
         Try something else until we fix it.
       </p>
-      {/* The text will change when the login has been implemented */}
       <Link to="/">
         <ButtonComponent text="Go back" isPrimary={true} />
       </Link>

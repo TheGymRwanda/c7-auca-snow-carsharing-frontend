@@ -1,14 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ChevronBackIcon } from '../assets/ChevronBackIcon'
-import CarIcon from '../assets/CarIcon'
-import HorseIcon from '../assets/HorseIcon'
-import FuelIcon from '../assets/FuelIcon'
-import XIcon from '../assets/XIcon'
-import ProfileIcon from '../assets/ProfileIcon'
-import useCars from '../hooks/useCars'
-import useCarTypes from '../hooks/useCarTypes'
-import useUser from '../hooks/useUser'
-
+import { ChevronBackIcon, CarIcon, HorseIcon, FuelIcon, XIcon, ProfileIcon } from '../assets/index'
+import { useCars, useCarTypes, useUser } from '../hooks/index'
 // eslint-disable-next-line max-lines-per-function
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()
@@ -23,19 +15,17 @@ const CarDetails = () => {
 
   const [{ data: owner, loading: ownerLoading }] = useUser(car?.ownerId || 0)
 
-  // Loading state for main data
   if (carsLoading || typesLoading) {
     return (
       <div className="mt-10 flex min-h-screen items-center justify-center">
         <div className="text-center">
           <div className="mx-auto mb-4 w-12 h-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
-          <p className="text-lg text-white">Loading car details...</p>
+          <p className="text-lg text-white">Loading ...</p>
         </div>
       </div>
     )
   }
 
-  // Error state or car not found
   if (carsError || !car) {
     return (
       <div className="mt-10 flex min-h-screen items-center justify-center">
@@ -53,25 +43,26 @@ const CarDetails = () => {
   }
 
   return (
-    <div className=" pt-14 min-h-screen overflow-y-hidden space-y-8 text-[#F9FAFB]">
-      <div className="flex items-center justify-between pl-5 pt-5 text-2xl md:text-5xl">
+    <div className=" px-6 pt-20 min-h-screen overflow-y-hidden space-y-4 text-[#F9FAFB]">
+      <div className="flex content-center text-center">
         <button
           onClick={() => navigate('/car')}
           className="cursor-pointer transition hover:opacity-80"
         >
-          <ChevronBackIcon className="text-[#F8FCAD]" />
+          <ChevronBackIcon className="w-5 h-5 text-accent" />
         </button>
-        <h1 className="font-bold">Details</h1>
-        <p></p>
+        <div className="w-full text-center">
+          <h1 className="font-lora text-3xl uppercase text-gray-200">Details</h1>
+        </div>
       </div>
-      <div className="items-center space-y-1 pl-11 sm:flex lg:gap-64">
+      <div className="items-center space-y-1 lg:gap-64">
         <img
           src={carType?.imageUrl || '/img/car.png'}
           alt={car.name}
-          className="w-[80%] sm:w-[40%]"
+          className="w-fit h-80 justify-self-center"
         />
-        <div>
-          <h2 className="text-3xl font-medium font-[Lora]">{car.name}</h2>
+        <div className="px-6">
+          <h2 className="text-3xl font-medium font-lora">{car.name}</h2>
           <ul className="text-md mt-7 space-y-2 md:text-xl">
             {/* Owner name */}
             <li className="flex items-center gap-2">
@@ -103,7 +94,8 @@ const CarDetails = () => {
             </li>
             {/* Additional info or car type name */}
             <li className="flex items-center gap-2">
-              <XIcon /> {car.info || carType?.name || 'N/A'}
+              <XIcon className="w-6 h-6" />
+              <p className="overflow-wrap-anywhere">{car.info || carType?.name || 'N/A'}</p>
             </li>
           </ul>
         </div>

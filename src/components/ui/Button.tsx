@@ -1,5 +1,5 @@
 import React from 'react'
-import LoaderComponent from './loaderComponent'
+import LoaderComponent from './Loader'
 
 type ButtonComponentProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string
@@ -8,6 +8,7 @@ type ButtonComponentProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string
   loading?: boolean
   disabled?: boolean
+  variant?: 'default' | 'delete'
 }
 
 function ButtonComponent({
@@ -16,6 +17,7 @@ function ButtonComponent({
   className,
   isPrimary,
   loading = false,
+  variant = 'default',
   ...props
 }: ButtonComponentProps) {
   return (
@@ -24,10 +26,12 @@ function ButtonComponent({
       disabled={loading || props.disabled}
       className={`w-full rounded-full py-3 font-[Inter] font-bold ${className ?? ''} ${
         loading || props.disabled
-          ? 'cursor-not-allowed bg-gray-200/80 text-[#265E78]/100'
+          ? 'cursor-not-allowed bg-gray-200/80 text-primary-dark/100'
+          : variant === 'delete'
+          ? 'border-2 border-delete text-delete'
           : isPrimary
-            ? 'bg-gray-100 text-[#265E78]'
-            : 'border-2 bg-[#265E78] text-white'
+          ? 'bg-gray-100 text-primary-dark'
+          : 'border-2 bg-primary-dark text-white'
       }`}
     >
       {loading ? (

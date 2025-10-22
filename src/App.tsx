@@ -1,22 +1,19 @@
-import { ReactElement } from 'react'
 import { configure } from 'axios-hooks'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
-import AppLayout from './ui/AppLayout'
-import { ProtectedRoute } from './components/ProtectedRoute'
+import Login from './pages/Login'
+import AppLayout from './components/ui/AppLayout'
 import CarsListPage from './components/CarsList'
 import CarDetails from './pages/CarDetails'
 
-// Configure axios hooks
-// Do not delete this if you want to use the provided API hooks in `src/hooks`
 configure({
   defaultOptions: {
     autoCancel: false,
   },
 })
 
-function App(): ReactElement {
+function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -24,18 +21,11 @@ function App(): ReactElement {
           <Route index element={<Home />} />
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
-          <Route
-            path="car"
-            element={
-              <ProtectedRoute>
-                <CarsListPage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="car" element={<CarsListPage />} />
           <Route path="car/:id" element={<CarDetails />} />
-          <Route path="/login" element={<h1>Login</h1>} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/login" element={<Login />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

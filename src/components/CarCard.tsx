@@ -1,21 +1,21 @@
 import useUser from '../hooks/useUser'
-import CarDetails from '../ui/CarDetails'
+import CarDetails from './ui/CarDetails'
 import { CarDto, CarTypeDto } from '../util/api'
 
-type CarCardProps = {
+interface CarCardProps {
   car: CarDto
   carType?: CarTypeDto
 }
 
-export default function CarCard({ car, carType }: CarCardProps) {
+function CarCard({ car, carType }: CarCardProps) {
   const [{ data: owner, loading, error }] = useUser(car.ownerId)
 
   // Get the owner Name and show Loading message when Fetching
   const ownerName = loading
     ? 'Loading...'
     : error
-      ? 'Unknown Owner'
-      : owner?.name || `Owner ${car.ownerId}`
+    ? 'Unknown Owner'
+    : owner?.name || `Owner ${car.ownerId}`
 
   return (
     <CarDetails
@@ -28,3 +28,5 @@ export default function CarCard({ car, carType }: CarCardProps) {
     />
   )
 }
+
+export default CarCard
