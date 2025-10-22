@@ -1,14 +1,19 @@
 import { useAuth } from '../util/AuthContext'
+import { useState } from 'react'
+import axios from 'axios'
+import { apiUrl } from '../util/apiUrl'
 import useCars from '../hooks/useCars'
 import MyCarCard from '../components/ui/MyCarCard'
 import ButtonComponent from '../components/ui/Button'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets'
 import { useCarTypes } from '../hooks'
+import { getAuthToken } from '../util/auth'
 
 function MyCars() {
   const { user } = useAuth()
-  const [{ data: cars, loading, error }] = useCars()
+  const [deletingCar, setDeletingCar] = useState<number | null>(null)
+  const [{ data: cars, loading, error }, refetch] = useCars()
   const [{ data: carTypes }] = useCarTypes()
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
   const navigate = useNavigate()
@@ -26,8 +31,21 @@ function MyCars() {
 
   const myCars = cars?.filter(car => car.ownerId === user?.id) || []
 
-  const handleDeleteCar = (carId: number) => {
-    alert(`Deleting car Comming soon: ${cars?.find(car => car.id === carId)?.name} (${carId})}`)
+  const handleDeleteCar = async (carId: number) => {
+    setDeletingCar(carId)
+    try {
+      const res = await axios.delete(`${apiUrl}/cars/${carId}`, {
+        headers: { Authorization: `Bearer ${getAuthToken()}` },
+      })
+      if (res.status !== 200) {
+        return new Error('Failed to delete the car')
+      }
+    } catch (error) {
+      console.error('Error from deleting: ', error)
+    } finally {
+      await refetch()
+      setDeletingCar(null)
+    }
   }
 
   return (
@@ -45,7 +63,7 @@ function MyCars() {
             <div className="container mx-auto px-4">
               <div className="mx-2 flex content-center text-center">
                 <button
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate(-1)}
                   className="cursor-pointer transition hover:opacity-80"
                 >
                   <ChevronBackIcon className="text-accent w-5 h-5" />
@@ -67,6 +85,7 @@ function MyCars() {
                       title={car.name}
                       image={carType?.imageUrl || ''}
                       owner={user?.name || ''}
+                      loading={deletingCar === car.id}
                       location={carType?.name || 'No plate'}
                       onDelete={() => handleDeleteCar(car.id)}
                     />
@@ -75,7 +94,9 @@ function MyCars() {
               </div>
             </div>
             <div className="sticky bottom-0 bg-primary p-4 pb-6 ">
-              <ButtonComponent text="Add new Car" loadingText="Adding ..." isPrimary={true} />
+              <Link to="/add-new-car">
+                <ButtonComponent text="Add new Car" loadingText="Adding ..." isPrimary={true} />
+              </Link>
             </div>
           </>
         )}

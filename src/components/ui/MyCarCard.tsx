@@ -8,10 +8,11 @@ interface MyCarCardProps {
   image: string
   owner: string
   location: string
+  loading: boolean
   onDelete: () => void
 }
 
-function MyCarCard({ index, title, image, owner, location, onDelete }: MyCarCardProps) {
+function MyCarCard({ index, title, image, owner, location, loading, onDelete }: MyCarCardProps) {
   return (
     <div
       key={index}
@@ -47,7 +48,9 @@ function MyCarCard({ index, title, image, owner, location, onDelete }: MyCarCard
       <div className="text-center">
         <ButtonComponent
           text="Delete Car"
+          loadingText="Deleting ..."
           isPrimary={false}
+          loading={loading}
           variant="delete"
           className="shadow-button text-17 drop-shadow-2xl"
           onClick={onDelete}

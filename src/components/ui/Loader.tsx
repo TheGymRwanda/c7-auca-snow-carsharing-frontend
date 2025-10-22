@@ -1,6 +1,6 @@
 interface LoaderProps {
   size?: 'sm' | 'md' | 'lg'
-  variant?: 'page' | 'button'
+  variant?: 'page' | 'button' | 'delete'
   className?: string
   isPrimary?: boolean
 }
@@ -20,6 +20,8 @@ function LoaderComponent({
   const getSpinnerColor = () => {
     if (variant === 'button') {
       return isPrimary ? 'border-[#265E78]' : 'border-white'
+    } else if (variant === 'delete') {
+      return 'border-delete'
     }
     return 'border-[#67cfff]'
   }
@@ -32,7 +34,7 @@ function LoaderComponent({
     />
   )
 
-  if (variant === 'button') {
+  if (variant === 'button' || variant === 'delete') {
     return <div className={`flex items-center justify-center ${className}`}>{spinner}</div>
   }
 
