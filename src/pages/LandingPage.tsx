@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import ButtonComponent from '../components/ui/Button'
 
@@ -14,7 +15,9 @@ export default function LandingPage() {
         <p className="px-8 py-20 text-center font-lora text-xl font-medium text-text">
           Start sharing your Monis with the world
         </p>
-        <ButtonComponent text="Log In" isPrimary />
+        <Link to="/login">
+          <ButtonComponent text="Log In" isPrimary />
+        </Link>
       </div>
     </>
   )
