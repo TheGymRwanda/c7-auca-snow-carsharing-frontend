@@ -25,8 +25,8 @@ function App() {
           <Route path="car" element={<CarsListPage />} />
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
+          <Route path="landing" element={<LandingPage />} />
         </Route>
-        <Route path="landing" element={<LandingPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
