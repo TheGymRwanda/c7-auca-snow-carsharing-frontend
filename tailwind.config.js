@@ -15,6 +15,9 @@ module.exports = {
         accent: '#F8FCAD',
         delete: '#FFC28A',
         nav: '#111827',
+        text: {
+          DEFAULT: '#F9FAFB',
+        },
       },
       fontSize: {
         17: '17px',
