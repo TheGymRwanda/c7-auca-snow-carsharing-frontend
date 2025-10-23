@@ -5,6 +5,7 @@ import { apiUrl } from '../util/apiUrl'
 import useCars from '../hooks/useCars'
 import MyCarCard from '../components/ui/MyCarCard'
 import ButtonComponent from '../components/ui/Button'
+import ConfirmModal from '../components/ui/ConfirmModal'
 import { useNavigate, Link } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets'
 import { useCarTypes } from '../hooks'
@@ -13,6 +14,8 @@ import { getAuthToken } from '../util/auth'
 function MyCars() {
   const { user } = useAuth()
   const [deletingCar, setDeletingCar] = useState<number | null>(null)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [carToDelete, setCarToDelete] = useState<number | null>(null)
   const [{ data: cars, loading, error }, refetch] = useCars()
   const [{ data: carTypes }] = useCarTypes()
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
@@ -31,10 +34,16 @@ function MyCars() {
 
   const myCars = cars?.filter(car => car.ownerId === user?.id) || []
 
-  const handleDeleteCar = async (carId: number) => {
-    setDeletingCar(carId)
+  const handleDeleteClick = (carId: number) => {
+    setCarToDelete(carId)
+    setShowDeleteModal(true)
+  }
+
+  const handleConfirmDelete = async () => {
+    if (!carToDelete) return
+    setDeletingCar(carToDelete)
     try {
-      const res = await axios.delete(`${apiUrl}/cars/${carId}`, {
+      const res = await axios.delete(`${apiUrl}/cars/${carToDelete}`, {
         headers: { Authorization: `Bearer ${getAuthToken()}` },
       })
       if (res.status !== 200) {
@@ -45,7 +54,14 @@ function MyCars() {
     } finally {
       await refetch()
       setDeletingCar(null)
+      setShowDeleteModal(false)
+      setCarToDelete(null)
     }
+  }
+
+  const handleCancelDelete = () => {
+    setShowDeleteModal(false)
+    setCarToDelete(null)
   }
 
   return (
@@ -87,7 +103,7 @@ function MyCars() {
                       owner={user?.name || ''}
                       loading={deletingCar === car.id}
                       location={carType?.name || 'No plate'}
-                      onDelete={() => handleDeleteCar(car.id)}
+                      onDelete={() => handleDeleteClick(car.id)}
                     />
                   )
                 })}
@@ -100,6 +116,14 @@ function MyCars() {
             </div>
           </>
         )}
+        <ConfirmModal
+          isOpen={showDeleteModal}
+          title="Delete Car"
+          message="Are you sure you want to delete this car? This action cannot be undone."
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+          loading={deletingCar === carToDelete}
+        />
       </div>
     </>
   )

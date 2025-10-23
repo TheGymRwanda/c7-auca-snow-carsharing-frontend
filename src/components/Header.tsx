@@ -49,7 +49,9 @@ export default function Header() {
         <div className=" absolute left-1/2 -translate-x-1/2 bottom-[-22px] h-20 w-20 rounded-full bg-nav z-0 " />
       </div>
 
-      <div className="flex items-center justify-end">{!isLoginPage && <ProfileIcon />}</div>
+      <div className="flex items-center justify-end cursor-pointer">
+        <Link to="/profile">{!isLoginPage && <ProfileIcon />}</Link>
+      </div>
 
       {isDropDownOpen && (
         <div ref={dropDownRef} className="absolute inset-x-1 top-full -mt-10 z-20">
