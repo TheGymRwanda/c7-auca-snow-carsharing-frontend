@@ -34,7 +34,7 @@ export default function DropDown() {
               My Cars Bookings
             </li>
           </Link>
-          <Link to="/">
+          <Link to="/add-new-car">
             <li className="flex items-center gap-2 p-2 hover:bg-primary-light-hover">
               <CarPlusIcon />
               Add New Car
