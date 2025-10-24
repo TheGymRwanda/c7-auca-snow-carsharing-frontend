@@ -32,7 +32,7 @@ const CarDetails = () => {
         <div className="text-center text-red-400">
           <h3 className="mb-2 text-xl font-semibold">Car not found</h3>
           <button
-            onClick={() => navigate('/car')}
+            onClick={() => navigate(-1)}
             className="mt-4 rounded-lg bg-white px-6 py-2 text-[#2C5F77] transition hover:bg-gray-100"
           >
             Back to Cars List
@@ -45,10 +45,7 @@ const CarDetails = () => {
   return (
     <div className=" px-6 pt-20 min-h-screen overflow-y-hidden space-y-4 text-[#F9FAFB]">
       <div className="flex content-center text-center">
-        <button
-          onClick={() => navigate('/car')}
-          className="cursor-pointer transition hover:opacity-80"
-        >
+        <button onClick={() => navigate(-1)} className="cursor-pointer transition hover:opacity-80">
           <ChevronBackIcon className="w-5 h-5 text-accent" />
         </button>
         <div className="w-full text-center">

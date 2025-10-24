@@ -25,7 +25,7 @@ function ButtonComponent({
       {...props}
       disabled={loading || props.disabled}
       className={`w-full rounded-full py-3 font-[Inter] font-bold ${className ?? ''} ${
-        loading || props.disabled
+        (loading || props.disabled) && variant !== 'delete'
           ? 'cursor-not-allowed bg-gray-200/80 text-primary-dark/100'
           : variant === 'delete'
             ? 'border-2 border-delete text-delete'
@@ -36,7 +36,12 @@ function ButtonComponent({
     >
       {loading ? (
         <div className="flex items-center justify-center space-x-2">
-          <LoaderComponent variant="button" size="sm" isPrimary={true} /> <p>{loadingText}</p>
+          <LoaderComponent
+            variant={variant === 'delete' ? 'delete' : 'button'}
+            size="sm"
+            isPrimary={true}
+          />
+          <p>{loadingText}</p>
         </div>
       ) : (
         text
