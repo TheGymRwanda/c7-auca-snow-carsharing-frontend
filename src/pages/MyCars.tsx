@@ -32,12 +32,11 @@ function MyCars() {
     )
   }
 
-  const refresh = async () => {
-    await refetch
-  }
-
   useEffect(() => {
-    refresh()
+    const fetchData = async () => {
+      await refetch()
+    }
+    fetchData()
   }, [])
 
   const myCars = cars?.filter(car => car.ownerId === user?.id) || []
