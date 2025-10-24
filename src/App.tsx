@@ -6,6 +6,8 @@ import Login from './pages/Login'
 import AppLayout from './components/ui/AppLayout'
 import CarsListPage from './components/CarsList'
 import CarDetails from './pages/CarDetails'
+import MyCars from './pages/MyCars'
+import Profle from './pages/Profile'
 import LandingPage from './pages/LandingPage'
 
 configure({
@@ -23,11 +25,13 @@ function App() {
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
           <Route path="car" element={<CarsListPage />} />
+          <Route path="my-cars" element={<MyCars />} />
+          <Route path="profile" element={<Profle />} />
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="landing" element={<LandingPage />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
