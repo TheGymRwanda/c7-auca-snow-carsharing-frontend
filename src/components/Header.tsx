@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ProfileIcon, Logo } from '../assets'
 import DropDown from './DropDown'
+import { useAuth } from '../util/context/AuthContext'
 
 export default function Header() {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false)
   const location = useLocation()
+  const { isAuthenticated } = useAuth()
   const isPublicPage = location.pathname === '/login' || location.pathname === '/landing'
 
   const dropDownRef = useRef<HTMLDivElement>(null)
@@ -27,6 +29,10 @@ export default function Header() {
     document.addEventListener('mousedown', onDocClick)
     return () => document.removeEventListener('mousedown', onDocClick)
   }, [isDropDownOpen])
+
+  useEffect(() => {
+    if (!isAuthenticated) setIsDropDownOpen(false)
+  }, [isAuthenticated])
 
   return (
     <header className=" relative grid grid-cols-[1fr_auto_1fr] items-center overflow-visible rounded-b-2xl bg-nav px-4 py-2 text-[#F9FAFB]">
