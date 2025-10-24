@@ -4,44 +4,43 @@ import { useState } from 'react'
 import axios from 'axios'
 import { apiUrl } from '../util/apiUrl'
 import { getAuthToken } from '../util/auth'
-import { useAuth } from '../util/AuthContext'
+import { useCarTypes } from '../hooks'
 
 const CreateNewCar = () => {
+  const [carTypeId, setCarTypeId] = useState(0)
   const [name, setName] = useState('')
-  const [type, setType] = useState('')
-  const [licensePlate, setLicensePlate] = useState('')
-  const [horsePower, setHorsePower] = useState('')
   const [fuelType, setFuelType] = useState('')
+  const [horsepower, setHorsePower] = useState(0)
+  const [licensePlate, setLicensePlate] = useState('')
   const [info, setInfo] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const [{ data: carTypes }] = useCarTypes()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('✅ Form submitted')
-
+    setLoading(true)
     try {
-      const response = await axios.post(
-        `${apiUrl}/add-new-car`,
+      await axios.post(
+        `${apiUrl}/cars`,
         {
+          carTypeId,
           name,
-          carTypeId: parseInt(type),
-          licensePlate,
-          horsePower,
           fuelType,
+          horsepower,
+          licensePlate,
           info,
-          ownerId: user?.id,
         },
         {
           headers: { Authorization: `Bearer ${getAuthToken()}` },
         },
       )
-      if (response.status === 201) {
-        navigate('/my-cars')
-      }
+      navigate('/my-cars')
     } catch (err) {
       console.error('Error creating car:', err)
+    } finally {
+      setLoading(false)
     }
   }
   return (
@@ -69,11 +68,14 @@ const CreateNewCar = () => {
             <select
               id="type"
               className="rounded-full py-3 px-4 bg-primary-light-formButtons text-white outline-none border-none appearance-none"
-              onChange={e => setType(e.target.value)}
+              onChange={e => setCarTypeId(parseInt(e.target.value))}
             >
-              <option value="1">Moni Cooper</option>
-              <option value="2">Toyota</option>
-              <option value="3">Honda</option>
+              <option value={'none'}>Moni Copper</option>
+              {carTypes?.map(typ => (
+                <option value={typ.id} key={typ.id}>
+                  {typ.name}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -100,7 +102,7 @@ const CreateNewCar = () => {
                 id="horse-power"
                 placeholder="110"
                 className="w-full bg-primary-light-formButtons text-white placeholder-white/70 rounded-full py-3 px-4 outline-none border-none"
-                onChange={e => setHorsePower(e.target.value)}
+                onChange={e => setHorsePower(parseInt(e.target.value))}
               />
             </div>
           </div>
@@ -114,10 +116,10 @@ const CreateNewCar = () => {
               className="rounded-full py-3 px-4 bg-primary-light-formButtons text-white outline-none border-none appearance-none"
               onChange={e => setFuelType(e.target.value)}
             >
-              <option>e.g. 150</option>
-              <option>Petrol</option>
-              <option>Diesel</option>
-              <option>Electric</option>
+              <option value={'none'}>e.g. 150</option>
+              <option value={'petrol'}>Petrol</option>
+              <option value={'diesel'}>Diesel</option>
+              <option value={'electric'}>Electric</option>
             </select>
           </div>
 
@@ -134,8 +136,19 @@ const CreateNewCar = () => {
             />
           </div>
           <div className="flex justify-between space-x-1 mt-4">
-            <ButtonComponent text="Cancel" isPrimary={false} onClick={() => navigate('/my-cars')} />
-            <ButtonComponent text="Add Car" isPrimary type="submit" />
+            <ButtonComponent
+              text="Cancel"
+              isPrimary={false}
+              disabled={loading}
+              onClick={() => navigate('/my-cars')}
+            />
+            <ButtonComponent
+              text="Add Car"
+              loadingText="Adding Car ..."
+              loading={loading}
+              isPrimary
+              type="submit"
+            />
           </div>
         </form>
       </div>
