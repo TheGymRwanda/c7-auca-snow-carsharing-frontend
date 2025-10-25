@@ -42,8 +42,8 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-primary-dark flex flex-col lg:flex-row max-lg:items-center max-lg:justify-center max-lg:px-6 gap-16">
       <div className="lg:flex flex-col text-gray-100 lg:justify-center lg:w-1/2 lg:px-20">
-        <Link to="/" className="mb-16 hidden lg:block">
-          <Logo className="h-16 w-16" />
+        <Link to="/" className="mb-10 h-16 w-16 hidden lg:grid outline-none ">
+          <Logo className="w-full h-full" />
         </Link>
         <div className="text-center lg:text-start text-5xl lg:text-6xl font-lora">
           <h1 className="mt-3 font-bold">MONI</h1>
