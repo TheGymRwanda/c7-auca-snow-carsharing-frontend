@@ -29,7 +29,11 @@ export default function Header() {
   }, [isDropDownOpen])
 
   return (
-    <header className=" relative grid grid-cols-[1fr_auto_1fr] items-center overflow-visible rounded-b-2xl bg-nav px-4 py-2 text-[#F9FAFB]">
+    <header
+      className={`relative grid grid-cols-[1fr_auto_1fr] items-center overflow-visible rounded-b-2xl bg-nav px-4 py-2 text-[#F9FAFB] ${
+        isPublicPage && 'lg:hidden'
+      }`}
+    >
       <div className="flex items-center">
         {!isPublicPage && (
           <button

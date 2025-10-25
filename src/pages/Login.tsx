@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { ProfileIcon, KeyIcon } from '../assets'
+import { useNavigate, Link } from 'react-router-dom'
+import { ProfileIcon, KeyIcon, Logo } from '../assets'
 import { useAuth } from '../util/AuthContext'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
@@ -40,14 +40,23 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary to-primary-light flex flex-col items-center justify-center px-6 gap-16">
-      <div className="text-center text-gray-100 font-lora">
-        <h1 className="mt-3 text-5xl font-bold">MONI</h1>
-        <h2 className="mb-6 text-5xl italic">Share</h2>
+    <div className="min-h-screen bg-primary-dark flex flex-col lg:flex-row max-lg:items-center max-lg:justify-center max-lg:px-6 gap-16">
+      <div className="lg:flex flex-col text-gray-100 lg:justify-center lg:w-1/2 lg:px-20">
+        <Link to="/" className="mb-16 hidden lg:block">
+          <Logo className="h-16 w-16" />
+        </Link>
+        <div className="text-center lg:text-start text-5xl lg:text-6xl font-lora">
+          <h1 className="mt-3 font-bold">MONI</h1>
+          <h2 className="mb-6 lg:ml-14 italic">Share</h2>
+        </div>
+        <h1 className="font-lora text-2xl my-6 hidden lg:block">Share your journey, share your car</h1>
+        <p className="font-lora text-lg mb-24 italic text-gray-300/90 hidden lg:block">
+          Join thousands of drivers making extra income while helping others get around sustainably.
+        </p>
       </div>
 
-      <div className="w-full max-w-sm">
-        <h3 className="text-white text-xl font-medium text-center mb-8 font-lora">Log in</h3>
+      <div className="max-lg:w-full max-md:max-w-sm w-1/2 lg:px-20 flex flex-col justify-center lg:h-screen lg:bg-gradient-to-br from-primary-light via-primary to-primary-dark lg:rounded-l-full">
+        <h3 className="text-white text-xl lg:text-4xl font-medium text-center mb-8 lg:mb-12 font-lora">Log in</h3>
 
         <form onSubmit={handleSubmit} className="space-y-14">
           <div className="space-y-3">
