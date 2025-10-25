@@ -47,16 +47,20 @@ export default function Login() {
         </Link>
         <div className="text-center lg:text-start text-5xl lg:text-6xl font-lora">
           <h1 className="mt-3 font-bold">MONI</h1>
-          <h2 className="mb-6 lg:ml-14 italic">Share</h2>
+          <h2 className="mb-6 lg:mb-8 lg:ml-14 italic">Share</h2>
         </div>
-        <h1 className="font-lora text-2xl my-6 hidden lg:block">Share your journey, share your car</h1>
+        <h1 className="font-lora text-2xl my-6 hidden lg:block">
+          Share your journey, share your car
+        </h1>
         <p className="font-lora text-lg mb-24 italic text-gray-300/90 hidden lg:block">
           Join thousands of drivers making extra income while helping others get around sustainably.
         </p>
       </div>
 
       <div className="max-lg:w-full max-md:max-w-sm w-1/2 lg:px-20 flex flex-col justify-center lg:h-screen lg:bg-gradient-to-br from-primary-light via-primary to-primary-dark lg:rounded-l-full">
-        <h3 className="text-white text-xl lg:text-4xl font-medium text-center mb-8 lg:mb-12 font-lora">Log in</h3>
+        <h3 className="text-white text-xl lg:text-4xl font-medium text-center mb-8 lg:mb-12 font-lora">
+          Log in
+        </h3>
 
         <form onSubmit={handleSubmit} className="space-y-14">
           <div className="space-y-3">
