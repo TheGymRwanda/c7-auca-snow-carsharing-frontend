@@ -20,7 +20,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
     )
   }
 
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />
+  return isAuthenticated ? <>{children}</> : <Navigate to="/landing" replace />
 }
 
 export default ProtectedRoute
