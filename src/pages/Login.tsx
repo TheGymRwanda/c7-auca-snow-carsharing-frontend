@@ -40,7 +40,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary to-primary-light flex flex-col items-center justify-center px-6 gap-16">
+    <div className="min-h-screen bg-primary-dark flex flex-col items-center justify-center px-6 gap-16">
       <div className="text-center text-gray-100 font-lora">
         <h1 className="mt-3 text-5xl font-bold">MONI</h1>
         <h2 className="mb-6 text-5xl italic">Share</h2>
