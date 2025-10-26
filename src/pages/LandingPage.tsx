@@ -30,26 +30,26 @@ export default function LandingPage() {
             <ButtonComponent text="Log In -->" isPrimary />
           </Link>
         </div>
-        <div className="hidden relative w-1/2 h-screen flex-col lg:flex space-y-10">
-          <Logo className="absolute w-full h-full opacity-10" />
-          <div className="absolute -left-10 z-10 bg-gradient-to-r shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-8">
-            <ProfileIcon className="h-20 w-20 text-gray-100/70 bg-primary-light rounded-3xl px-4" />
-            <h1 className="text-2xl text-gray-100 font-bold">Community Driven</h1>
-            <p className="text-lg text-gray-300 italic">
+        <div className="hidden relative w-1/2 h-screen lg:flex">
+          <Logo className="absolute w-full h-full opacity-5" />
+          <div className="absolute top-[5%] -left-[10%] w-[35vw] h-[24vh] bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-[2vw]">
+            <ProfileIcon className="h-[8vh] w-[8vh] text-gray-100/70 bg-primary-light rounded-lg px-[0.7vw]" />
+            <h1 className="text-[1.7vw] mt-4 text-gray-100 font-bold">Community Driven</h1>
+            <p className="text-[1.4vw] mt-1 text-gray-300 italic">
               Thounds of divers sharing their vehicles for society
             </p>
           </div>
-          <div className="absolute top-60 right-8 bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-8">
-            <ProfileIcon className="h-20 w-20 text-gray-100/70 bg-primary-light rounded-3xl px-4" />
-            <h1 className="text-2xl text-gray-100 font-bold">Community Driven</h1>
-            <p className="text-lg text-gray-300 italic">
+          <div className="absolute top-[37.5%] right-[6%] w-[35vw] h-[24vh] bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-[2vw]">
+            <ProfileIcon className="h-[8vh] w-[8vh] text-gray-100/70 bg-primary-light rounded-lg px-[0.7vw]" />
+            <h1 className="text-[1.7vw] mt-4 text-gray-100 font-bold">Community Driven</h1>
+            <p className="text-[1.4vw] mt-1 text-gray-300 italic">
               Thounds of divers sharing their vehicles for society
             </p>
           </div>
-          <div className="absolute bottom-10 left-0 bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-8">
-            <ProfileIcon className="h-20 w-20 text-gray-100/70 bg-primary-light rounded-3xl px-4" />
-            <h1 className="text-2xl text-gray-100 font-bold">Community Driven</h1>
-            <p className="text-lg text-gray-300 italic">
+          <div className="absolute bottom-[5%] -left-[5%] w-[35vw] h-[24vh] bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-[2vw]">
+            <ProfileIcon className="h-[8vh] w-[8vh] text-gray-100/70 bg-primary-light rounded-lg px-[0.7vw]" />
+            <h1 className="text-[1.7vw] mt-4 text-gray-100 font-bold">Community Driven</h1>
+            <p className="text-[1.4vw] mt-1 text-gray-300 italic">
               Thounds of divers sharing their vehicles for society
             </p>
           </div>
