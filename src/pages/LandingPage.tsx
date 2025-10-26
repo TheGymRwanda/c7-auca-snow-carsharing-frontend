@@ -6,12 +6,9 @@ export default function LandingPage() {
   return (
     <>
       <div className="flex h-screen flex-col items-center justify-center bg-primary-dark px-6 py-10 lg:flex-row">
-        <div className="flex flex-col lg:w-1/2">
-          <div className="mb-28 lg:mb-1 grid space-y-14">
+        <div className="flex flex-col lg:ml-12 lg:w-1/2">
+          <div className="mb-32 lg:mb-1 grid space-y-14">
             <div className="lg:flex flex-col text-gray-100 lg:justify-items-start ">
-              <Link to="/" className="mb-10 h-16 w-16 hidden lg:grid outline-none ">
-                <Logo className="w-full h-full" />
-              </Link>
               <div className="text-center lg:text-start text-5xl lg:text-6xl font-lora">
                 <h1 className="mt-3 font-bold">MONI</h1>
                 <h2 className="mb-6 lg:mb-8 lg:ml-14 italic">Share</h2>
@@ -19,7 +16,7 @@ export default function LandingPage() {
               <h1 className="font-lora text-2xl my-6 hidden lg:block">
                 Start sharing your Monis with the world
               </h1>
-              <p className="font-lora text-lg mb-24 italic text-gray-300/90 hidden lg:block">
+              <p className="font-lora text-lg mb-12 italic text-gray-300/90 hidden lg:block">
                 Join thousands of drivers making extra income while helping others get around
                 sustainably.
               </p>
@@ -33,15 +30,23 @@ export default function LandingPage() {
             <ButtonComponent text="Log In -->" isPrimary />
           </Link>
         </div>
-        <div className="hidden flex-col lg:flex space-y-10">
-          <div className="ml-10 bg-gradient-to-r shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-10">
+        <div className="hidden relative w-1/2 h-screen flex-col lg:flex space-y-10">
+          <Logo className="absolute w-full h-full opacity-10" />
+          <div className="absolute -left-10 z-10 bg-gradient-to-r shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-8">
             <ProfileIcon className="h-20 w-20 text-gray-100/70 bg-primary-light rounded-3xl px-4" />
             <h1 className="text-2xl text-gray-100 font-bold">Community Driven</h1>
             <p className="text-lg text-gray-300 italic">
               Thounds of divers sharing their vehicles for society
             </p>
           </div>
-          <div className="bg-gradient-to-r shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-10">
+          <div className="absolute top-60 right-8 bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-8">
+            <ProfileIcon className="h-20 w-20 text-gray-100/70 bg-primary-light rounded-3xl px-4" />
+            <h1 className="text-2xl text-gray-100 font-bold">Community Driven</h1>
+            <p className="text-lg text-gray-300 italic">
+              Thounds of divers sharing their vehicles for society
+            </p>
+          </div>
+          <div className="absolute bottom-10 left-0 bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-8">
             <ProfileIcon className="h-20 w-20 text-gray-100/70 bg-primary-light rounded-3xl px-4" />
             <h1 className="text-2xl text-gray-100 font-bold">Community Driven</h1>
             <p className="text-lg text-gray-300 italic">
