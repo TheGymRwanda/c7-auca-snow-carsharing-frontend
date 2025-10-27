@@ -9,6 +9,7 @@ module.exports = {
           dark: '#265E78',
           light: {
             DEFAULT: '#3E7591',
+            formButtons: '#6ca3b8',
             hover: '#51849d',
           },
         },

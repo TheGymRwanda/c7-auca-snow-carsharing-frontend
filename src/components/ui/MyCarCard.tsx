@@ -16,7 +16,7 @@ function MyCarCard({ index, title, image, owner, location, loading, onDelete }: 
   return (
     <div
       key={index}
-      className="mt-8 flex w-full min-h-60 flex-col self-center rounded-2xl bg-primary-light p-4 px-8 shadow-card"
+      className="mt-8 flex w-full min-h-60 flex-col self-center rounded-2xl bg-primary-dark p-4 px-8 shadow-card"
     >
       <div className="grid grid-cols-2 gap-20">
         <div className="my-1 flex w-52 items-center justify-center pr-4">
