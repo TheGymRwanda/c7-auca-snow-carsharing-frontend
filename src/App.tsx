@@ -9,6 +9,7 @@ import CarDetails from './pages/CarDetails'
 import MyCars from './pages/MyCars'
 import Profle from './pages/Profile'
 import LandingPage from './pages/LandingPage'
+import ProtectedRoute from './components/ProtectedRoute'
 
 configure({
   defaultOptions: {
@@ -20,7 +21,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AppLayout />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Home />} />
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
@@ -28,10 +36,10 @@ function App() {
           <Route path="my-cars" element={<MyCars />} />
           <Route path="profile" element={<Profle />} />
           <Route path="car/:id" element={<CarDetails />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="landing" element={<LandingPage />} />
         </Route>
+        <Route path="landing" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

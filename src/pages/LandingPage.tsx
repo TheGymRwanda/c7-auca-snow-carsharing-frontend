@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import ButtonComponent from '../components/ui/Button'
+import Header from '../components/Header'
 
 export default function LandingPage() {
   return (
     <>
+      <Header />
       <div className="flex h-screen flex-col items-center justify-around px-5 py-10">
         <div className="text-center font-lora text-gray-100">
           <h1 className="mt-3 text-5xl font-bold">MONI</h1>

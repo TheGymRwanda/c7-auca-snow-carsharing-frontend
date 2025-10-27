@@ -1,13 +1,21 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../util/AuthContext'
-import { type ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 
 interface ProtectedRouteProps {
   children: ReactNode
 }
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
+  const navigate = useNavigate()
+
   const { isAuthenticated, loading } = useAuth()
+
+  useEffect(() => {
+    if (!isAuthenticated && !loading) {
+      navigate('/landing')
+    }
+  }, [isAuthenticated, loading, navigate])
 
   if (loading) {
     return (
@@ -20,7 +28,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
     )
   }
 
-  return isAuthenticated ? <>{children}</> : <Navigate to="/landing" replace />
+  return children
 }
 
 export default ProtectedRoute
