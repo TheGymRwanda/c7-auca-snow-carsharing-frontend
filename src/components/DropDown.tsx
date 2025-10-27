@@ -1,7 +1,10 @@
 import { CarIcon, ListIcon, CarsIcon, CarPlusIcon, LogoutIcon, MenuIcon } from '../assets/index'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../util/context/AuthContext'
 
 export default function DropDown() {
+  const { logout } = useAuth()
+
   return (
     <nav className="absolute left-5 top-14 z-40 rounded-md bg-primary-light px-6 pb-2 pt-4 text-sm text-white">
       <div>
@@ -42,10 +45,7 @@ export default function DropDown() {
           </Link>
         </ul>
         <hr />
-        <div
-          className="flex items-center gap-2 p-2 hover:bg-primary-light-hover"
-          onClick={() => alert('Logging out...')}
-        >
+        <div className="flex items-center gap-2 p-2 hover:bg-primary-light-hover" onClick={logout}>
           <LogoutIcon />
           <p>Logout</p>
         </div>
