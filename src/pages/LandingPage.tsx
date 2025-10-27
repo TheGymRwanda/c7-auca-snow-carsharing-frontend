@@ -15,7 +15,7 @@ export default function LandingPage() {
         <p className="px-8  text-center font-lora text-xl font-medium text-text">
           Start sharing your Monis with the world
         </p>
-        <Link to="/login" className="block w-10/12">
+        <Link to="/login" className="w-full sm:w-[400px]">
           <ButtonComponent text="Log In" isPrimary />
         </Link>
       </div>

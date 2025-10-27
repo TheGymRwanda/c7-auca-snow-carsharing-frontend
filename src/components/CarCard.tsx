@@ -14,8 +14,8 @@ function CarCard({ car, carType }: CarCardProps) {
   const ownerName = loading
     ? 'Loading...'
     : error
-    ? 'Unknown Owner'
-    : owner?.name || `Owner ${car.ownerId}`
+      ? 'Unknown Owner'
+      : owner?.name || `Owner ${car.ownerId}`
 
   return (
     <CarDetails
