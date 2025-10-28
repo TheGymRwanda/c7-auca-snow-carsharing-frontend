@@ -40,43 +40,43 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-primary-dark flex flex-col items-center justify-center px-6 gap-16">
-      <div className="text-center text-gray-100 font-lora">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-16 bg-primary-dark px-6">
+      <div className="text-center font-lora text-gray-100">
         <h1 className="mt-3 text-5xl font-bold">MONI</h1>
         <h2 className="mb-6 text-5xl italic">Share</h2>
       </div>
 
       <div className="w-full max-w-sm">
-        <h3 className="text-white text-xl font-medium text-center mb-8 font-lora">Log in</h3>
+        <h3 className="mb-8 text-center font-lora text-xl font-medium text-white">Log in</h3>
 
         <form onSubmit={handleSubmit} className="space-y-14">
           <div className="space-y-3">
             <div className="relative">
-              <ProfileIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white w-5 h-5" />
+              <ProfileIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white" />
               <input
                 type="text"
                 placeholder="Username / e-mail"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
-                className="w-full bg-white/20 text-white placeholder-white/70 rounded-full py-3 pl-12 pr-4 border-none outline-none"
+                className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70"
                 required
               />
             </div>
 
             <div className="relative">
-              <KeyIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 stroke-white w-5 h-5" />
+              <KeyIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 stroke-white" />
               <input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                className="w-full bg-white/20 text-white placeholder-white/70 rounded-full py-3 pl-12 pr-4 border-none outline-none"
+                className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70"
                 required
               />
             </div>
           </div>
 
-          {error && <p className="text-red-200 text-sm text-center">{error}</p>}
+          {error && <p className="text-center text-sm text-red-200">{error}</p>}
 
           <ButtonComponent
             text="Login"

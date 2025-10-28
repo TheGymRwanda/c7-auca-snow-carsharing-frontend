@@ -13,7 +13,7 @@ function CarsListPage() {
   return carsLoading ? (
     <div className="flex min-h-screen items-center justify-center bg-primary">
       <div className="text-center">
-        <div className="mx-auto mb-4 w-12 h-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+        <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
         <p className="text-lg text-white">Loading ...</p>
       </div>
     </div>
@@ -46,7 +46,7 @@ function CarsListPage() {
             onClick={() => navigate('/')}
             className="cursor-pointer transition hover:opacity-80"
           >
-            <ChevronBackIcon className="text-accent w-5 h-5" />
+            <ChevronBackIcon className="h-5 w-5 text-accent" />
           </button>
           <div className="w-full text-center">
             <h1 className="font-lora text-3xl uppercase text-gray-200">Available Car</h1>

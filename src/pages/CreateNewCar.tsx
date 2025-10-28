@@ -6,6 +6,7 @@ import { apiUrl } from '../util/apiUrl'
 import { getAuthToken } from '../util/auth'
 import { useCarTypes } from '../hooks'
 
+/* eslint-disable max-lines-per-function */
 const CreateNewCar = () => {
   const [carTypeId, setCarTypeId] = useState(0)
   const [name, setName] = useState('')
@@ -44,30 +45,30 @@ const CreateNewCar = () => {
     }
   }
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6">
+    <div className="flex min-h-screen flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm font-lora text-white">
-        <h1 className="text-center text-3xl mt-20">NEW CAR</h1>
+        <h1 className="mt-20 text-center text-3xl">NEW CAR</h1>
         <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
           <div className="flex flex-col">
-            <label htmlFor="name" className="text-sm mb-1">
+            <label htmlFor="name" className="mb-1 text-sm">
               Name
             </label>
             <input
               type="text"
               id="name"
               placeholder="e.g. My Nice Moni Car"
-              className="rounded-full py-3 px-4 bg-primary-light-formButtons text-white placeholder-white/70 outline-none border-none"
+              className="rounded-full border-none bg-primary-light-formButtons px-4 py-3 text-white outline-none placeholder:text-white/70"
               onChange={e => setName(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="type" className="text-sm mb-1">
+            <label htmlFor="type" className="mb-1 text-sm">
               Type
             </label>
             <select
               id="type"
-              className="rounded-full py-3 px-4 bg-primary-light-formButtons text-white outline-none border-none appearance-none"
+              className="appearance-none rounded-full border-none bg-primary-light-formButtons px-4 py-3 text-white outline-none"
               onChange={e => setCarTypeId(parseInt(e.target.value))}
             >
               <option value={'none'}>Moni Copper</option>
@@ -80,40 +81,40 @@ const CreateNewCar = () => {
           </div>
 
           <div className="flex gap-6">
-            <div className="flex flex-col w-1/2">
-              <label htmlFor="license-plate" className="text-sm mb-1">
+            <div className="flex w-1/2 flex-col">
+              <label htmlFor="license-plate" className="mb-1 text-sm">
                 License Plate
               </label>
               <input
                 type="text"
                 id="license-plate"
                 placeholder="e.g. M-XY 123"
-                className="w-full bg-primary-light-formButtons text-white placeholder-white/70 rounded-full py-3 px-4 outline-none border-none"
+                className="w-full rounded-full border-none bg-primary-light-formButtons px-4 py-3 text-white outline-none placeholder:text-white/70"
                 onChange={e => setLicensePlate(e.target.value)}
               />
             </div>
 
-            <div className="flex flex-col w-1/2">
-              <label htmlFor="horse-power" className="text-sm mb-1">
+            <div className="flex w-1/2 flex-col">
+              <label htmlFor="horse-power" className="mb-1 text-sm">
                 Horse Power
               </label>
               <input
                 type="text"
                 id="horse-power"
                 placeholder="110"
-                className="w-full bg-primary-light-formButtons text-white placeholder-white/70 rounded-full py-3 px-4 outline-none border-none"
+                className="w-full rounded-full border-none bg-primary-light-formButtons px-4 py-3 text-white outline-none placeholder:text-white/70"
                 onChange={e => setHorsePower(parseInt(e.target.value))}
               />
             </div>
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="fuel-type" className="text-sm mb-1">
+            <label htmlFor="fuel-type" className="mb-1 text-sm">
               Fuel type
             </label>
             <select
               id="fuel-type"
-              className="rounded-full py-3 px-4 bg-primary-light-formButtons text-white outline-none border-none appearance-none"
+              className="appearance-none rounded-full border-none bg-primary-light-formButtons px-4 py-3 text-white outline-none"
               onChange={e => setFuelType(e.target.value)}
             >
               <option value={'none'}>e.g. 150</option>
@@ -124,18 +125,18 @@ const CreateNewCar = () => {
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="add-info" className="text-sm mb-1">
+            <label htmlFor="add-info" className="mb-1 text-sm">
               Additional Information
             </label>
             <input
               type="text"
               id="add-info"
               placeholder="e.g. No smoking"
-              className="rounded-full py-3 px-4 bg-primary-light-formButtons text-white placeholder-white/70 outline-none border-none"
+              className="rounded-full border-none bg-primary-light-formButtons px-4 py-3 text-white outline-none placeholder:text-white/70"
               onChange={e => setInfo(e.target.value)}
             />
           </div>
-          <div className="flex justify-between space-x-1 mt-4">
+          <div className="mt-4 flex justify-between space-x-1">
             <ButtonComponent
               text="Cancel"
               isPrimary={false}

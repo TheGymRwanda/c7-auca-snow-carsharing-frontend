@@ -14,9 +14,9 @@ function ConfirmModal({ isOpen, title, message, onConfirm, onCancel, loading }: 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-primary-light rounded-lg p-6 max-w-sm mx-4">
-        <h3 className="text-lg text-white font-semibold mb-2">{title}</h3>
-        <p className="text-gray-200 mb-6">{message}</p>
+      <div className="mx-4 max-w-sm rounded-lg bg-primary-light p-6">
+        <h3 className="mb-2 text-lg font-semibold text-white">{title}</h3>
+        <p className="mb-6 text-gray-200">{message}</p>
         <div className="flex gap-3">
           <ButtonComponent
             text="Cancel"
