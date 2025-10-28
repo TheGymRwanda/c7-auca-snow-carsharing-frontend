@@ -1,22 +1,37 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import ButtonComponent from '../components/ui/Button'
-import { Logo, ProfileIcon } from '../assets'
 
 export default function LandingPage() {
+  useEffect(() => {
+    const link = document.createElement('link')
+    link.rel = 'preload'
+    link.as = 'image'
+    link.href =
+      'https://res.cloudinary.com/dgwh59vry/image/upload/c_pad,ar_1:1/v1725970827/Hyundai-Tucson-Car_o70jlc.webp'
+    document.head.appendChild(link)
+
+    return () => {
+      if (document.head.contains(link)) {
+        document.head.removeChild(link)
+      }
+    }
+  }, [])
+
   return (
     <>
-      <div className="flex h-screen flex-col items-center justify-center bg-primary-dark px-6 py-10 lg:flex-row">
+      <div className="flex h-screen flex-col items-center justify-center overflow-y-hidden bg-primary-dark px-6 py-10 lg:flex-row">
         <div className="flex flex-col lg:ml-12 lg:w-1/2">
           <div className="mb-32 lg:mb-1 grid space-y-14">
             <div className="lg:flex flex-col text-gray-100 lg:justify-items-start ">
-              <div className="text-center lg:text-start text-5xl lg:text-6xl font-lora">
+              <div className="text-center lg:text-start text-5xl lg:text-6xl 2xl:text-7xl font-lora">
                 <h1 className="mt-3 font-bold">MONI</h1>
                 <h2 className="mb-6 lg:mb-8 lg:ml-14 italic">Share</h2>
               </div>
-              <h1 className="font-lora text-2xl my-6 hidden lg:block">
+              <h1 className="font-lora text-2xl 2xl:text-3xl my-6 hidden lg:block">
                 Start sharing your Monis with the world
               </h1>
-              <p className="font-lora text-lg mb-12 italic text-gray-300/90 hidden lg:block">
+              <p className="font-lora text-lg 2xl:text-xl mb-12 italic text-gray-300/90 hidden lg:block">
                 Join thousands of drivers making extra income while helping others get around
                 sustainably.
               </p>
@@ -31,28 +46,24 @@ export default function LandingPage() {
           </Link>
         </div>
         <div className="hidden relative w-1/2 h-screen lg:flex">
-          <Logo className="absolute w-full h-full opacity-5" />
-          <div className="absolute top-[5%] -left-[10%] w-[35vw] h-[24vh] bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-[2vw]">
-            <ProfileIcon className="h-[8vh] w-[8vh] text-gray-100/70 bg-primary-light rounded-lg px-[0.7vw]" />
-            <h1 className="text-[1.7vw] mt-4 text-gray-100 font-bold">Community Driven</h1>
-            <p className="text-[1.4vw] mt-1 text-gray-300 italic">
-              Thounds of divers sharing their vehicles for society
-            </p>
-          </div>
-          <div className="absolute top-[37.5%] right-[6%] w-[35vw] h-[24vh] bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-[2vw]">
-            <ProfileIcon className="h-[8vh] w-[8vh] text-gray-100/70 bg-primary-light rounded-lg px-[0.7vw]" />
-            <h1 className="text-[1.7vw] mt-4 text-gray-100 font-bold">Community Driven</h1>
-            <p className="text-[1.4vw] mt-1 text-gray-300 italic">
-              Thounds of divers sharing their vehicles for society
-            </p>
-          </div>
-          <div className="absolute bottom-[5%] -left-[5%] w-[35vw] h-[24vh] bg-gradient-to-r z-10 shadow-2xl shadow-primary-light-hover from-primary-dark via-primary-light/90 to-primary-dark rounded-xl p-[2vw]">
-            <ProfileIcon className="h-[8vh] w-[8vh] text-gray-100/70 bg-primary-light rounded-lg px-[0.7vw]" />
-            <h1 className="text-[1.7vw] mt-4 text-gray-100 font-bold">Community Driven</h1>
-            <p className="text-[1.4vw] mt-1 text-gray-300 italic">
-              Thounds of divers sharing their vehicles for society
-            </p>
-          </div>
+          <img
+            className="absolute w-[39vw] -top-[2%] -left-[15%] max-lg:h-[77vh] h-[77vh]"
+            src="https://res.cloudinary.com/dgwh59vry/image/upload/c_pad,ar_1:1/v1725970827/Hyundai-Tucson-Car_o70jlc.webp"
+            alt="Hyundai Tucson car available for sharing"
+            loading="eager"
+            decoding="async"
+            width="624"
+            height="624"
+          />
+          <img
+            className="absolute w-[39vw] top-[25%] left-[18%] max-lg:h-[77vh] h-[79vh]"
+            src="https://res.cloudinary.com/dgwh59vry/image/upload/c_pad,ar_1:1/v1725970842/Mercedes-Benz-Car_vsm9cu.webp"
+            alt="Mercedes-Benz car available for sharing"
+            loading="lazy"
+            decoding="async"
+            width="624"
+            height="632"
+          />
         </div>
       </div>
     </>
