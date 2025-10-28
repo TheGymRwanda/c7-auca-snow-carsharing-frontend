@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { getAuthToken } from '../auth'
-import { UserDto } from '../api'
-import { apiUrl } from '../apiUrl'
+import { getAuthToken } from '../util/auth'
+import { UserDto } from '../util/api'
+import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
 
 interface AuthContextType {
