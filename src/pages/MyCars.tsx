@@ -1,5 +1,5 @@
-import { useAuth } from '../util/AuthContext'
-import { useState } from 'react'
+import { useAuth } from '../util/context/AuthContext'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { apiUrl } from '../util/apiUrl'
 import useCars from '../hooks/useCars'
@@ -31,6 +31,13 @@ function MyCars() {
       </div>
     )
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await refetch()
+    }
+    fetchData()
+  }, [])
 
   const myCars = cars?.filter(car => car.ownerId === user?.id) || []
 

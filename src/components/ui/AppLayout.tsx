@@ -9,7 +9,7 @@ const AppLayout = () => {
   const isPublicRoute = publicRoutes.includes(location.pathname)
 
   return (
-    <div className="mx-auto max-md:max-w-md bg-primary-dark">
+    <div className="mx-auto max-md:max-w-md bg-primary">
       <div className="fixed inset-x-0 top-0 z-40 mx-auto w-full max-w-md">
         <Header />
       </div>

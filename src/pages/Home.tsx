@@ -1,6 +1,6 @@
 import ButtonComponent from '../components/ui/Button'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../util/AuthContext'
+import { useAuth } from '../util/context/AuthContext'
 
 const Home = () => {
   const { user } = useAuth()

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { ProfileIcon, KeyIcon, Logo } from '../assets'
-import { useAuth } from '../util/AuthContext'
+import { useAuth } from '../util/context/AuthContext'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
 import ButtonComponent from '../components/ui/Button'
