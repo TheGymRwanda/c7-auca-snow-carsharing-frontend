@@ -1,4 +1,4 @@
-import { useAuth } from '../util/context/AuthContext'
+import { useAuth } from '../context/AuthContext'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { apiUrl } from '../util/apiUrl'
@@ -11,6 +11,7 @@ import { ChevronBackIcon } from '../assets'
 import { useCarTypes } from '../hooks'
 import { getAuthToken } from '../util/auth'
 
+// eslint-disable-next-line max-lines-per-function
 function MyCars() {
   const { user } = useAuth()
   const [deletingCar, setDeletingCar] = useState<number | null>(null)
@@ -73,11 +74,11 @@ function MyCars() {
 
   return (
     <>
-      <div className="min-h-screen relative bg-primary pt-24">
+      <div className="relative min-h-screen bg-primary pt-24">
         {loading ? (
           <div className="flex min-h-screen items-center justify-center">
             <div className="text-center">
-              <div className="mx-auto mb-4 w-12 h-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+              <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
               <p className="text-lg text-white">Loading ...</p>
             </div>
           </div>
@@ -89,15 +90,15 @@ function MyCars() {
                   onClick={() => navigate(-1)}
                   className="cursor-pointer transition hover:opacity-80"
                 >
-                  <ChevronBackIcon className="text-accent w-5 h-5" />
+                  <ChevronBackIcon className="h-5 w-5 text-accent" />
                 </button>
                 <div className="w-full text-center">
                   <h1 className="font-lora text-3xl uppercase text-gray-200">My Cars</h1>
                 </div>
               </div>
-              <div className="space-y-6 mb-6">
+              <div className="mb-6 space-y-6">
                 {myCars?.length === 0 && (
-                  <p className="text-gray-200 mt-9 text-center">{"You don't have any cars yet."}</p>
+                  <p className="mt-9 text-center text-gray-200">{"You don't have any cars yet."}</p>
                 )}
                 {myCars?.map(car => {
                   const carType = getCarType(car.carTypeId)

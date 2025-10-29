@@ -1,7 +1,8 @@
 import { useState } from 'react'
+
+import { useAuth } from '../context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
 import { ProfileIcon, KeyIcon, Logo } from '../assets'
-import { useAuth } from '../util/context/AuthContext'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
 import ButtonComponent from '../components/ui/Button'
@@ -65,31 +66,31 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="space-y-14">
           <div className="space-y-3">
             <div className="relative">
-              <ProfileIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white w-5 h-5" />
+              <ProfileIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white" />
               <input
                 type="text"
                 placeholder="Username / e-mail"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
-                className="w-full bg-white/20 text-white placeholder-white/70 rounded-full py-3 pl-12 pr-4 border-none outline-none"
+                className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70"
                 required
               />
             </div>
 
             <div className="relative">
-              <KeyIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 stroke-white w-5 h-5" />
+              <KeyIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 stroke-white" />
               <input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                className="w-full bg-white/20 text-white placeholder-white/70 rounded-full py-3 pl-12 pr-4 border-none outline-none"
+                className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70"
                 required
               />
             </div>
           </div>
 
-          {error && <p className="text-red-200 text-sm text-center">{error}</p>}
+          {error && <p className="text-center text-sm text-red-200">{error}</p>}
 
           <ButtonComponent
             text="Login"
