@@ -13,7 +13,6 @@ export default function Header() {
   const dropDownRef = useRef<HTMLDivElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
 
-  // close when clicking outside
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
       if (!isDropDownOpen) return

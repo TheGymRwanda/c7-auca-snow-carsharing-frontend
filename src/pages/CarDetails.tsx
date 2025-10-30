@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { ChevronBackIcon, CarIcon, HorseIcon, FuelIcon, XIcon, ProfileIcon } from '../assets/index'
 import { useCars, useCarTypes, useUser } from '../hooks/index'
-// eslint-disable-next-line max-lines-per-function
+
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -9,7 +9,6 @@ const CarDetails = () => {
   const [{ data: cars, loading: carsLoading, error: carsError }] = useCars()
   const [{ data: carTypes, loading: typesLoading }] = useCarTypes()
 
-  // Find the specific car by ID from URL params
   const car = cars?.find(c => c.id === Number(id))
   const carType = carTypes?.find(type => type.id === car?.carTypeId)
 
@@ -61,7 +60,6 @@ const CarDetails = () => {
         <div className="px-6">
           <h2 className="font-lora text-3xl font-medium">{car.name}</h2>
           <ul className="text-md mt-7 space-y-2 md:text-xl">
-            {/* Owner name */}
             <li className="flex items-center gap-2">
               <ProfileIcon />
               {ownerLoading ? (
@@ -73,23 +71,18 @@ const CarDetails = () => {
                 <span>{owner?.name || `Owner ${car.ownerId}`}</span>
               )}
             </li>
-            {/* Car state (LOCKED/UNLOCKED) */}
             <li className="flex items-center gap-2">
               <CarIcon /> {car.state}
             </li>
-            {/* License plate */}
             <li className="flex items-center gap-2">
               <CarIcon /> {car.licensePlate || 'No license plate'}
             </li>
-            {/* Horsepower */}
             <li className="flex items-center gap-2">
               <HorseIcon /> {car.horsepower ? `${car.horsepower} HP` : 'N/A'}
             </li>
-            {/* Fuel type */}
             <li className="flex items-center gap-2">
               <FuelIcon /> {car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1)}
             </li>
-            {/* Additional info or car type name */}
             <li className="flex items-center gap-2">
               <XIcon className="h-6 w-6" />
               <p className="overflow-wrap-anywhere">{car.info || carType?.name || 'N/A'}</p>

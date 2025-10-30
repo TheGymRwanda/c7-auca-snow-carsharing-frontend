@@ -1,4 +1,4 @@
-function Profle() {
+function Profile() {
   return (
     <div className="flex min-h-screen animate-pulse items-center justify-center text-3xl text-white">
       Profile Page Coming Soon....
@@ -6,4 +6,4 @@ function Profle() {
   )
 }
 
-export default Profle
+export default Profile
