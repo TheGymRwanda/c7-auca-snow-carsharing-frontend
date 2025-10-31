@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { apiUrl } from '../util/apiUrl'
 import useCars from '../hooks/useCars'
-import MyCarCard from '../components/ui/MyCarCard'
 import ButtonComponent from '../components/ui/Button'
 import ConfirmModal from '../components/ui/ConfirmModal'
 import { useNavigate, Link } from 'react-router-dom'
@@ -12,6 +11,7 @@ import { useCarTypes } from '../hooks'
 import { getAuthToken } from '../util/auth'
 import LoaderComponent from '../components/ui/Loader'
 import ErrorComponent from '../components/ui/ErrorComponent'
+import CarCard from '../components/CarCard'
 
 // eslint-disable-next-line max-lines-per-function
 function MyCars() {
@@ -91,15 +91,14 @@ function MyCars() {
                 {myCars?.map(car => {
                   const carType = getCarType(car.carTypeId)
                   return (
-                    <MyCarCard
+                    <CarCard
                       key={car.id}
-                      index={car.id}
-                      title={car.name}
-                      image={carType?.imageUrl || ''}
-                      owner={user?.name || ''}
-                      loading={deletingCar === car.id}
-                      location={carType?.name || 'No plate'}
-                      onDelete={() => handleDeleteClick(car.id)}
+                      car={car}
+                      carType={carType}
+                      buttonText="Delete Car"
+                      primaryButton={false}
+                      buttonVariant="delete"
+                      onButtonClick={() => handleDeleteClick(car.id)}
                     />
                   )
                 })}

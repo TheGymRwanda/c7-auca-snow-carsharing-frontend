@@ -3,7 +3,7 @@ import { useCarTypes, useCars } from '../hooks/index'
 import { useNavigate } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets'
 
-function CarsListPage() {
+function AvailableCars() {
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
   const [{ data: carTypes }] = useCarTypes()
   const navigate = useNavigate()
@@ -55,7 +55,16 @@ function CarsListPage() {
         <div className="space-y-6">
           {cars.map(car => {
             const carType = getCarType(car.carTypeId)
-            return <CarCard key={car.id} car={car} carType={carType} />
+            return (
+              <CarCard
+                key={car.id}
+                car={car}
+                carType={carType}
+                buttonText="Book Car"
+                primaryButton={true}
+                onButtonClick={() => {}}
+              />
+            )
           })}
         </div>
       </div>
@@ -63,4 +72,4 @@ function CarsListPage() {
   )
 }
 
-export default CarsListPage
+export default AvailableCars
