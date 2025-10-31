@@ -6,7 +6,7 @@ const Home = () => {
   const { user } = useAuth()
 
   return (
-    <div className="grid min-h-screen items-center bg-primary-dark text-center font-lora text-white">
+    <div className="mt-28 flex flex-col justify-start bg-primary-dark text-center font-lora text-white">
       <div className="bg-primary-dark p-6 ">
         <h1 className="mt-3 text-5xl font-bold">MONI</h1>
         <h2 className="mb-8 text-5xl italic">Share</h2>

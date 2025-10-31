@@ -37,7 +37,7 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-16 bg-primary-dark px-6">
+    <div className="mt-28 flex flex-col items-center justify-start gap-16 bg-primary-dark px-6">
       <div className="text-center font-lora text-gray-100">
         <h1 className="mt-3 text-5xl font-bold">MONI</h1>
         <h2 className="mb-6 text-5xl italic">Share</h2>
