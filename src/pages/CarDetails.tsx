@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets/index'
 import { useCars, useCarTypes, useUser } from '../hooks/index'
-import Details from '../components/Details'
+import Details from '../components/cars/Details'
 
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()

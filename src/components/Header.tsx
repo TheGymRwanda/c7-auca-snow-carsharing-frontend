@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ProfileIcon, Logo } from '../assets'
-import DropDown from './DropDown'
+import DropDown from './navigation/DropDown'
 import { useAuth } from '../context/AuthContext'
 
 export default function Header() {

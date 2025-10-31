@@ -1,4 +1,4 @@
-import CarCard from '../components/CarCard'
+import CarCard from '../components/cars/CarCard'
 import { useCarTypes, useCars } from '../hooks/index'
 import { useNavigate } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets'

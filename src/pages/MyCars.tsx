@@ -11,7 +11,7 @@ import { useCarTypes } from '../hooks'
 import { getAuthToken } from '../util/auth'
 import LoaderComponent from '../components/ui/Loader'
 import ErrorComponent from '../components/ui/ErrorComponent'
-import CarCard from '../components/CarCard'
+import CarCard from '../components/cars/CarCard'
 
 // eslint-disable-next-line max-lines-per-function
 function MyCars() {
