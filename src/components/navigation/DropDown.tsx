@@ -1,6 +1,6 @@
-import { CarIcon, ListIcon, CarsIcon, CarPlusIcon, LogoutIcon, MenuIcon } from '../assets/index'
+import { CarIcon, ListIcon, CarsIcon, CarPlusIcon, LogoutIcon, MenuIcon } from '../../assets/index'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 
 export default function DropDown() {
   const { logout } = useAuth()

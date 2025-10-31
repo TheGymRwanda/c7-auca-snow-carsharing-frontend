@@ -1,8 +1,8 @@
-import useUser from '../hooks/useUser'
-import { CarDto, CarTypeDto } from '../util/api'
-import ButtonComponent from './ui/Button'
-import { CarIcon, ProfileIcon } from '../assets'
 import { Link } from 'react-router-dom'
+import { useUser } from '../../hooks'
+import { CarDto, CarTypeDto } from '../../util/api'
+import { CarIcon, ProfileIcon } from '../../assets'
+import ButtonComponent from '../ui/Button'
 
 interface CarCardProps {
   car: CarDto
