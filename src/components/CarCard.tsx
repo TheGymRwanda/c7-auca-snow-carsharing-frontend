@@ -31,14 +31,6 @@ function CarCard({
 
   return (
     <>
-      {/* <CarDetails
-        key={car.id}
-        index={car.id}
-        title={car.name}
-        image={carType?.imageUrl || ''}
-        owner={ownerName}
-        location={carType?.name || 'Unknown Type'}
-      /> */}
       <div
         key={car.id}
         className="min-h-60 shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light p-4 px-8"
