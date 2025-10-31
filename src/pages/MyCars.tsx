@@ -10,6 +10,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets'
 import { useCarTypes } from '../hooks'
 import { getAuthToken } from '../util/auth'
+import LoaderComponent from '../components/ui/Loader'
+import ErrorComponent from '../components/ui/ErrorComponent'
 
 // eslint-disable-next-line max-lines-per-function
 function MyCars() {
@@ -23,14 +25,7 @@ function MyCars() {
   const navigate = useNavigate()
 
   if (error) {
-    return (
-      <div className="mt-10 flex min-h-screen items-center justify-center">
-        <div className="text-center text-red-400">
-          <h3 className="mb-2 text-xl font-semibold">Car not found</h3>
-          <ButtonComponent text="Back to Home" isPrimary={true} onClick={() => navigate('/home')} />
-        </div>
-      </div>
-    )
+    return <ErrorComponent message="Car not found" />
   }
 
   useEffect(() => {
@@ -39,9 +34,7 @@ function MyCars() {
     }
     fetchData()
   }, [])
-
   const myCars = cars?.filter(car => car.ownerId === user?.id) || []
-
   const handleDeleteClick = (carId: number) => {
     setCarToDelete(carId)
     setShowDeleteModal(true)
@@ -76,12 +69,7 @@ function MyCars() {
     <>
       <div className="relative min-h-screen bg-primary pt-24">
         {loading ? (
-          <div className="flex min-h-screen items-center justify-center">
-            <div className="text-center">
-              <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
-              <p className="text-lg text-white">Loading ...</p>
-            </div>
-          </div>
+          <LoaderComponent />
         ) : (
           <>
             <div className="container mx-auto px-4">
