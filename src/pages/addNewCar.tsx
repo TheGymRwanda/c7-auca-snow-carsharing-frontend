@@ -4,10 +4,10 @@ import axios from 'axios'
 import { apiUrl } from '../util/apiUrl'
 import { getAuthToken } from '../util/auth'
 import { useCarTypes } from '../hooks'
-import AddNewCar from '../components/forms/AddNewCar'
+import AddNewCarForm from '../components/forms/AddNewCarForm'
 
 /* eslint-disable max-lines-per-function */
-const CreateNewCar = () => {
+const AddNewCar = () => {
   const [carTypeId, setCarTypeId] = useState(0)
   const [name, setName] = useState('')
   const [fuelType, setFuelType] = useState('')
@@ -48,7 +48,7 @@ const CreateNewCar = () => {
     <div className="mt-24 flex flex-col items-center justify-start">
       <div className="px-6 text-white">
         <h1 className="text-center font-lora text-3xl">NEW CAR</h1>
-        <AddNewCar
+        <AddNewCarForm
           handleSubmit={handleSubmit}
           setCarTypeId={setCarTypeId}
           setName={setName}
@@ -64,4 +64,4 @@ const CreateNewCar = () => {
   )
 }
 
-export default CreateNewCar
+export default AddNewCar

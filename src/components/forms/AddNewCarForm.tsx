@@ -16,7 +16,7 @@ interface AddNewCarPropType {
   loading: boolean
 }
 
-function AddNewCar({
+function AddNewCarForm({
   handleSubmit,
   setName,
   setCarTypeId,
@@ -138,4 +138,4 @@ function AddNewCar({
   )
 }
 
-export default AddNewCar
+export default AddNewCarForm
