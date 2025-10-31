@@ -1,7 +1,7 @@
 import { CarDto, CarTypeDto, UserDto } from '../util/api'
 import { CarIcon, HorseIcon, FuelIcon, XIcon, ProfileIcon } from '../assets/index'
 
-type DetailsProps = {
+interface DetailsProps {
   car: CarDto
   carType?: CarTypeDto
   owner?: UserDto
