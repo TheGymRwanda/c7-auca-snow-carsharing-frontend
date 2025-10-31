@@ -4,10 +4,10 @@ import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import AppLayout from './components/layouts/AppLayout'
-import CarsListPage from './components/CarsList'
+import AvailableCars from './components/AvailableCars'
 import CarDetails from './pages/CarDetails'
 import MyCars from './pages/MyCars'
-import Profle from './pages/Profile'
+import Profile from './pages/Profile'
 import LandingPage from './pages/LandingPage'
 import CreateNewCar from './pages/CreateNewCar'
 
@@ -26,9 +26,9 @@ function App() {
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
           <Route path="add-new-car" element={<CreateNewCar />} />
-          <Route path="car" element={<CarsListPage />} />
+          <Route path="car" element={<AvailableCars />} />
           <Route path="my-cars" element={<MyCars />} />
-          <Route path="profile" element={<Profle />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
