@@ -13,7 +13,6 @@ import LoaderComponent from '../components/ui/Loader'
 import ErrorComponent from '../components/ui/ErrorComponent'
 import CarCard from '../components/cars/CarCard'
 
-// eslint-disable-next-line max-lines-per-function
 function MyCars() {
   const { user } = useAuth()
   const [deletingCar, setDeletingCar] = useState<number | null>(null)

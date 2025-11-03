@@ -6,7 +6,6 @@ import { getAuthToken } from '../util/auth'
 import { useCarTypes } from '../hooks'
 import AddNewCarForm from '../components/forms/AddNewCarForm'
 
-/* eslint-disable max-lines-per-function */
 const AddNewCar = () => {
   const [carTypeId, setCarTypeId] = useState(0)
   const [name, setName] = useState('')
