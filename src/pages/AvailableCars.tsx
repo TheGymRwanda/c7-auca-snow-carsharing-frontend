@@ -39,9 +39,9 @@ function AvailableCars() {
       </div>
     </div>
   ) : (
-    <div className="min-h-screen bg-primary pb-8 pt-24">
-      <div className="container mx-auto px-4">
-        <div className="mx-2 flex content-center text-center">
+    <div className="min-h-screen bg-primary pb-8 pt-16">
+      <div className="container ">
+        <div className="sticky top-14 z-10 flex w-full bg-primary py-4 text-center">
           <button
             onClick={() => navigate('/')}
             className="cursor-pointer transition hover:opacity-80"
@@ -52,7 +52,7 @@ function AvailableCars() {
             <h1 className="font-lora text-3xl uppercase text-gray-200">Available Car</h1>
           </div>
         </div>
-        <div className="space-y-6">
+        <div className="space-y-6 px-4">
           {cars.map(car => {
             const carType = getCarType(car.carTypeId)
             return (
