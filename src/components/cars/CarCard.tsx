@@ -30,6 +30,10 @@ function CarCard({
     : owner?.name || `Owner ${car.ownerId}`
   const imageUrl = (carType?.imageUrl ?? '').trim() || undefined
 
+  if (!car || !carType || !carType.name || !imageUrl) {
+    return null
+  }
+
   return (
     <>
       <div

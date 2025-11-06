@@ -9,10 +9,15 @@ interface DetailsProps {
 }
 
 function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
+  const imageUrl = (carType?.imageUrl ?? '').trim() || undefined
+
+  if (!car || !carType || !carType.name || !imageUrl) {
+    return null
+  }
   return (
     <div className="items-center space-y-1 lg:gap-64">
       <img
-        src={carType?.imageUrl || '/img/car.png'}
+        src={imageUrl}
         alt={car.name}
         className="h-80 w-fit justify-self-center"
       />
