@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useUser } from '../../hooks'
 import { CarDto, CarTypeDto } from '../../util/api'
 import { CarIcon, ProfileIcon } from '../../assets'
-import ButtonComponent from '../ui/Button'
+import Button from '../ui/Button'
 
 interface CarCardProps {
   car: CarDto
@@ -26,8 +26,8 @@ function CarCard({
   const ownerName = loading
     ? 'Loading...'
     : error
-    ? 'Unknown Owner'
-    : owner?.name || `Owner ${car.ownerId}`
+      ? 'Unknown Owner'
+      : owner?.name || `Owner ${car.ownerId}`
 
   return (
     <>
@@ -67,7 +67,7 @@ function CarCard({
           </div>
         </div>
         <div className="text-center">
-          <ButtonComponent
+          <Button
             text={buttonText}
             isPrimary={primaryButton ? true : false}
             className={`shadow-button text-17 drop-shadow-2xl`}

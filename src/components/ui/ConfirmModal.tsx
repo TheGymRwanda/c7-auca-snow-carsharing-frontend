@@ -1,4 +1,4 @@
-import ButtonComponent from './Button'
+import Button from './Button'
 
 interface ConfirmModalProps {
   isOpen: boolean
@@ -18,14 +18,14 @@ function ConfirmModal({ isOpen, title, message, onConfirm, onCancel, loading }: 
         <h3 className="mb-2 text-lg font-semibold text-white">{title}</h3>
         <p className="mb-6 text-gray-200">{message}</p>
         <div className="flex gap-3">
-          <ButtonComponent
+          <Button
             text="Cancel"
             isPrimary={false}
             onClick={onCancel}
             disabled={loading}
             className="bg-primary-light"
           />
-          <ButtonComponent
+          <Button
             text="Delete"
             isPrimary={true}
             loadingText="Deleting ..."

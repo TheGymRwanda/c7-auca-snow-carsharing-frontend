@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import { SetStateAction } from 'react'
-import ButtonComponent from '../ui/Button'
+import Button from '../ui/Button'
 import { useNavigate } from 'react-router-dom'
 import { CarTypeDto } from '../../util/api'
 
@@ -120,13 +120,13 @@ function AddNewCarForm({
         </div>
       </div>
       <div className="flex justify-between space-x-1">
-        <ButtonComponent
+        <Button
           text="Cancel"
           isPrimary={false}
           disabled={loading}
           onClick={() => navigate('/my-cars')}
         />
-        <ButtonComponent
+        <Button
           text="Add Car"
           loadingText="Adding Car ..."
           loading={loading}

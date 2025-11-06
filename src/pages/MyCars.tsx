@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { apiUrl } from '../util/apiUrl'
 import useCars from '../hooks/useCars'
-import ButtonComponent from '../components/ui/Button'
+import Button from '../components/ui/Button'
 import ConfirmModal from '../components/ui/ConfirmModal'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets'
 import { useCarTypes } from '../hooks'
 import { getAuthToken } from '../util/auth'
 import LoaderComponent from '../components/ui/Loader'
-import ErrorComponent from '../components/ui/ErrorComponent'
+import ErrorComponent from '../components/ui/Error'
 import CarCard from '../components/cars/CarCard'
 
 function MyCars() {
@@ -104,9 +104,12 @@ function MyCars() {
               </div>
             </div>
             <div className="sticky bottom-0 bg-primary p-4 pb-6 ">
-              <Link to="/add-new-car">
-                <ButtonComponent text="Add new Car" loadingText="Adding ..." isPrimary={true} />
-              </Link>
+              <Button
+                text="Add new Car"
+                loadingText="Adding ..."
+                isPrimary={true}
+                onClick={() => navigate('/add-new-car')}
+              />
             </div>
           </>
         )}
