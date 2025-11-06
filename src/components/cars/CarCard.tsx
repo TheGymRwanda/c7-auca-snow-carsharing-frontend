@@ -28,6 +28,7 @@ function CarCard({
     : error
     ? 'Unknown Owner'
     : owner?.name || `Owner ${car.ownerId}`
+  const imageUrl = (carType?.imageUrl ?? '').trim() || undefined
 
   return (
     <>
@@ -37,11 +38,17 @@ function CarCard({
       >
         <div className="grid grid-cols-2 gap-20">
           <div className="my-1 flex w-52 items-center justify-center pr-4">
-            <img
-              src={carType?.imageUrl || ''}
-              alt={`${car.name}'s Picture`}
-              className="max-h-full"
-            />
+            {imageUrl ? (
+              <img
+                src={imageUrl}
+                alt={`${car.name}'s Picture`}
+                className="max-h-full"
+              />
+            ) : (
+              <div className="flex h-40 w-52 items-center justify-center rounded-lg bg-primary/40">
+                <CarIcon className="size-10 text-gray-300" />
+              </div>
+            )}
           </div>
           <div className="min-h-52 flex flex-col justify-around gap-4">
             <div className="flex flex-col gap-4">
