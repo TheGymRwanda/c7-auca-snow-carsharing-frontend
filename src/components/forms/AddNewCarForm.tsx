@@ -30,7 +30,7 @@ function AddNewCarForm({
 }: AddNewCarPropType) {
   const navigate = useNavigate()
   return (
-    <form className="mt-2 flex flex-col space-y-14" onSubmit={handleSubmit}>
+    <form className="mt-2 flex flex-col space-y-12" onSubmit={handleSubmit}>
       <div className="space-y-3">
         <FormInput label="Name" id="name" placeholder="e.g. My Nice Moni Car" onChange={setName} />
 
@@ -83,7 +83,7 @@ function AddNewCarForm({
           text="Cancel"
           isPrimary={false}
           disabled={loading}
-          onClick={() => navigate('/my-cars')}
+          onClick={() => navigate('/my-cars', { replace: true })}
         />
         <ButtonComponent
           text="Add Car"

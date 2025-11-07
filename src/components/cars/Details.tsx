@@ -29,7 +29,7 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
       ),
     },
     { icon: <CarIcon />, content: car.state },
-    { icon: <LicenseIcon />, content: car.licensePlate || 'No license plate' },
+    { icon: <LicenseIcon className="ml-1" />, content: car.licensePlate || 'No license plate' },
     { icon: <HorseIcon />, content: car.horsepower ? `${car.horsepower} HP` : 'N/A' },
     { icon: <FuelIcon />, content: car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1) },
     {
@@ -42,7 +42,7 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
 
   return (
     <div className="items-center lg:gap-64">
-      <div className="h-60 w-60 scale-125 justify-self-center overflow-hidden">
+      <div className="h-60 w-60 scale-130 justify-self-center overflow-hidden">
         <img
           src={carType?.imageUrl || '/img/car.png'}
           alt={car.name}
@@ -50,10 +50,10 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
         />
       </div>
       <div className="px-6 tracking-wide">
-        <h2 className="font-lora text-xl font-medium">{car.name}</h2>
+        <h2 className="font-lora text-2xl">{car.name}</h2>
         <ul className="text-sm mt-7 space-y-2 md:text-xl">
           {detailItems.map((item, index) => (
-            <li key={index} className="flex items-center gap-2">
+            <li key={index} className="flex items-center gap-3">
               {item.icon} {item.content}
             </li>
           ))}
