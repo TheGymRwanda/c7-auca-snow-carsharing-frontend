@@ -39,7 +39,7 @@ function AvailableCars() {
   ) : (
     <div className="min-h-screen bg-primary pb-8 pt-16">
       <div className="container ">
-        <PageTitle title="Available Car" />
+        <PageTitle title="Available Cars" />
         <div className="space-y-6 px-4">
           {cars.map(car => {
             const carType = getCarType(car.carTypeId)
