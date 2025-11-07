@@ -1,6 +1,7 @@
 import ButtonComponent from '../components/ui/Button'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { BrandHeader } from '../components/ui/BrandHeader'
 
 const Home = () => {
   const { user } = useAuth()
@@ -8,8 +9,7 @@ const Home = () => {
   return (
     <div className="mt-28 flex flex-col justify-start bg-primary-dark text-center font-lora text-white">
       <div className="bg-primary-dark p-6 ">
-        <h1 className="mt-3 text-5xl font-bold">MONI</h1>
-        <h2 className="mb-8 text-5xl italic">Share</h2>
+        <BrandHeader />
         <p className="mb-12  text-xl">
           {`Hello ${user?.name} !`} <br />
           <span className="text-xl">What are you up to today?</span>
