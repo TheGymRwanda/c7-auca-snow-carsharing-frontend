@@ -30,6 +30,9 @@ module.exports = {
       fontFamily: {
         lora: ['Lora', 'serif'],
       },
+      borderRadius: {
+        'carcard-box-radius': '10px',
+      },
     },
   },
   plugins: [],

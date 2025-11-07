@@ -26,14 +26,14 @@ function CarCard({
   const ownerName = loading
     ? 'Loading...'
     : error
-    ? 'Unknown Owner'
-    : owner?.name || `Owner ${car.ownerId}`
+      ? 'Unknown Owner'
+      : owner?.name || `Owner ${car.ownerId}`
 
   return (
     <>
       <div
         key={car.id}
-        className="min-h-60 shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light p-4 px-8"
+        className="shadow-card mt-8 flex min-h-60 w-full flex-col self-center rounded-carcard-box-radius bg-primary-light px-8 py-4"
       >
         <div className="grid grid-cols-2 gap-20">
           <div className="my-1 flex w-52 items-center justify-center pr-4">
@@ -43,7 +43,7 @@ function CarCard({
               className="max-h-full"
             />
           </div>
-          <div className="min-h-52 flex flex-col justify-around gap-4">
+          <div className="flex min-h-52 flex-col justify-around gap-y-8">
             <div className="flex flex-col gap-4">
               <h2 className="overflow-wrap-anywhere mt-2 whitespace-normal font-lora text-xl leading-tight text-white">
                 {car.name}
