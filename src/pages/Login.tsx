@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
 import LoginForm from '../components/forms/LoginForm'
+import { BrandHeader } from '../components/ui/BrandHeader'
 
 export default function Login() {
   const [loading, setLoading] = useState(false)
@@ -38,10 +39,7 @@ export default function Login() {
 
   return (
     <div className="mt-28 flex flex-col items-center justify-start gap-16 bg-primary-dark px-6">
-      <div className="text-center font-lora text-gray-100">
-        <h1 className="mt-3 text-5xl font-bold">MONI</h1>
-        <h2 className="mb-6 text-5xl italic">Share</h2>
-      </div>
+      <BrandHeader />
 
       <div className="w-full max-w-sm">
         <h3 className="mb-8 text-center font-lora text-xl font-medium text-white">Log in</h3>
