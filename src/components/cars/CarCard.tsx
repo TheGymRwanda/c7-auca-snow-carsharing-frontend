@@ -29,7 +29,7 @@ function CarCard({
       ? 'Unknown Owner'
       : owner?.name || `Owner ${car.ownerId}`
   const imageUrl = (carType?.imageUrl ?? '').trim()
-  const imageSrc = imageUrl || '/img/car.png'
+  const imageSrc = imageUrl || '/images/car.png'
 
   if (!car || !carType || !carType.name) {
     return null

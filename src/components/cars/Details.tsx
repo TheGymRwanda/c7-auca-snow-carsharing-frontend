@@ -10,7 +10,7 @@ interface DetailsProps {
 
 function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
   const imageUrl = (carType?.imageUrl ?? '').trim()
-  const imageSrc = imageUrl || '/img/car.png'
+  const imageSrc = imageUrl || '/images/car.png'
 
   if (!car || !carType || !carType.name) {
     return null
