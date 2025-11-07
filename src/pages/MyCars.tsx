@@ -1,67 +1,41 @@
 import { useAuth } from '../context/AuthContext'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { apiUrl } from '../util/apiUrl'
+import { useEffect } from 'react'
 import useCars from '../hooks/useCars'
 import ButtonComponent from '../components/ui/Button'
 import ConfirmModal from '../components/ui/ConfirmModal'
 import { useNavigate, Link } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets'
 import { useCarTypes } from '../hooks'
-import { getAuthToken } from '../util/auth'
 import LoaderComponent from '../components/ui/Loader'
 import ErrorComponent from '../components/ui/ErrorComponent'
 import CarCard from '../components/cars/CarCard'
+import { useCarDelete } from '../hooks/useCarDelete'
 
 function MyCars() {
   const { user } = useAuth()
-  const [deletingCar, setDeletingCar] = useState<number | null>(null)
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const [carToDelete, setCarToDelete] = useState<number | null>(null)
   const [{ data: cars, loading, error }, refetch] = useCars()
   const [{ data: carTypes }] = useCarTypes()
-  const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
   const navigate = useNavigate()
+  const {
+    deletingCar,
+    showDeleteModal,
+    carToDelete,
+    handleDeleteClick,
+    handleConfirmDelete,
+    handleCancelDelete,
+  } = useCarDelete(async () => {
+    await refetch()
+  })
+
+  const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
+  const myCars = cars?.filter(car => car.ownerId === user?.id) || []
+
+  useEffect(() => {
+    refetch()
+  }, [])
 
   if (error) {
     return <ErrorComponent message="Car not found" />
-  }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await refetch()
-    }
-    fetchData()
-  }, [])
-  const myCars = cars?.filter(car => car.ownerId === user?.id) || []
-  const handleDeleteClick = (carId: number) => {
-    setCarToDelete(carId)
-    setShowDeleteModal(true)
-  }
-
-  const handleConfirmDelete = async () => {
-    if (!carToDelete) return
-    setDeletingCar(carToDelete)
-    try {
-      const res = await axios.delete(`${apiUrl}/cars/${carToDelete}`, {
-        headers: { Authorization: `Bearer ${getAuthToken()}` },
-      })
-      if (res.status !== 200) {
-        return new Error('Failed to delete the car')
-      }
-    } catch (error) {
-      console.error('Error from deleting: ', error)
-    } finally {
-      await refetch()
-      setDeletingCar(null)
-      setShowDeleteModal(false)
-      setCarToDelete(null)
-    }
-  }
-
-  const handleCancelDelete = () => {
-    setShowDeleteModal(false)
-    setCarToDelete(null)
   }
 
   return (
@@ -87,20 +61,17 @@ function MyCars() {
                 {myCars?.length === 0 && (
                   <p className="mt-9 text-center text-gray-200">{"You don't have any cars yet."}</p>
                 )}
-                {myCars?.map(car => {
-                  const carType = getCarType(car.carTypeId)
-                  return (
-                    <CarCard
-                      key={car.id}
-                      car={car}
-                      carType={carType}
-                      buttonText="Delete Car"
-                      primaryButton={false}
-                      buttonVariant="delete"
-                      onButtonClick={() => handleDeleteClick(car.id)}
-                    />
-                  )
-                })}
+                {myCars?.map(car => (
+                  <CarCard
+                    key={car.id}
+                    car={car}
+                    carType={getCarType(car.carTypeId)}
+                    buttonText="Delete Car"
+                    primaryButton={false}
+                    buttonVariant="delete"
+                    onButtonClick={() => handleDeleteClick(car.id)}
+                  />
+                ))}
               </div>
             </div>
             <div className="sticky bottom-0 bg-primary p-4 pb-6 ">
