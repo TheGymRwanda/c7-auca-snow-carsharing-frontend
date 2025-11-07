@@ -6,13 +6,7 @@ interface FormSelectProps {
   onChange: (value: string) => void
 }
 
-function FormSelect({
-  label,
-  id,
-  options,
-  defaultOption,
-  onChange,
-}: FormSelectProps) {
+function FormSelect({ label, id, options, defaultOption, onChange }: FormSelectProps) {
   return (
     <div className="flex flex-col">
       <label htmlFor={id} className="mb-1 text-sm">
