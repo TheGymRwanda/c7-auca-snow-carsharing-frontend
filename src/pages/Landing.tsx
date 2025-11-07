@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
 
-function Landing() {
+function LandingPage() {
   const navigate = useNavigate()
   return (
     <div className="mt-28 flex flex-col items-center justify-start bg-primary-dark px-6 py-10">
@@ -22,4 +22,4 @@ function Landing() {
   )
 }
 
-export default Landing
+export default LandingPage

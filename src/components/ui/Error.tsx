@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import Button from './Button'
 
-interface ErrorProps {
+interface ErrorComponentProps {
   error?: Error
   message?: string
 }
-function Error({ message }: ErrorProps) {
+function ErrorComponent({ message }: ErrorComponentProps) {
   const navigate = useNavigate()
 
   return (
@@ -18,4 +18,4 @@ function Error({ message }: ErrorProps) {
   )
 }
 
-export default Error
+export default ErrorComponent

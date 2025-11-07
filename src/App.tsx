@@ -9,7 +9,7 @@ import CarDetails from './pages/CarDetails'
 import MyCars from './pages/MyCars'
 import Profile from './pages/Profile'
 import AddNewCar from './pages/addNewCar'
-import Landing from './pages/Landing'
+import LandingPage from './pages/Landing'
 
 configure({
   defaultOptions: {
@@ -32,7 +32,7 @@ function App() {
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="landing" element={<Landing />} />
+          <Route path="landing" element={<LandingPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
