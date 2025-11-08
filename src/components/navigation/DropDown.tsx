@@ -25,7 +25,7 @@ export default function DropDown() {
         <hr />
         <p className="p-2 text-left font-semibold">My cars</p>
         <ul>
-          <Link to="/myCars">
+          <Link to="/my-cars">
             <li className="flex items-center gap-2 p-2 hover:bg-primary-light-hover">
               <CarsIcon />
               See My Cars

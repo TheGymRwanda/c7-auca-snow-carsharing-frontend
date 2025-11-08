@@ -45,10 +45,10 @@ function CarCard({
           </div>
           <div className="flex min-h-52 flex-col justify-around gap-y-8">
             <div className="flex flex-col gap-4">
-              <h2 className="overflow-wrap-anywhere mt-2 whitespace-normal font-lora text-xl leading-tight text-white">
+              <h2 className="overflow-wrap-anywhere mt-2 whitespace-normal font-lora text-xl font-medium leading-tight text-white">
                 {car.name}
               </h2>
-              <div className="flex flex-col gap-4 text-18 font-light text-gray-100">
+              <div className="text-14 flex flex-col gap-4 font-normal text-gray-100">
                 <div className="flex items-center gap-3">
                   <ProfileIcon className="size-7" />
                   <span>{ownerName}</span>
