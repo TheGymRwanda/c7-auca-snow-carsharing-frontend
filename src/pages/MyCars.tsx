@@ -5,13 +5,13 @@ import { apiUrl } from '../util/apiUrl'
 import useCars from '../hooks/useCars'
 import ButtonComponent from '../components/ui/Button'
 import ConfirmModal from '../components/ui/ConfirmModal'
-import { useNavigate, Link } from 'react-router-dom'
-import { ChevronBackIcon } from '../assets'
+import { Link } from 'react-router-dom'
 import { useCarTypes } from '../hooks'
 import { getAuthToken } from '../util/auth'
 import LoaderComponent from '../components/ui/Loader'
 import ErrorComponent from '../components/ui/ErrorComponent'
 import CarCard from '../components/cars/CarCard'
+import PageTitle from '../components/PageTitle'
 
 function MyCars() {
   const { user } = useAuth()
@@ -21,7 +21,6 @@ function MyCars() {
   const [{ data: cars, loading, error }, refetch] = useCars()
   const [{ data: carTypes }] = useCarTypes()
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
-  const navigate = useNavigate()
 
   if (error) {
     return <ErrorComponent message="Car not found" />
@@ -72,17 +71,7 @@ function MyCars() {
         ) : (
           <>
             <div className="container mx-auto px-4">
-              <div className="mx-2 flex content-center text-center">
-                <button
-                  onClick={() => navigate(-1)}
-                  className="cursor-pointer transition hover:opacity-80"
-                >
-                  <ChevronBackIcon className="h-5 w-5 text-accent" />
-                </button>
-                <div className="w-full text-center">
-                  <h1 className="font-lora text-3xl uppercase text-gray-200">My Cars</h1>
-                </div>
-              </div>
+              <PageTitle title="My cars" />
               <div className="mb-6 space-y-6">
                 {myCars?.length === 0 && (
                   <p className="mt-9 text-center text-gray-200">{"You don't have any cars yet."}</p>
