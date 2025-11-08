@@ -29,34 +29,34 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
       ),
     },
     { icon: <CarIcon />, content: car.state },
-    { icon: <LicenseIcon className="ml-1" />, content: car.licensePlate || 'No license plate' },
-    { icon: <HorseIcon />, content: car.horsepower ? `${car.horsepower} HP` : 'N/A' },
+    { icon: <LicenseIcon className="ml-1" />, content: car.licensePlate },
+    { icon: <HorseIcon />, content: `${car.horsepower} HP` },
     { icon: <FuelIcon />, content: car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1) },
     {
       icon: <AttentionIcon />,
-      content: (
-        <p className="overflow-wrap-anywhere font-bold">{car.info || carType?.name || 'N/A'}</p>
-      ),
+      content: <p className="overflow-wrap-anywhere font-bold">{car.info}</p>,
     },
   ]
 
   return (
     <div className="items-center lg:gap-64">
-      <div className="h-60 w-60 scale-130 justify-self-center overflow-hidden">
+      <div className="mt-8 h-60 w-60 scale-130 justify-self-center overflow-hidden">
         <img
           src={carType?.imageUrl || '/img/car.png'}
           alt={car.name}
           className="h-full w-full object-cover"
         />
       </div>
-      <div className="px-6 tracking-wide">
-        <h2 className="font-lora text-2xl">{car.name}</h2>
-        <ul className="text-sm mt-7 space-y-2 md:text-xl">
-          {detailItems.map((item, index) => (
-            <li key={index} className="flex items-center gap-3">
-              {item.icon} {item.content}
-            </li>
-          ))}
+      <div className="px-10 tracking-wide">
+        <h2 className="font-lora text-xl font-thin">{car.name}</h2>
+        <ul className="mt-7 space-y-2 text-sm md:text-xl">
+          {detailItems
+            .filter(item => item.content)
+            .map((item, index) => (
+              <li key={index} className="flex items-center gap-3">
+                {item.icon} {item.content}
+              </li>
+            ))}
         </ul>
       </div>
     </div>

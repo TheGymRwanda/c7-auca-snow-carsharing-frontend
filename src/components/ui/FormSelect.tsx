@@ -14,6 +14,7 @@ function FormSelect({ label, id, options, defaultOption, onChange }: FormSelectP
       </label>
       <select
         id={id}
+        required
         className="appearance-none rounded-full border-none bg-primary-light-formButtons p-4 text-white outline-none"
         onChange={e => onChange(e.target.value)}
       >
