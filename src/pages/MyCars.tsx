@@ -15,7 +15,6 @@ function MyCars() {
   const { user } = useAuth()
   const [{ data: cars, loading, error }, refetch] = useCars()
   const [{ data: carTypes }] = useCarTypes()
-  const navigate = useNavigate()
   const {
     deletingCar,
     showDeleteModal,
@@ -40,13 +39,13 @@ function MyCars() {
 
   return (
     <>
-      <div className="relative min-h-screen bg-primary pt-24">
+      <div className="relative min-h-screen bg-primary pt-12">
         {loading ? (
           <LoaderComponent />
         ) : (
           <>
+            <PageTitle title="My cars" />
             <div className="container mx-auto px-4">
-              <PageTitle title="My cars" />
               <div className="mb-6 space-y-6">
                 {myCars?.length === 0 && (
                   <p className="mt-9 text-center text-gray-200">{"You don't have any cars yet."}</p>
@@ -64,7 +63,7 @@ function MyCars() {
                 ))}
               </div>
             </div>
-            <div className="sticky bottom-0 bg-primary p-4 pb-6 ">
+            <div className="sticky bottom-0 bg-primary p-4 ">
               <Link to="/add-new-car">
                 <ButtonComponent text="Add new Car" loadingText="Adding ..." isPrimary={true} />
               </Link>
