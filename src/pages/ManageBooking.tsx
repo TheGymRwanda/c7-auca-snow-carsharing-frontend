@@ -1,18 +1,25 @@
 import { useNavigate } from 'react-router-dom'
 import { ChevronBackIcon } from '../assets'
-import { useBookings } from '../hooks'
+import { useBookings, useCarTypes } from '../hooks'
 import { useAuth } from '../context/AuthContext'
-import ManageBookingCard from '../components/ManageBookingCard'
+import ManageBookingCard from '../components/cars/ManageBookingCard'
+import LoaderComponent from '../components/ui/Loader'
 
 export default function ManageBooking() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const { data: bookings, loading, error } = useBookings()
+  const [{ data: carTypes }] = useCarTypes()
 
-  if (loading) return <div>Loading...</div>
-  if (error || !bookings) return <div>Error</div>
+  if (loading) return <LoaderComponent />
+  if (error || !bookings || !user) return <div>Error</div>
 
-  const bookingsForCarOfCurrentUser = bookings.filter(booking => booking.car.ownerId === 2) /// replace by user.id
+  const bookingsForCarOfCurrentUser = bookings.map(booking => ({
+    ...booking,
+    imageUrl: carTypes?.find(carType => carType.id === booking.car.carTypeId)?.imageUrl || null,
+  })) /// replace by user.id
+
+  // const bookingsForCarOfCurrentUser = bookings.filter(booking => booking.car.ownerId === user.id) /// replace by user.id
 
   console.log(bookingsForCarOfCurrentUser)
   console.log(bookings)
