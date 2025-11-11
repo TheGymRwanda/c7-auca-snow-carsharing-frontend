@@ -3,14 +3,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import AppLayout from './components/ui/AppLayout'
-import CarsListPage from './components/CarsList'
+import AppLayout from './components/layouts/AppLayout'
+import AvailableCars from './pages/AvailableCars'
 import CarDetails from './pages/CarDetails'
 import MyCars from './pages/MyCars'
-import Profle from './pages/Profile'
+import Profile from './pages/Profile'
 import LandingPage from './pages/LandingPage'
-import CreateNewCar from './pages/CreateNewCar'
-import ManageBooking from './pages/ManageBooking'
+import AddNewCar from './pages/addNewCar'
 
 configure({
   defaultOptions: {
@@ -26,11 +25,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
-          <Route path="booking/management" element={<ManageBooking />} />
-          <Route path="add-new-car" element={<CreateNewCar />} />
-          <Route path="car" element={<CarsListPage />} />
+          <Route path="add-new-car" element={<AddNewCar />} />
+          <Route path="car" element={<AvailableCars />} />
           <Route path="my-cars" element={<MyCars />} />
-          <Route path="profile" element={<Profle />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />

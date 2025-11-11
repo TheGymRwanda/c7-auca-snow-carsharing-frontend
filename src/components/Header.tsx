@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ProfileIcon, Logo } from '../assets'
-import DropDown from './DropDown'
+import DropDown from './navigation/DropDown'
 import { useAuth } from '../context/AuthContext'
 
 export default function Header() {
@@ -13,7 +13,6 @@ export default function Header() {
   const dropDownRef = useRef<HTMLDivElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
 
-  // close when clicking outside
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
       if (!isDropDownOpen) return

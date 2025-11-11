@@ -4,7 +4,7 @@ import ButtonComponent from '../components/ui/Button'
 export default function LandingPage() {
   return (
     <>
-      <div className="flex h-screen flex-col items-center justify-center bg-primary-dark px-6 py-10">
+      <div className="mt-28 flex flex-col items-center justify-start bg-primary-dark px-6 py-10">
         <div className="mb-28 grid space-y-14">
           <div className="text-center font-lora text-gray-100">
             <h1 className="mt-3 text-5xl font-bold">MONI</h1>
