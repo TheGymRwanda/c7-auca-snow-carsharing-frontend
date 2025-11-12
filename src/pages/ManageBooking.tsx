@@ -4,6 +4,7 @@ import { useBookings, useCarTypes } from '../hooks'
 import { useAuth } from '../context/AuthContext'
 import ManageBookingCard from '../components/cars/ManageBookingCard'
 import LoaderComponent from '../components/ui/Loader'
+import { BookingState, BookingWithReferences } from '../util/api'
 
 export default function ManageBooking() {
   const navigate = useNavigate()
@@ -14,16 +15,20 @@ export default function ManageBooking() {
   if (loading) return <LoaderComponent />
   if (error || !bookings || !user) return <div>Error</div>
 
-  const bookingsForCarOfCurrentUser = bookings.map(booking => ({
-    ...booking,
-    imageUrl: carTypes?.find(carType => carType.id === booking.car.carTypeId)?.imageUrl || null,
-  })) /// replace by user.id
-
-  // const bookingsForCarOfCurrentUser = bookings.filter(booking => booking.car.ownerId === user.id) /// replace by user.id
-
-  console.log(bookingsForCarOfCurrentUser)
-  console.log(bookings)
-  console.log(user)
+  const bookingsForCarOfCurrentUser = (
+    bookings as (BookingWithReferences & { state: BookingState })[]
+  )
+    .filter(booking => booking.car.ownerId === user.id)
+    .map(booking => {
+      const bookingState = booking.state /// add booking state as a state
+      return {
+        ...booking,
+        state: bookingState,
+        startDate: new Date(booking.startDate),
+        endDate: new Date(booking.endDate),
+        imageUrl: carTypes?.find(carType => carType.id === booking.car.carTypeId)?.imageUrl || null,
+      }
+    })
 
   return (
     <div className="pt-24">
@@ -43,9 +48,12 @@ export default function ManageBooking() {
         ) : (
           <ul className="mt-10 space-y-4 px-5">
             {bookingsForCarOfCurrentUser.map(booking => (
-              <li key={booking.id}>
-                <ManageBookingCard booking={booking} />
-              </li>
+              <>
+                <li key={booking.id}>
+                  <ManageBookingCard booking={booking} />
+                </li>
+                <hr />
+              </>
             ))}
           </ul>
         )}
