@@ -6,7 +6,7 @@ export default function DropDown() {
   const { logout } = useAuth()
 
   return (
-    <nav className="absolute left-5 top-14 z-40 rounded-md bg-primary-light px-6 pb-2 pt-4 text-sm text-white">
+    <nav className="absolute left-4 top-14 z-40 w-52 rounded-md bg-primary-light px-4 pb-2 pt-4 text-sm text-white">
       <div>
         <ul>
           <Link to="/car">

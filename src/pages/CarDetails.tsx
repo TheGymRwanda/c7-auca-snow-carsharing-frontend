@@ -43,7 +43,7 @@ const CarDetails = () => {
   }
 
   return (
-    <div className=" min-h-screen space-y-4 overflow-y-hidden px-6 pt-20 text-[#F9FAFB]">
+    <div className=" min-h-screen space-y-4 overflow-y-hidden text-[#F9FAFB]">
       <PageTitle title="Details" />
       <Details car={car} carType={carType} owner={owner} ownerLoading={ownerLoading} />
     </div>

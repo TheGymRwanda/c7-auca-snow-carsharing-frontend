@@ -37,7 +37,7 @@ function AvailableCars() {
       </div>
     </div>
   ) : (
-    <div className="min-h-screen bg-primary pb-8 pt-16">
+    <div className="min-h-screen bg-primary pb-8 pt-12">
       <div className="container ">
         <PageTitle title="Available Cars" />
         <div className="space-y-6 px-4">
