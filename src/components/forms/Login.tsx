@@ -1,5 +1,5 @@
 import { KeyIcon, ProfileIcon } from '../../assets'
-import ButtonComponent from '../ui/Button'
+import Button from '../ui/Button'
 
 interface LoginFormProps {
   error: string
@@ -7,7 +7,7 @@ interface LoginFormProps {
   handleSubmit: (e: React.FormEvent) => void
 }
 
-export default function LoginForm({ error, loading, handleSubmit }: LoginFormProps) {
+function LoginForm({ error, loading, handleSubmit }: LoginFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-14">
       <div className="space-y-3">
@@ -36,12 +36,9 @@ export default function LoginForm({ error, loading, handleSubmit }: LoginFormPro
 
       {error && <p className="text-center text-sm text-red-200">{error}</p>}
 
-      <ButtonComponent
-        text="Login"
-        isPrimary={true}
-        loadingText="Logging In ..."
-        loading={loading}
-      />
+      <Button text="Login" isPrimary={true} loadingText="Logging In ..." loading={loading} />
     </form>
   )
 }
+
+export default LoginForm

@@ -8,8 +8,8 @@ import AvailableCars from './pages/AvailableCars'
 import CarDetails from './pages/CarDetails'
 import MyCars from './pages/MyCars'
 import Profile from './pages/Profile'
-import LandingPage from './pages/LandingPage'
 import AddNewCar from './pages/addNewCar'
+import LandingPage from './pages/Landing'
 
 configure({
   defaultOptions: {

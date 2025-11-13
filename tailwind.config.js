@@ -26,6 +26,7 @@ module.exports = {
       },
       scale: {
         115: '1.15',
+        130: '1.30',
       },
       fontFamily: {
         lora: ['Lora', 'serif'],
