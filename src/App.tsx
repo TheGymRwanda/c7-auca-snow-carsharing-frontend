@@ -10,6 +10,7 @@ import MyCars from './pages/MyCars'
 import Profile from './pages/Profile'
 import LandingPage from './pages/LandingPage'
 import AddNewCar from './pages/addNewCar'
+import AllCars from './pages/AllCars'
 
 configure({
   defaultOptions: {
@@ -28,6 +29,7 @@ function App() {
           <Route path="add-new-car" element={<AddNewCar />} />
           <Route path="car" element={<AvailableCars />} />
           <Route path="my-cars" element={<MyCars />} />
+          <Route path="available-cars" element={<AllCars />} />
           <Route path="profile" element={<Profile />} />
           <Route path="car/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
