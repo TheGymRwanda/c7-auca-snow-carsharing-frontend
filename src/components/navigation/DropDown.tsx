@@ -2,7 +2,7 @@ import { CarIcon, ListIcon, CarsIcon, CarPlusIcon, LogoutIcon, MenuIcon } from '
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 
-export default function DropDown() {
+function DropDown() {
   const { logout } = useAuth()
 
   return (
@@ -53,3 +53,5 @@ export default function DropDown() {
     </nav>
   )
 }
+
+export default DropDown

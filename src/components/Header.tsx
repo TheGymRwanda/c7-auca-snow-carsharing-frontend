@@ -4,7 +4,7 @@ import { ProfileIcon, Logo } from '../assets'
 import DropDown from './navigation/DropDown'
 import { useAuth } from '../context/AuthContext'
 
-export default function Header() {
+function Header() {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false)
   const location = useLocation()
   const { isAuthenticated } = useAuth()
@@ -34,7 +34,7 @@ export default function Header() {
   }, [isAuthenticated])
 
   return (
-    <header className=" relative grid grid-cols-[1fr_auto_1fr] items-center overflow-visible rounded-b-2xl bg-nav px-4 py-2 text-[#F9FAFB]">
+    <header className=" relative grid grid-cols-[1fr_auto_1fr] items-center overflow-visible rounded-b-2xl bg-nav px-4 py-2 text-text">
       <div className="flex items-center">
         {!isPublicPage && (
           <button
@@ -64,3 +64,5 @@ export default function Header() {
     </header>
   )
 }
+
+export default Header
