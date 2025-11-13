@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
-import LoginForm from '../components/forms/LoginForm'
+import LoginForm from '../components/forms/Login'
 
-export default function Login() {
+function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
@@ -39,8 +39,10 @@ export default function Login() {
   return (
     <div className="mt-28 flex flex-col items-center justify-start gap-16 bg-primary-dark px-6">
       <div className="text-center font-lora text-gray-100">
-        <h1 className="mt-3 text-5xl font-bold">MONI</h1>
-        <h2 className="mb-6 text-5xl italic">Share</h2>
+        <h1 className="mt-3 text-5xl font-bold leading-none text-white">
+          <span className="block">MONI</span>
+          <span className="block italic font-normal">share</span>
+        </h1>
       </div>
 
       <div className="w-full max-w-sm">
@@ -50,3 +52,5 @@ export default function Login() {
     </div>
   )
 }
+
+export default Login
