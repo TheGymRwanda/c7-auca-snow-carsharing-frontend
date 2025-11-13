@@ -9,7 +9,7 @@ interface CarCardProps {
   carType?: CarTypeDto
 }
 
-const CarCardDetails = ({ car, carType }: CarCardProps) => {
+const CarDetailsCard = ({ car, carType }: CarCardProps) => {
   const [{ data: owner, loading, error }] = useUser(car.ownerId)
 
   return (
@@ -45,4 +45,4 @@ const CarCardDetails = ({ car, carType }: CarCardProps) => {
   )
 }
 
-export default CarCardDetails
+export default CarDetailsCard

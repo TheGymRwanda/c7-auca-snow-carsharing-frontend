@@ -3,7 +3,7 @@ import PageTitle from '../components/PageTitle'
 import { Link } from 'react-router-dom'
 import { CarIcon, ProfileIcon } from '../assets'
 import { useCars, useCarTypes, useUser } from '../hooks'
-import CarCardDetails from '../components/cars/CarCardDetails'
+import CarDetailsCard from '../components/cars/CarDetailsCard'
 
 const AllCars = () => {
   const [{ data: cars, loading, error }, refetch] = useCars()
@@ -17,7 +17,7 @@ const AllCars = () => {
 
       <div className="p-3">
         {cars?.map(car => (
-          <CarCardDetails car={car} key={car.id} carType={getCarType(car.carTypeId)} />
+          <CarDetailsCard car={car} key={car.id} carType={getCarType(car.carTypeId)} />
         ))}
       </div>
     </div>
