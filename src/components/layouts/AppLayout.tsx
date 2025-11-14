@@ -19,7 +19,11 @@ const AppLayout = () => {
 
       {!isPublicRoute && <Sidebar />}
 
-      <main className={`bg-primary transition-all ${open ? 'lg:ml-64' : 'lg:ml-20'}`}>
+      <main
+        className={`bg-primary transition-all ${
+          isPublicRoute ? '' : open ? 'lg:ml-64' : 'lg:ml-20'
+        }`}
+      >
         <div className="mx-auto max-md:max-w-md">
           {isPublicRoute ? (
             <Outlet />

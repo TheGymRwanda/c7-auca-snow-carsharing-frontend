@@ -19,6 +19,7 @@ const Home = () => {
         <h1 className="mb-8 mt-3 font-lora text-5xl font-bold leading-none text-white lg:hidden">
           <span className="block">MONI</span>
           <span className="block font-normal italic">share</span>
+          <span className="block font-normal italic">share</span>
         </h1>
 
         <p className="mb-12 font-lora text-xl lg:space-y-2 lg:text-3xl 2xl:text-5xl">
