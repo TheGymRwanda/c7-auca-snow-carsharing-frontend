@@ -3,7 +3,7 @@ import { ChevronBackIcon } from '../assets'
 import { useBookings, useCarTypes } from '../hooks'
 import { useAuth } from '../context/AuthContext'
 import ManageBookingCard from '../components/cars/ManageBookingCard'
-import LoaderComponent from '../components/ui/Loader'
+import Loader from '../components/ui/Loader'
 import { BookingState, BookingWithReferences } from '../util/api'
 
 export default function ManageBooking() {
@@ -12,7 +12,7 @@ export default function ManageBooking() {
   const { data: bookings, loading, error } = useBookings()
   const [{ data: carTypes }] = useCarTypes()
 
-  if (loading) return <LoaderComponent />
+  if (loading) return <Loader />
   if (error || !bookings || !user) return <div>Error</div>
 
   const bookingsForCarOfCurrentUser = (

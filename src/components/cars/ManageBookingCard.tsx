@@ -3,7 +3,7 @@ import { CalendarIcon, TimeIcon } from '../../assets'
 import { BookingState, BookingWithReferences } from '../../util/api'
 import { formatBookingStatus } from '../../util/booking'
 import { convertMonth, timeFormatter } from '../../util/date'
-import ButtonComponent from '../ui/Button'
+import Button from '../ui/Button'
 import { apiUrl } from '../../util/apiUrl'
 import { useState } from 'react'
 import MessageModal from '../ui/MessageModal'
@@ -77,12 +77,8 @@ function ManageBookingCard({
         </div>
         {booking.state === BookingState.PENDING ? (
           <div className="flex flex-col items-center justify-center gap-2 py-5">
-            <ButtonComponent isPrimary text="Accept" onClick={() => handleClick(booking.id, 'A')} />
-            <ButtonComponent
-              isPrimary={false}
-              text="Decline"
-              onClick={() => handleClick(booking.id, 'D')}
-            />
+            <Button isPrimary text="Accept" onClick={() => handleClick(booking.id, 'A')} />
+            <Button isPrimary={false} text="Decline" onClick={() => handleClick(booking.id, 'D')} />
           </div>
         ) : (
           <p className="text-amber-200">{formatBookingStatus(booking.state)}</p>
