@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div className="flex flex-col justify-start bg-primary-dark text-center text-white max-md:mt-28 lg:text-start">
       <div className="z-50 bg-primary-dark p-6 lg:p-10 xl:p-12 2xl:p-16 ">
-        <h1 className="mb-8 mt-3 text-5xl font-lora font-bold leading-none text-white lg:hidden">
+        <h1 className="mb-8 mt-3 font-lora text-5xl font-bold leading-none text-white lg:hidden">
           <span className="block">MONI</span>
           <span className="block font-normal italic">share</span>
         </h1>
