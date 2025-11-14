@@ -3,6 +3,7 @@ import { useUser } from '../../hooks'
 import { CarDto, CarTypeDto } from '../../util/api'
 import { CarIcon, ProfileIcon } from '../../assets'
 import Button from '../ui/Button'
+import { useAuth } from '../../context/AuthContext'
 
 interface CarCardProps {
   car: CarDto
@@ -33,6 +34,7 @@ function CarCard({
 }: CarCardProps) {
   const [{ data: owner, loading, error }] = useUser(car.ownerId)
   const ownerName = getOwnerName(owner, loading, error, car.ownerId)
+  const { user } = useAuth()
 
   if (variant === 'home') {
     return (
@@ -49,7 +51,7 @@ function CarCard({
           Show details
         </Link>
         <div className="mt-2 text-xs">
-          <Button text="Book Now" isPrimary />
+          {ownerName !== user?.name && <Button text="Book Now" isPrimary />}
         </div>
       </div>
     )
