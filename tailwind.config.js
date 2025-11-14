@@ -31,6 +31,9 @@ module.exports = {
       fontFamily: {
         lora: ['Lora', 'serif'],
       },
+      spacing: {
+        'screen-10': '10vh',
+      },
     },
   },
   plugins: [],

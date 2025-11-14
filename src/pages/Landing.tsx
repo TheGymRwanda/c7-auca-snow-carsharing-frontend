@@ -9,7 +9,7 @@ function LandingPage() {
         <div className="text-center font-lora text-gray-100">
           <h1 className="mt-3 text-5xl font-bold leading-none text-white">
             <span className="block">MONI</span>
-            <span className="block italic font-normal">share</span>
+            <span className="block font-normal italic">share</span>
           </h1>
         </div>
 
