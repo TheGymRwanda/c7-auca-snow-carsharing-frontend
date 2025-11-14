@@ -17,7 +17,7 @@ function LandingPage() {
           Start sharing your Monis with the world
         </p>
       </div>
-      <Button text="Log In" isPrimary onClick={() => navigate('/login')} />
+      <Button text="Log In" className="py-3" isPrimary onClick={() => navigate('/login')} />
     </div>
   )
 }

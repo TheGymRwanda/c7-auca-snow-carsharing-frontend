@@ -36,7 +36,13 @@ function LoginForm({ error, loading, handleSubmit }: LoginFormProps) {
 
       {error && <p className="text-center text-sm text-red-200">{error}</p>}
 
-      <Button text="Login" isPrimary={true} loadingText="Logging In ..." loading={loading} />
+      <Button
+        text="Login"
+        className="py-3"
+        isPrimary={true}
+        loadingText="Logging In ..."
+        loading={loading}
+      />
     </form>
   )
 }

@@ -12,11 +12,11 @@ const Sidebar = () => {
     <aside
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
-      className={`fixed left-0 top-0 z-40 hidden h-screen flex-col overflow-hidden rounded-r-3xl bg-nav text-white transition-all duration-200 lg:flex ${
+      className={`duration-400 fixed left-0 top-0 z-40 hidden h-screen flex-col overflow-hidden rounded-r-3xl bg-nav text-white transition-all lg:flex ${
         open ? 'w-64' : 'w-20'
       }`}
     >
-      <div className="flex items-center justify-center gap-2 p-6">
+      <div className="flex items-center justify-center gap-2 px-6 2xl:py-6">
         {open && <span className="border-b border-white/30 pb-2 font-lora text-2xl">MONI</span>}
         <Link to="/" className="flex items-center gap-3 pt-6 lg:gap-4">
           <div
@@ -40,7 +40,7 @@ const Sidebar = () => {
         <div className="mb-6 px-2">
           <button
             onClick={logout}
-            className="flex w-full items-center gap-4 border-t border-white/30 px-3 py-2 text-left hover:bg-primary-light-hover/20"
+            className="flex w-full items-center gap-4 truncate border-t border-white/30 px-3 py-2 text-left hover:bg-primary-light-hover/20"
           >
             <div className={`flex-none p-1 ${open ? 'mr-2' : 'mx-auto'}`}>
               <LogoutIcon />
