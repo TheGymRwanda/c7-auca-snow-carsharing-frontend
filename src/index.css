@@ -22,7 +22,7 @@ body {
   .overflow-wrap-anywhere {
     overflow-wrap: anywhere;
   }
-  .transparent-scrollbar{
+  .transparent-scrollbar {
     &::-webkit-scrollbar {
       width: 6px;
       height: 6px;
