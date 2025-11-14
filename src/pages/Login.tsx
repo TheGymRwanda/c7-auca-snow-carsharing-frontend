@@ -1,15 +1,12 @@
 import { useState } from 'react'
-
 import { useAuth } from '../context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
-import { ProfileIcon, KeyIcon, Logo } from '../assets'
+import { Logo } from '../assets'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
-import ButtonComponent from '../components/ui/Button'
+import LoginForm from '../components/forms/Login'
 
-export default function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
@@ -22,8 +19,8 @@ export default function Login() {
 
     try {
       const response = await axios.post(`${apiUrl}/auth`, {
-        username,
-        password,
+        username: (e.target as HTMLFormElement).username.value,
+        password: (e.target as HTMLFormElement).password.value,
       })
       localStorage.setItem('token', response.data.token)
       try {
@@ -41,65 +38,31 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-primary-dark flex flex-col lg:flex-row max-lg:items-center max-lg:justify-center max-lg:px-6 gap-16">
-      <div className="lg:flex flex-col text-gray-100 lg:justify-center lg:w-1/2 lg:px-20">
-        <Link to="/" className="mb-10 h-16 w-16 hidden lg:grid outline-none ">
-          <Logo className="w-full h-full" />
+    <div className="flex min-h-screen flex-col gap-16 bg-primary-dark max-lg:items-center max-lg:justify-center max-lg:px-6 lg:flex-row">
+      <div className="flex-col text-gray-100 lg:flex lg:w-1/2 lg:justify-center lg:px-20">
+        <Link to="/" className="mb-10 hidden h-16 w-16 outline-none lg:grid ">
+          <Logo className="h-full w-full" />
         </Link>
-        <div className="text-center lg:text-start text-5xl lg:text-6xl font-lora">
+        <div className="text-center font-lora text-5xl lg:text-start lg:text-6xl">
           <h1 className="mt-3 font-bold">MONI</h1>
-          <h2 className="mb-6 lg:mb-8 lg:ml-14 italic">Share</h2>
+          <h2 className="mb-6 italic lg:mb-8 lg:ml-14">Share</h2>
         </div>
-        <h1 className="font-lora text-2xl my-6 hidden lg:block">
+        <h1 className="my-6 hidden font-lora text-2xl lg:block">
           Share your journey, share your car
         </h1>
-        <p className="font-lora text-lg mb-24 italic text-gray-300/90 hidden lg:block">
+        <p className="mb-24 hidden font-lora text-lg italic text-gray-300/90 lg:block">
           Join thousands of drivers making extra income while helping others get around sustainably.
         </p>
       </div>
 
-      <div className="max-lg:w-full max-md:max-w-sm w-1/2 lg:px-20 flex flex-col justify-center lg:h-screen lg:bg-gradient-to-br from-primary-light via-primary to-primary-dark lg:rounded-l-full">
-        <h3 className="text-white text-xl lg:text-4xl font-medium text-center mb-8 lg:mb-12 font-lora">
+      <div className="flex w-1/2 flex-col justify-center from-primary-light via-primary to-primary-dark max-lg:w-full max-md:max-w-sm lg:h-screen lg:rounded-l-full lg:bg-gradient-to-br lg:px-20">
+        <h3 className="mb-8 text-center font-lora text-xl font-medium text-white lg:mb-12 lg:text-4xl">
           Log in
         </h3>
-
-        <form onSubmit={handleSubmit} className="space-y-14">
-          <div className="space-y-3">
-            <div className="relative">
-              <ProfileIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white" />
-              <input
-                type="text"
-                placeholder="Username / e-mail"
-                value={username}
-                onChange={e => setUsername(e.target.value)}
-                className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70"
-                required
-              />
-            </div>
-
-            <div className="relative">
-              <KeyIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 stroke-white" />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70"
-                required
-              />
-            </div>
-          </div>
-
-          {error && <p className="text-center text-sm text-red-200">{error}</p>}
-
-          <ButtonComponent
-            text="Login"
-            isPrimary={true}
-            loadingText="Logging In ..."
-            loading={loading}
-          />
-        </form>
+        <LoginForm handleSubmit={handleSubmit} loading={loading} error={error} />
       </div>
     </div>
   )
 }
+
+export default Login

@@ -1,12 +1,10 @@
-import CarCard from './CarCard'
+import CarCard from '../components/cars/CarCard'
 import { useCarTypes, useCars } from '../hooks/index'
-import { useNavigate } from 'react-router-dom'
-import { ChevronBackIcon } from '../assets'
+import PageTitle from '../components/PageTitle'
 
-function CarsListPage() {
+function AvailableCars() {
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
   const [{ data: carTypes }] = useCarTypes()
-  const navigate = useNavigate()
 
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
 
@@ -39,23 +37,22 @@ function CarsListPage() {
       </div>
     </div>
   ) : (
-    <div className="min-h-screen bg-primary pb-8 pt-24">
-      <div className="container mx-auto px-4">
-        <div className="mx-2 flex content-center text-center">
-          <button
-            onClick={() => navigate('/')}
-            className="cursor-pointer transition hover:opacity-80"
-          >
-            <ChevronBackIcon className="h-5 w-5 text-accent" />
-          </button>
-          <div className="w-full text-center">
-            <h1 className="font-lora text-3xl uppercase text-gray-200">Available Car</h1>
-          </div>
-        </div>
-        <div className="space-y-6">
+    <div className="min-h-screen bg-primary pb-8 pt-12">
+      <div className="container ">
+        <PageTitle title="Available Cars" />
+        <div className="space-y-6 px-4">
           {cars.map(car => {
             const carType = getCarType(car.carTypeId)
-            return <CarCard key={car.id} car={car} carType={carType} />
+            return (
+              <CarCard
+                key={car.id}
+                car={car}
+                carType={carType}
+                buttonText="Book Car"
+                primaryButton={true}
+                onButtonClick={() => {}}
+              />
+            )
           })}
         </div>
       </div>
@@ -63,4 +60,4 @@ function CarsListPage() {
   )
 }
 
-export default CarsListPage
+export default AvailableCars

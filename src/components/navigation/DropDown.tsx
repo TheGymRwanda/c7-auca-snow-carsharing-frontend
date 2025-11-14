@@ -1,12 +1,12 @@
-import { CarIcon, ListIcon, CarsIcon, CarPlusIcon, LogoutIcon, MenuIcon } from '../assets/index'
+import { CarIcon, ListIcon, CarsIcon, CarPlusIcon, LogoutIcon, MenuIcon } from '../../assets/index'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 
-export default function DropDown() {
+function DropDown() {
   const { logout } = useAuth()
 
   return (
-    <nav className="absolute left-5 top-14 z-40 rounded-md bg-primary-light px-6 pb-2 pt-4 text-sm text-white">
+    <nav className="absolute left-4 top-14 z-40 w-52 rounded-md bg-primary-light px-4 pb-2 pt-4 text-sm text-white">
       <div>
         <ul>
           <Link to="/car">
@@ -25,7 +25,7 @@ export default function DropDown() {
         <hr />
         <p className="p-2 text-left font-semibold">My cars</p>
         <ul>
-          <Link to="/myCars">
+          <Link to="/my-cars">
             <li className="flex items-center gap-2 p-2 hover:bg-primary-light-hover">
               <CarsIcon />
               See My Cars
@@ -53,3 +53,5 @@ export default function DropDown() {
     </nav>
   )
 }
+
+export default DropDown

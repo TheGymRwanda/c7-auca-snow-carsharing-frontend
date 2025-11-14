@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ChevronBackIcon, CarIcon, HorseIcon, FuelIcon, XIcon, ProfileIcon } from '../assets/index'
 import { useCars, useCarTypes, useUser } from '../hooks/index'
-// eslint-disable-next-line max-lines-per-function
+import Details from '../components/cars/Details'
+import PageTitle from '../components/PageTitle'
+
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -9,7 +10,6 @@ const CarDetails = () => {
   const [{ data: cars, loading: carsLoading, error: carsError }] = useCars()
   const [{ data: carTypes, loading: typesLoading }] = useCarTypes()
 
-  // Find the specific car by ID from URL params
   const car = cars?.find(c => c.id === Number(id))
   const carType = carTypes?.find(type => type.id === car?.carTypeId)
 
@@ -43,60 +43,9 @@ const CarDetails = () => {
   }
 
   return (
-    <div className=" min-h-screen space-y-4 overflow-y-hidden px-6 pt-20 text-[#F9FAFB]">
-      <div className="flex content-center text-center">
-        <button onClick={() => navigate(-1)} className="cursor-pointer transition hover:opacity-80">
-          <ChevronBackIcon className="h-5 w-5 text-accent" />
-        </button>
-        <div className="w-full text-center">
-          <h1 className="font-lora text-3xl uppercase text-gray-200">Details</h1>
-        </div>
-      </div>
-      <div className="items-center space-y-1 lg:gap-64">
-        <img
-          src={carType?.imageUrl || '/img/car.png'}
-          alt={car.name}
-          className="h-80 w-fit justify-self-center"
-        />
-        <div className="px-6">
-          <h2 className="font-lora text-3xl font-medium">{car.name}</h2>
-          <ul className="text-md mt-7 space-y-2 md:text-xl">
-            {/* Owner name */}
-            <li className="flex items-center gap-2">
-              <ProfileIcon />
-              {ownerLoading ? (
-                <span className="flex items-center gap-2">
-                  <div className="size-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
-                  Loading...
-                </span>
-              ) : (
-                <span>{owner?.name || `Owner ${car.ownerId}`}</span>
-              )}
-            </li>
-            {/* Car state (LOCKED/UNLOCKED) */}
-            <li className="flex items-center gap-2">
-              <CarIcon /> {car.state}
-            </li>
-            {/* License plate */}
-            <li className="flex items-center gap-2">
-              <CarIcon /> {car.licensePlate || 'No license plate'}
-            </li>
-            {/* Horsepower */}
-            <li className="flex items-center gap-2">
-              <HorseIcon /> {car.horsepower ? `${car.horsepower} HP` : 'N/A'}
-            </li>
-            {/* Fuel type */}
-            <li className="flex items-center gap-2">
-              <FuelIcon /> {car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1)}
-            </li>
-            {/* Additional info or car type name */}
-            <li className="flex items-center gap-2">
-              <XIcon className="h-6 w-6" />
-              <p className="overflow-wrap-anywhere">{car.info || carType?.name || 'N/A'}</p>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div className=" min-h-screen space-y-4 overflow-y-hidden text-[#F9FAFB]">
+      <PageTitle title="Details" />
+      <Details car={car} carType={carType} owner={owner} ownerLoading={ownerLoading} />
     </div>
   )
 }

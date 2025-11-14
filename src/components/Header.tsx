@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ProfileIcon, Logo } from '../assets'
-import DropDown from './DropDown'
+import DropDown from './navigation/DropDown'
 import { useAuth } from '../context/AuthContext'
 
-export default function Header() {
+function Header() {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false)
   const location = useLocation()
   const { isAuthenticated } = useAuth()
@@ -13,7 +13,6 @@ export default function Header() {
   const dropDownRef = useRef<HTMLDivElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
 
-  // close when clicking outside
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
       if (!isDropDownOpen) return
@@ -35,11 +34,7 @@ export default function Header() {
   }, [isAuthenticated])
 
   return (
-    <header
-      className={`relative grid grid-cols-[1fr_auto_1fr] items-center overflow-visible rounded-b-2xl bg-nav px-4 py-2 text-[#F9FAFB] ${
-        isPublicPage && 'lg:hidden'
-      }`}
-    >
+    <header className=" relative grid grid-cols-[1fr_auto_1fr] items-center overflow-visible rounded-b-2xl bg-nav px-4 py-2 text-text">
       <div className="flex items-center">
         {!isPublicPage && (
           <button
@@ -69,3 +64,5 @@ export default function Header() {
     </header>
   )
 }
+
+export default Header
