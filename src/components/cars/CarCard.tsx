@@ -26,8 +26,8 @@ function CarCard({
   const ownerName = loading
     ? 'Loading...'
     : error
-      ? 'Unknown Owner'
-      : owner?.name || `Owner ${car.ownerId}`
+    ? 'Unknown Owner'
+    : owner?.name || `Owner ${car.ownerId}`
 
   return (
     <>

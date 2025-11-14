@@ -9,9 +9,9 @@ const Home = () => {
   return (
     <div className="mt-28 flex flex-col justify-start bg-primary-dark text-center font-lora text-white">
       <div className="bg-primary-dark p-6 ">
-        <h1 className="mt-3 mb-8 text-5xl font-bold leading-none text-white">
+        <h1 className="mb-8 mt-3 text-5xl font-bold leading-none text-white">
           <span className="block">MONI</span>
-          <span className="block italic font-normal">share</span>
+          <span className="block font-normal italic">share</span>
         </h1>
 
         <p className="mb-12 text-xl">
