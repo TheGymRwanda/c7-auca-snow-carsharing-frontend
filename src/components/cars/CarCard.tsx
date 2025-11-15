@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useUser } from '../../hooks'
+import { useSidebar, useUser } from '../../hooks'
 import { CarDto, CarTypeDto } from '../../util/api'
 import { CarIcon, ProfileIcon } from '../../assets'
 import Button from '../ui/Button'
@@ -35,6 +35,7 @@ function CarCard({
   const [{ data: owner, loading, error }] = useUser(car.ownerId)
   const ownerName = getOwnerName(owner, loading, error, car.ownerId)
   const { user } = useAuth()
+  const { open } = useSidebar()
 
   if (variant === 'home') {
     return (
@@ -61,14 +62,16 @@ function CarCard({
     <>
       <div
         key={car.id}
-        className="min-h-60 shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light px-8 py-4"
+        className="min-h-60 shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light px-8 py-4 transition-all duration-500 ease-in-out"
       >
         <div className="grid grid-cols-2 gap-20">
           <div className="my-1 flex w-52 items-center justify-center pr-4">
             <img
               src={carType?.imageUrl || ''}
               alt={`${car.name}'s Picture`}
-              className="max-h-full"
+              className={`max-h-full ${
+                open ? '' : 'lg:scale-115'
+              } transition-all duration-500 ease-in-out`}
             />
           </div>
           <div className="min-h-52 flex flex-col justify-around gap-4">
@@ -79,11 +82,11 @@ function CarCard({
               <div className="text-14 flex flex-col gap-4 font-normal text-gray-100">
                 <div className="flex items-center gap-3">
                   <ProfileIcon className="size-7" />
-                  <span>{ownerName}</span>
+                  <span className="lg:text-lg">{ownerName}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CarIcon className="size-7" />
-                  <span>{carType?.name || 'Unknown Type'}</span>
+                  <span className="lg:text-lg">{carType?.name || 'Unknown Type'}</span>
                 </div>
               </div>
             </div>

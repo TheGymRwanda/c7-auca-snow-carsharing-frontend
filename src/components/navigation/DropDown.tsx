@@ -35,7 +35,7 @@ function DropDown() {
             variant="dropdown"
           />
           <SidebarLink
-            to="/booking/managemen"
+            to="/booking/management"
             icon={<ListIcon />}
             label="My Cars Bookings"
             open={true}
