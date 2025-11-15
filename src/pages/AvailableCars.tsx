@@ -46,9 +46,9 @@ function AvailableCars() {
     </div>
   ) : (
     <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
-      <div className="container grid justify-center">
+      <div className="grid justify-center">
         <PageTitle title="Available Cars" />
-        <div className="grid px-4 max-md:space-y-6 lg:grid-cols-3 lg:gap-6 lg:px-16">
+        <div className="grid px-4 max-md:space-y-6 lg:grid-cols-2 lg:gap-8 lg:px-16 xl:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
           {visibleCars.map(car => {
             const carType = getCarType(car.carTypeId)
             return (
