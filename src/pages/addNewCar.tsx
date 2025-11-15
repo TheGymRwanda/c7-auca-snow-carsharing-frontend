@@ -4,9 +4,8 @@ import axios from 'axios'
 import { apiUrl } from '../util/apiUrl'
 import { getAuthToken } from '../util/auth'
 import { useCarTypes } from '../hooks'
-import AddNewCarForm from '../components/forms/AddNewCarForm'
+import AddNewCarForm from '../components/forms/AddNewCar'
 
-/* eslint-disable max-lines-per-function */
 const AddNewCar = () => {
   const [carTypeId, setCarTypeId] = useState(0)
   const [name, setName] = useState('')

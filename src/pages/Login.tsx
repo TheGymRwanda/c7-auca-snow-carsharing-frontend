@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useNavigate, Link } from 'react-router-dom'
+import { Logo } from '../assets'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
-import LoginForm from '../components/forms/LoginForm'
+import LoginForm from '../components/forms/Login'
 
-export default function Login() {
+function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
@@ -37,16 +38,31 @@ export default function Login() {
   }
 
   return (
-    <div className="mt-28 flex flex-col items-center justify-start gap-16 bg-primary-dark px-6">
-      <div className="text-center font-lora text-gray-100">
-        <h1 className="mt-3 text-5xl font-bold">MONI</h1>
-        <h2 className="mb-6 text-5xl italic">Share</h2>
+    <div className="flex min-h-screen flex-col gap-16 bg-primary-dark max-lg:items-center max-lg:justify-center max-lg:px-6 lg:flex-row">
+      <div className="flex-col text-gray-100 lg:flex lg:w-1/2 lg:justify-center lg:px-20">
+        <Link to="/" className="mb-10 hidden h-16 w-16 outline-none lg:grid ">
+          <Logo className="h-full w-full" />
+        </Link>
+        <div className="text-center font-lora text-5xl lg:text-start lg:text-6xl">
+          <h1 className="mt-3 font-bold">MONI</h1>
+          <h2 className="mb-6 italic lg:mb-8 lg:ml-14">Share</h2>
+        </div>
+        <h1 className="my-6 hidden font-lora text-2xl lg:block">
+          Share your journey, share your car
+        </h1>
+        <p className="mb-24 hidden font-lora text-lg italic text-gray-300/90 lg:block">
+          Join thousands of drivers making extra income while helping others get around sustainably.
+        </p>
       </div>
 
-      <div className="w-full max-w-sm">
-        <h3 className="mb-8 text-center font-lora text-xl font-medium text-white">Log in</h3>
+      <div className="flex w-1/2 flex-col justify-center from-primary-light via-primary to-primary-dark max-lg:w-full max-md:max-w-sm lg:h-screen lg:rounded-l-full lg:bg-gradient-to-br lg:px-20">
+        <h3 className="mb-8 text-center font-lora text-xl font-medium text-white lg:mb-12 lg:text-4xl">
+          Log in
+        </h3>
         <LoginForm handleSubmit={handleSubmit} loading={loading} error={error} />
       </div>
     </div>
   )
 }
+
+export default Login
