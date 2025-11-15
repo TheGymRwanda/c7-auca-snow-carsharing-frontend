@@ -1,12 +1,17 @@
+import { useState } from 'react'
 import CarCard from '../components/cars/CarCard'
 import { useCarTypes, useCars } from '../hooks/index'
 import PageTitle from '../components/PageTitle'
+import Button from '../components/ui/Button'
 
 function AvailableCars() {
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
   const [{ data: carTypes }] = useCarTypes()
+  const [visibleCount, setVisibleCount] = useState(12)
 
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
+  const visibleCars = cars?.slice(0, visibleCount) || []
+  const hasMore = cars && cars.length > visibleCount
 
   return carsLoading ? (
     <div className="flex min-h-screen items-center justify-center bg-primary">
@@ -38,10 +43,10 @@ function AvailableCars() {
     </div>
   ) : (
     <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
-      <div className="container ">
+      <div className="container grid justify-center">
         <PageTitle title="Available Cars" />
         <div className="grid px-4 max-md:space-y-6 lg:grid-cols-3 lg:gap-6 lg:px-16">
-          {cars.map(car => {
+          {visibleCars.map(car => {
             const carType = getCarType(car.carTypeId)
             return (
               <CarCard
@@ -55,6 +60,16 @@ function AvailableCars() {
             )
           })}
         </div>
+        {hasMore && (
+          <div className="mt-8 grid justify-center text-center">
+            <Button
+              text="Load More"
+              isPrimary
+              className="px-14 py-3"
+              onClick={() => setVisibleCount(prev => prev + 12)}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
