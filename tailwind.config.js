@@ -55,6 +55,9 @@ module.exports = {
         '79vh': '79vh',
         '80vw': '80vw',
       },
+      screens: {
+        '3xl': '1920px',
+      },
     },
   },
   plugins: [],
