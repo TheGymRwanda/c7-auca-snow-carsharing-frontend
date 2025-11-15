@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import CarCard from '../components/cars/CarCard'
-import { useCarTypes, useCars } from '../hooks/index'
-import PageTitle from '../components/PageTitle'
-import Button from '../components/ui/Button'
-import CarSkeleton from '../components/ui/CarSkeleton'
+import CarCard from '../../components/cars/CarCard'
+import { useCarTypes, useCars } from '../../hooks/index'
+import PageTitle from '../../components/PageTitle'
+import Button from '../../components/ui/Button'
+import CarSkeleton from '../../components/ui/CarSkeleton'
 
 function AvailableCars() {
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
