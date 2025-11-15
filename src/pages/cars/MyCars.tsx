@@ -40,17 +40,25 @@ function MyCars() {
   }
 
   return (
-    <div className="relative min-h-screen bg-primary pt-12">
+    <div className="relative min-h-screen bg-primary-dark pt-12 lg:pt-0">
       {loading ? (
         <LoaderComponent variant="page" />
       ) : (
-        <>
+        <div className="relative">
           <PageTitle title="My cars" />
-          <div className="container mx-auto px-4">
-            <div className="mb-6 space-y-6">
-              {myCars?.length === 0 && (
-                <p className="mt-9 text-center text-gray-200">{"You don't have any cars yet."}</p>
-              )}
+          <div className="absolute right-8 top-14 z-50 hidden w-36 lg:block">
+            <Button
+              text="+ New Car"
+              isPrimary
+              className="py-3 text-base transition-all duration-300 ease-in-out hover:scale-105 active:scale-95"
+              onClick={() => navigate('/add-new-car')}
+            />
+          </div>
+          <div className="mx-auto px-4">
+            {myCars?.length === 0 && (
+              <p className="mt-9 text-center text-gray-200">{"You don't have any cars yet."}</p>
+            )}
+            <div className="mb-6 grid max-md:space-y-6 lg:grid-cols-2 lg:gap-8 lg:px-16 xl:grid-cols-3 xl:gap-6 3xl:grid-cols-4">
               {myCars?.map(car => (
                 <CarCard
                   key={car.id}
@@ -64,16 +72,16 @@ function MyCars() {
               ))}
             </div>
           </div>
-          <div className="sticky bottom-0 bg-primary p-4 pb-6 ">
+          <div className="sticky bottom-0 bg-primary-dark p-4 pb-6 lg:hidden">
             <Button
-              text="Add new Car"
+              text="Add New Car"
               loadingText="Adding ..."
-              isPrimary={true}
+              isPrimary
               className="py-3"
               onClick={() => navigate('/add-new-car')}
             />
           </div>
-        </>
+        </div>
       )}
       <ConfirmModal
         isOpen={showDeleteModal}
