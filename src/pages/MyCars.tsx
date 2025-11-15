@@ -69,6 +69,7 @@ function MyCars() {
               text="Add new Car"
               loadingText="Adding ..."
               isPrimary={true}
+              className="py-3"
               onClick={() => navigate('/add-new-car')}
             />
           </div>

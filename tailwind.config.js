@@ -20,6 +20,11 @@ module.exports = {
           DEFAULT: '#F9FAFB',
         },
       },
+      width: {
+        70: '17rem',
+        '39vw': '39vw',
+        '40vw': '40vw',
+      },
       fontSize: {
         17: '17px',
         18: '18px',
@@ -27,11 +32,13 @@ module.exports = {
       scale: {
         115: '1.15',
         130: '1.30',
+        200: '2',
       },
       fontFamily: {
         lora: ['Lora', 'serif'],
       },
       spacing: {
+        'screen-10': '10vh',
         '1/2': '50%',
         '5/12': '41.666667%',
       },
@@ -46,10 +53,6 @@ module.exports = {
         '77vh': '77vh',
         '79vh': '79vh',
         '80vw': '80vw',
-      },
-      width: {
-        '39vw': '39vw',
-        '40vw': '40vw',
       },
     },
   },

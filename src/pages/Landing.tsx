@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import ButtonComponent from '../components/ui/Button'
 
 function LandingPage() {
+  const navigate = useNavigate()
   useEffect(() => {
     const link = document.createElement('link')
     link.rel = 'preload'
@@ -41,9 +42,14 @@ function LandingPage() {
               Start sharing your Monis with the world
             </p>
           </div>
-          <Link to="/login" className="block font-bold lg:w-5/12">
-            <ButtonComponent text="Log In -->" isPrimary />
-          </Link>
+          <div className="block font-bold lg:w-5/12">
+            <ButtonComponent
+              text="Log In -->"
+              className="py-3"
+              isPrimary
+              onClick={() => navigate('/login')}
+            />
+          </div>
         </div>
         <div className="relative hidden h-screen w-1/2 lg:flex">
           <img

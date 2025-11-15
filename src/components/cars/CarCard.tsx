@@ -3,6 +3,7 @@ import { useUser } from '../../hooks'
 import { CarDto, CarTypeDto } from '../../util/api'
 import { CarIcon, ProfileIcon } from '../../assets'
 import Button from '../ui/Button'
+import { useAuth } from '../../context/AuthContext'
 
 interface CarCardProps {
   car: CarDto
@@ -11,6 +12,15 @@ interface CarCardProps {
   primaryButton?: boolean
   buttonVariant?: 'delete' | 'default'
   onButtonClick: () => void
+  variant?: 'home' | 'default'
+}
+
+function getOwnerName(owner: unknown, loading: boolean, error: unknown, ownerId: number) {
+  return loading
+    ? 'Loading...'
+    : error
+    ? 'Unknown Owner'
+    : (owner as { name?: string })?.name || `Owner ${ownerId}`
 }
 
 function CarCard({
@@ -20,14 +30,32 @@ function CarCard({
   primaryButton,
   buttonVariant,
   onButtonClick,
+  variant = 'default',
 }: CarCardProps) {
   const [{ data: owner, loading, error }] = useUser(car.ownerId)
+  const ownerName = getOwnerName(owner, loading, error, car.ownerId)
+  const { user } = useAuth()
 
-  const ownerName = loading
-    ? 'Loading...'
-    : error
-    ? 'Unknown Owner'
-    : owner?.name || `Owner ${car.ownerId}`
+  if (variant === 'home') {
+    return (
+      <div className="w-70 shrink-0 rounded-2xl bg-primary-dark p-6">
+        <div className="mb-4 flex items-center justify-center">
+          <img
+            src={carType?.imageUrl || ''}
+            alt={`${car.name} picture`}
+            className="h-24 scale-200 object-contain"
+          />
+        </div>
+        <h3 className="text-xl font-medium text-white">{car.name}</h3>
+        <Link to={`/car/${car.id}`} className="font-medium text-accent">
+          Show details
+        </Link>
+        <div className="mt-2 text-xs">
+          {ownerName !== user?.name && <Button text="Book Now" isPrimary />}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -70,7 +98,7 @@ function CarCard({
           <Button
             text={buttonText}
             isPrimary={primaryButton ? true : false}
-            className={`shadow-button text-17 drop-shadow-2xl`}
+            className={`shadow-button py-3 text-17 drop-shadow-2xl`}
             variant={buttonVariant}
             loading={loading}
             onClick={onButtonClick}
