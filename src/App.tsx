@@ -9,6 +9,7 @@ import CarDetails from './pages/CarDetails'
 import MyCars from './pages/MyCars'
 import Profile from './pages/Profile'
 import AddNewCar from './pages/addNewCar'
+import ManageBooking from './pages/ManageBooking'
 import LandingPage from './pages/Landing'
 
 configure({
@@ -25,6 +26,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
+          <Route path="booking/management" element={<ManageBooking />} />
           <Route path="add-new-car" element={<AddNewCar />} />
           <Route path="car" element={<AvailableCars />} />
           <Route path="my-cars" element={<MyCars />} />
