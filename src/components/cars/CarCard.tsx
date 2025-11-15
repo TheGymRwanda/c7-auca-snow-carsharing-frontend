@@ -62,7 +62,7 @@ function CarCard({
     <>
       <div
         key={car.id}
-        className="min-h-60 shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light px-8 py-4 transition-all duration-500 ease-in-out"
+        className="min-h-60 shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light px-8 py-4 transition-all duration-500 ease-in-out lg:hover:scale-105"
       >
         <div className="grid grid-cols-2 gap-20">
           <div className="my-1 flex w-52 items-center justify-center pr-4">
@@ -86,7 +86,7 @@ function CarCard({
                 </div>
                 <div className="flex items-center gap-3">
                   <CarIcon className="size-7" />
-                  <span className="lg:text-lg">{carType?.name || 'Unknown Type'}</span>
+                  <span className="lg:text-17">{carType?.name || 'Unknown Type'}</span>
                 </div>
               </div>
             </div>

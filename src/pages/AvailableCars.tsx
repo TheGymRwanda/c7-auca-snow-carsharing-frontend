@@ -3,6 +3,7 @@ import CarCard from '../components/cars/CarCard'
 import { useCarTypes, useCars } from '../hooks/index'
 import PageTitle from '../components/PageTitle'
 import Button from '../components/ui/Button'
+import CarSkeleton from '../components/ui/CarSkeleton'
 
 function AvailableCars() {
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
@@ -14,10 +15,12 @@ function AvailableCars() {
   const hasMore = cars && cars.length > visibleCount
 
   return carsLoading ? (
-    <div className="flex min-h-screen items-center justify-center bg-primary">
-      <div className="text-center">
-        <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
-        <p className="text-lg text-white">Loading ...</p>
+    <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
+      <div className="container grid justify-center">
+        <PageTitle title="Available Cars" />
+        <div className="grid px-4 pt-4 max-md:space-y-6 lg:grid-cols-3 lg:gap-6 lg:px-16">
+          <CarSkeleton count={6} />
+        </div>
       </div>
     </div>
   ) : carsError ? (
