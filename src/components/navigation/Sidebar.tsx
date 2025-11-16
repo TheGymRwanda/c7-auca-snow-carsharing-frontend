@@ -25,7 +25,9 @@ const Sidebar = () => {
             <Logo />
           </div>
         </Link>
-        {open && <span className="border-b border-white/30 pb-2 font-lora text-2xl">Share</span>}
+        {open && (
+          <span className="border-b border-white/30 pb-2 font-lora text-2xl italic">Share</span>
+        )}
       </div>
 
       <nav className="mt-screen-10 flex flex-1 flex-col justify-between">
@@ -33,7 +35,7 @@ const Sidebar = () => {
           <Nav to="/car" icon={<CarIcon />} label="Book A Car" open={open} />
           <Nav to="/bookings" icon={<MenuIcon />} label="My Bookings" open={open} />
           <Nav to="/my-cars" icon={<CarsIcon />} label="See My Cars" open={open} />
-          <Nav to="/" icon={<ListIcon />} label="My Cars Bookings" open={open} />
+          <Nav to="/booking/management" icon={<ListIcon />} label="My Cars Bookings" open={open} />
           <Nav to="/add-new-car" icon={<CarPlusIcon />} label="Add New Car" open={open} />
         </ul>
 

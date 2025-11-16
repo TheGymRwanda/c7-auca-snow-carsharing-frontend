@@ -23,7 +23,7 @@ const CarSkeleton: React.FC<CarSkeletonProps> = ({ variant = 'default', count = 
   }
 
   return (
-    <div className="space-y-8">
+    <>
       {Array.from({ length: count }).map((_, index) => (
         <div
           key={index}
@@ -51,11 +51,11 @@ const CarSkeleton: React.FC<CarSkeletonProps> = ({ variant = 'default', count = 
             </div>
           </div>
           <div className="mt-4 text-center">
-            <div className="mx-auto h-10 w-32 rounded bg-primary-light-hover"></div>
+            <div className="mx-auto h-10 w-56 rounded-full bg-primary-light-hover"></div>
           </div>
         </div>
       ))}
-    </div>
+    </>
   )
 }
 

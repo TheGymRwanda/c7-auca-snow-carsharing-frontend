@@ -1,16 +1,16 @@
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import { useEffect } from 'react'
-import useCars from '../hooks/useCars'
-import Button from '../components/ui/Button'
-import ConfirmModal from '../components/ui/ConfirmModal'
+import useCars from '../../hooks/useCars'
+import Button from '../../components/ui/Button'
+import ConfirmModal from '../../components/ui/ConfirmModal'
 import { useNavigate } from 'react-router-dom'
 
-import { useCarTypes } from '../hooks'
-import LoaderComponent from '../components/ui/Loader'
-import ErrorComponent from '../components/ui/Error'
-import CarCard from '../components/cars/CarCard'
-import { useCarDelete } from '../hooks/useCarDelete'
-import PageTitle from '../components/PageTitle'
+import { useCarTypes } from '../../hooks'
+import LoaderComponent from '../../components/ui/Loader'
+import ErrorComponent from '../../components/ui/Error'
+import CarCard from '../../components/cars/CarCard'
+import { useCarDelete } from '../../hooks/useCarDelete'
+import PageTitle from '../../components/PageTitle'
 
 function MyCars() {
   const { user } = useAuth()
@@ -42,7 +42,7 @@ function MyCars() {
   return (
     <div className="relative min-h-screen bg-primary pt-12">
       {loading ? (
-        <LoaderComponent />
+        <LoaderComponent variant="page" />
       ) : (
         <>
           <PageTitle title="My cars" />

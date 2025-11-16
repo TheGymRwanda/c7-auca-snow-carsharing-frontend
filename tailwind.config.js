@@ -32,6 +32,7 @@ module.exports = {
       scale: {
         115: '1.15',
         130: '1.30',
+        180: '1.80',
         200: '2',
       },
       fontFamily: {
@@ -53,6 +54,9 @@ module.exports = {
         '77vh': '77vh',
         '79vh': '79vh',
         '80vw': '80vw',
+      },
+      screens: {
+        '3xl': '1920px',
       },
     },
   },

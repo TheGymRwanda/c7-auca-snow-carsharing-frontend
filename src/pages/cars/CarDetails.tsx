@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useCars, useCarTypes, useUser } from '../hooks/index'
-import Details from '../components/cars/Details'
-import PageTitle from '../components/PageTitle'
+import { useCars, useCarTypes, useUser } from '../../hooks/index'
+import Details from '../../components/cars/Details'
+import PageTitle from '../../components/PageTitle'
 
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()

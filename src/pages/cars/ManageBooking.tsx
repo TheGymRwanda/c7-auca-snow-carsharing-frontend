@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import { ChevronBackIcon } from '../assets'
-import { useBookings, useCarTypes } from '../hooks'
-import { useAuth } from '../context/AuthContext'
-import ManageBookingCard from '../components/cars/ManageBookingCard'
-import Loader from '../components/ui/Loader'
-import { BookingState, BookingWithReferences } from '../util/api'
+import { ChevronBackIcon } from '../../assets'
+import { useBookings, useCarTypes } from '../../hooks'
+import { useAuth } from '../../context/AuthContext'
+import ManageBookingCard from '../../components/cars/ManageBookingCard'
+import Loader from '../../components/ui/Loader'
+import { BookingState, BookingWithReferences } from '../../util/api'
 
 export default function ManageBooking() {
   const navigate = useNavigate()

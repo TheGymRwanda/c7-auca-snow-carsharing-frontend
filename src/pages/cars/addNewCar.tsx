@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
-import { apiUrl } from '../util/apiUrl'
-import { getAuthToken } from '../util/auth'
-import { useCarTypes } from '../hooks'
-import AddNewCarForm from '../components/forms/AddNewCar'
+import { apiUrl } from '../../util/apiUrl'
+import { getAuthToken } from '../../util/auth'
+import { useCarTypes } from '../../hooks'
+import AddNewCarForm from '../../components/forms/AddNewCar'
 
 const AddNewCar = () => {
   const [carTypeId, setCarTypeId] = useState(0)
