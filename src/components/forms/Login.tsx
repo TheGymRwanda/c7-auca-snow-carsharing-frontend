@@ -9,7 +9,7 @@ interface LoginFormProps {
 
 function LoginForm({ error, loading, handleSubmit }: LoginFormProps) {
   return (
-    <form onSubmit={handleSubmit} className="xl:mx-10 space-y-14">
+    <form onSubmit={handleSubmit} className="space-y-14 xl:mx-10">
       <div className="space-y-3">
         <div className="relative">
           <ProfileIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white" />

@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useCars, useCarTypes, useUser } from '../../hooks/index'
 import Details from '../../components/cars/Details'
 import PageTitle from '../../components/PageTitle'
+import Patterns from '../../components/ui/Patterns'
 
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()
@@ -43,7 +44,8 @@ const CarDetails = () => {
   }
 
   return (
-    <div className=" min-h-screen space-y-4 overflow-y-hidden text-[#F9FAFB]">
+    <div className=" relative min-h-screen space-y-4 overflow-hidden text-[#F9FAFB]">
+      <Patterns />
       <PageTitle title="Details" />
       <Details car={car} carType={carType} owner={owner} ownerLoading={ownerLoading} />
     </div>

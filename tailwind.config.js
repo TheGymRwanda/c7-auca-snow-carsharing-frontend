@@ -58,6 +58,9 @@ module.exports = {
       screens: {
         '3xl': '1920px',
       },
+      boxShadow: {
+        dim: '2px -4px 49px -3px',
+      },
     },
   },
   plugins: [],

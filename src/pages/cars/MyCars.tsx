@@ -72,7 +72,7 @@ function MyCars() {
               ))}
             </div>
           </div>
-          <div className="fixed bottom-0 left-0 right-0 max-lg:max-w-md mx-auto bg-primary-dark p-4 pb-6 lg:hidden z-50">
+          <div className="fixed inset-x-0 bottom-0 z-50 mx-auto bg-primary-dark p-4 pb-6 max-lg:max-w-md lg:hidden">
             <Button
               text="Add New Car"
               loadingText="Adding ..."

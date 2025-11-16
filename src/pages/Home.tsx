@@ -25,7 +25,7 @@ const Home = () => {
           {`Hello ${user?.name} !`} <br />
           <span>What are you up to today?</span>
         </p>
-        <div className="space-y-5 max-lg:max-w-md mx-auto justify-center lg:hidden">
+        <div className="mx-auto justify-center space-y-5 max-lg:max-w-md lg:hidden">
           <Button text="Book Car" className="py-3" isPrimary onClick={() => navigate('/car')} />
 
           <p className="mb-10 text-sm">or</p>
