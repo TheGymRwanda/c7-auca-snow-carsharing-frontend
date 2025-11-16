@@ -54,7 +54,7 @@ function MyCars() {
               onClick={() => navigate('/add-new-car')}
             />
           </div>
-          <div className="mx-auto px-4">
+          <div className="mx-auto px-4 max-md:mb-24">
             {myCars?.length === 0 && (
               <p className="mt-9 text-center text-gray-200">{"You don't have any cars yet."}</p>
             )}
@@ -72,7 +72,7 @@ function MyCars() {
               ))}
             </div>
           </div>
-          <div className="sticky bottom-0 bg-primary-dark p-4 pb-6 lg:hidden">
+          <div className="fixed bottom-0 left-0 right-0 max-lg:max-w-md mx-auto bg-primary-dark p-4 pb-6 lg:hidden z-50">
             <Button
               text="Add New Car"
               loadingText="Adding ..."

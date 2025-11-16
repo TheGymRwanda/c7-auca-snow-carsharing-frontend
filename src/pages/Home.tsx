@@ -14,8 +14,8 @@ const Home = () => {
   const myCars = cars?.filter(c => c.ownerId === user?.id) || []
 
   return (
-    <div className="flex flex-col justify-start bg-primary-dark text-center text-white max-md:mt-28 lg:text-start">
-      <div className="z-50 bg-primary-dark p-6 lg:p-10 xl:p-12 2xl:p-16 ">
+    <div className="flex flex-col justify-start bg-primary-dark text-center text-white max-lg:mt-28 lg:text-start">
+      <div className="z-50 items-center bg-primary-dark p-6 lg:p-10 xl:p-12 2xl:p-16 ">
         <h1 className="mb-8 mt-3 font-lora text-5xl font-bold leading-none text-white lg:hidden">
           <span className="block">MONI</span>
           <span className="block font-normal italic">share</span>
@@ -25,7 +25,7 @@ const Home = () => {
           {`Hello ${user?.name} !`} <br />
           <span>What are you up to today?</span>
         </p>
-        <div className="space-y-5 lg:hidden">
+        <div className="space-y-5 max-lg:max-w-md mx-auto justify-center lg:hidden">
           <Button text="Book Car" className="py-3" isPrimary onClick={() => navigate('/car')} />
 
           <p className="mb-10 text-sm">or</p>
@@ -44,7 +44,7 @@ const Home = () => {
             />
           </div>
         </div>
-        <div className="max-md:hidden">
+        <div className="max-lg:hidden">
           <HomeCarsRow
             title="Available Cars"
             cars={cars}

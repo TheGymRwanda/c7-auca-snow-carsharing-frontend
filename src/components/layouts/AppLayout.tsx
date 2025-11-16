@@ -20,7 +20,7 @@ const AppLayout = () => {
       {!isPublicRoute && <Sidebar />}
 
       <main
-        className={`bg-primary transition-all ${
+        className={`bg-primary-dark transition-all ${
           isPublicRoute ? '' : open ? 'lg:ml-64' : 'lg:ml-20'
         }`}
       >
