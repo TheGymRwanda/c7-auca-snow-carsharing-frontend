@@ -44,7 +44,7 @@ function MyCars() {
       {loading ? (
         <>
           <PageTitle title="My Cars" />
-          <div className="mb-6 grid max-md:space-y-6 lg:grid-cols-2 lg:gap-8 lg:px-16 xl:grid-cols-3 xl:gap-6 3xl:grid-cols-4">
+          <div className="mb-6 grid px-4 pt-4 max-md:space-y-6 lg:grid-cols-2 lg:gap-8 lg:px-16 xl:grid-cols-3 xl:gap-6 3xl:grid-cols-4">
             <CarSkeleton count={6} />
           </div>
         </>

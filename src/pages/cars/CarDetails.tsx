@@ -44,7 +44,7 @@ const CarDetails = () => {
   }
 
   return (
-    <div className=" relative min-h-screen space-y-4 overflow-hidden text-[#F9FAFB]">
+    <div className=" relative min-h-screen space-y-4 overflow-hidden text-[#F9FAFB]  max-lg:mx-auto max-lg:max-w-md ">
       <Patterns />
       <PageTitle title="Details" />
       <Details car={car} carType={carType} owner={owner} ownerLoading={ownerLoading} />
