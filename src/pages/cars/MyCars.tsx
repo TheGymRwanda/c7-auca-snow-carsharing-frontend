@@ -6,11 +6,11 @@ import ConfirmModal from '../../components/ui/ConfirmModal'
 import { useNavigate } from 'react-router-dom'
 
 import { useCarTypes } from '../../hooks'
-import LoaderComponent from '../../components/ui/Loader'
 import ErrorComponent from '../../components/ui/Error'
 import CarCard from '../../components/cars/CarCard'
 import { useCarDelete } from '../../hooks/useCarDelete'
 import PageTitle from '../../components/PageTitle'
+import CarSkeleton from '../../components/ui/CarSkeleton'
 
 function MyCars() {
   const { user } = useAuth()
@@ -42,7 +42,12 @@ function MyCars() {
   return (
     <div className="relative min-h-screen bg-primary-dark pt-12 lg:pt-0">
       {loading ? (
-        <LoaderComponent variant="page" />
+        <>
+          <PageTitle title="My Cars" />
+          <div className="mb-6 grid max-md:space-y-6 lg:grid-cols-2 lg:gap-8 lg:px-16 xl:grid-cols-3 xl:gap-6 3xl:grid-cols-4">
+            <CarSkeleton count={6} />
+          </div>
+        </>
       ) : (
         <div className="relative">
           <PageTitle title="My cars" />
