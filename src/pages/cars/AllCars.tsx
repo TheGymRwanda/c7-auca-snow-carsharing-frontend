@@ -1,6 +1,5 @@
 import PageTitle from '../../components/PageTitle'
 import { useCars, useCarTypes } from '../../hooks'
-import CarDetailsCard from '../../components/cars/CarDetailsCard'
 import LoaderComponent from '../../components/ui/Loader'
 import CarCard from '../../components/cars/CarCard'
 
@@ -19,7 +18,6 @@ const AllCars = () => {
           <LoaderComponent />
         ) : (
           cars?.map(car => (
-            // <CarDetailsCard key={car.id} car={car} carType={getCarType(car.carTypeId)} />
             <CarCard key={car.id} car={car} carType={getCarType(car.carTypeId)} variant="details" />
           ))
         )}

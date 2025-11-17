@@ -2,7 +2,7 @@ import React from 'react'
 import LoaderComponent from './Loader'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  text: string
+  text?: string
   loadingText?: string
   isPrimary: boolean
   className?: string
