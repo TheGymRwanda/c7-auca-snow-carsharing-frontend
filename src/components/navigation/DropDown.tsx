@@ -1,6 +1,6 @@
 import { CarIcon, ListIcon, CarsIcon, CarPlusIcon, LogoutIcon, MenuIcon } from '../../assets/index'
 import { useAuth } from '../../context/AuthContext'
-import SidebarLink from './Nav'
+import Nav from './Nav'
 
 function DropDown() {
   const { logout } = useAuth()
@@ -9,14 +9,14 @@ function DropDown() {
     <nav className="absolute left-4 top-14 z-40 w-52 rounded-md bg-primary-light px-4 pb-2 pt-4 text-sm text-white">
       <div>
         <ul>
-          <SidebarLink
-            to="/car"
+          <Nav
+            to="/available-cars"
             icon={<CarIcon className="text-white" />}
             label="Book A Car"
             open={true}
             variant="dropdown"
           />
-          <SidebarLink
+          <Nav
             to="/bookings"
             icon={<MenuIcon />}
             label="My Bookings"
@@ -27,21 +27,21 @@ function DropDown() {
         <hr />
         <p className="p-2 text-left font-semibold">My cars</p>
         <ul>
-          <SidebarLink
+          <Nav
             to="/my-cars"
             icon={<CarsIcon />}
             label="See My Cars"
             open={true}
             variant="dropdown"
           />
-          <SidebarLink
+          <Nav
             to="/booking/management"
             icon={<ListIcon />}
             label="My Cars Bookings"
             open={true}
             variant="dropdown"
           />
-          <SidebarLink
+          <Nav
             to="/add-new-car"
             icon={<CarPlusIcon />}
             label="Add New Car"
