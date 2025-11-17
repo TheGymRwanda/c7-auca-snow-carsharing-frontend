@@ -1,5 +1,5 @@
 import { SetStateAction } from 'react'
-import ButtonComponent from '../ui/Button'
+import Button from '../ui/Button'
 import FormInput from '../ui/FormInput'
 import FormSelect from '../ui/FormSelect'
 import { useNavigate } from 'react-router-dom'
@@ -79,17 +79,19 @@ function AddNewCarForm({
         />
       </div>
       <div className="flex justify-between space-x-1">
-        <ButtonComponent
+        <Button
           text="Cancel"
           isPrimary={false}
           disabled={loading}
+          className="py-3"
           onClick={() => navigate('/my-cars', { replace: true })}
         />
-        <ButtonComponent
+        <Button
           text="Add Car"
           loadingText="Adding Car ..."
           loading={loading}
           isPrimary
+          className="py-3"
           type="submit"
         />
       </div>
