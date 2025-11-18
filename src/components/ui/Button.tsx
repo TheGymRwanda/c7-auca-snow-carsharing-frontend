@@ -1,8 +1,8 @@
 import React from 'react'
 import LoaderComponent from './Loader'
 
-type ButtonComponentProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  text: string
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  text?: string
   loadingText?: string
   isPrimary: boolean
   className?: string
@@ -11,7 +11,7 @@ type ButtonComponentProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'default' | 'delete'
 }
 
-function ButtonComponent({
+function Button({
   text,
   loadingText,
   className,
@@ -19,19 +19,19 @@ function ButtonComponent({
   loading = false,
   variant = 'default',
   ...props
-}: ButtonComponentProps) {
+}: ButtonProps) {
   return (
     <button
       {...props}
       disabled={loading || props.disabled}
-      className={`w-full rounded-full py-3 font-[Inter] font-bold ${className ?? ''} ${
+      className={`w-full rounded-full py-2 font-[Inter] font-bold ${className ?? ''} ${
         (loading || props.disabled) && variant !== 'delete'
           ? 'cursor-not-allowed bg-gray-200/80 text-primary-dark/100'
           : variant === 'delete'
-            ? 'border-2 border-delete text-delete'
-            : isPrimary
-              ? 'bg-gray-100 text-primary-dark'
-              : 'border-2 bg-primary-dark text-white'
+          ? 'border-2 border-delete text-delete'
+          : isPrimary
+          ? 'bg-gray-100 text-primary-dark'
+          : 'border-2 bg-primary-dark text-white'
       }`}
     >
       {loading ? (
@@ -50,4 +50,4 @@ function ButtonComponent({
   )
 }
 
-export default ButtonComponent
+export default Button

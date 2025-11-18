@@ -20,18 +20,49 @@ module.exports = {
           DEFAULT: '#F9FAFB',
         },
       },
+      width: {
+        70: '17rem',
+        '39vw': '39vw',
+        '40vw': '40vw',
+      },
       fontSize: {
         17: '17px',
         18: '18px',
       },
       scale: {
         115: '1.15',
+        130: '1.30',
+        180: '1.80',
+        200: '2',
       },
       fontFamily: {
         lora: ['Lora', 'serif'],
       },
       borderRadius: {
         'carcard-box-radius': '10px',
+      },
+      spacing: {
+        'screen-10': '10vh',
+        '1/2': '50%',
+        '5/12': '41.666667%',
+      },
+      inset: {
+        '-15%': '-15%',
+        '-2%': '-2%',
+        '-5%': '-5%',
+        '18%': '18%',
+        '25%': '25%',
+      },
+      height: {
+        '77vh': '77vh',
+        '79vh': '79vh',
+        '80vw': '80vw',
+      },
+      screens: {
+        '3xl': '1920px',
+      },
+      boxShadow: {
+        dim: '2px -4px 49px -3px',
       },
     },
   },
