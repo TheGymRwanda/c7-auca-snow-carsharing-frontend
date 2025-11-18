@@ -51,7 +51,7 @@ function Header() {
         <Link to="/">
           <Logo className="relative z-10" />
         </Link>
-        <div className=" absolute bottom-[-22px] left-1/2 z-0 h-20 w-20 -translate-x-1/2 rounded-full bg-nav " />
+        <div className=" absolute -bottom-22 left-1/2 z-0 size-20 -translate-x-1/2 rounded-full bg-nav " />
       </div>
 
       <div className="flex items-center justify-end">{!isPublicPage && <ProfileIcon />}</div>

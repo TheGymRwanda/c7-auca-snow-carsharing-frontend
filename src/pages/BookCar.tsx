@@ -22,10 +22,10 @@ const BookCar = () => {
     })
   }
   return (
-    <div className=" flex flex-col relative h-screen overflow-hidden">
+    <div className=" relative flex h-screen flex-col overflow-hidden">
       <Patterns />
       <PageTitle title="Book Car" />
-      <div className="px-6 max-lg:mt-28 text-white lg:h-screen lg:grid lg:items-center lg:-mt-screen-10">
+      <div className="px-6 text-white max-lg:mt-28 lg:-mt-screen-10 lg:grid lg:h-screen lg:items-center">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <BookCarForm
             startDate={startDate}

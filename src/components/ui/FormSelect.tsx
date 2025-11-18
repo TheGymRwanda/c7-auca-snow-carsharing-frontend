@@ -27,7 +27,7 @@ function FormSelect({ label, id, options, defaultOption, onChange }: FormSelectP
           </option>
         ))}
       </select>
-      <ChevronDownIcon className="absolute right-4 top-9 z-10 h-7 w-7 cursor-pointer" />
+      <ChevronDownIcon className="absolute right-4 top-9 z-10 size-7 cursor-pointer" />
     </div>
   )
 }
