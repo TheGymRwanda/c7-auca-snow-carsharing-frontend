@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import ButtonComponent from '../components/ui/Button'
+import { BrandHeader } from '../components/ui/BrandHeader'
 
 function LandingPage() {
   const navigate = useNavigate()
@@ -25,10 +26,7 @@ function LandingPage() {
         <div className="flex flex-col max-lg:max-w-sm lg:ml-12 lg:w-1/2">
           <div className="mb-32 grid space-y-14 lg:mb-1">
             <div className="flex-col text-gray-100 lg:flex lg:justify-items-start ">
-              <div className="text-center font-lora text-5xl lg:text-start lg:text-6xl 2xl:text-7xl">
-                <h1 className="mt-3 font-bold">MONI</h1>
-                <h2 className="mb-6 italic lg:mb-8 lg:ml-14">Share</h2>
-              </div>
+              <BrandHeader />
               <h1 className="my-6 hidden font-lora text-2xl lg:block 2xl:text-3xl">
                 Start sharing your Monis with the world
               </h1>
