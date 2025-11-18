@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useNavigate, Link } from 'react-router-dom'
+import { Logo } from '../assets'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
 import LoginForm from '../components/forms/Login'
+import { BrandHeader } from '../components/ui/BrandHeader'
 
 function Login() {
   const [loading, setLoading] = useState(false)
@@ -37,16 +39,24 @@ function Login() {
   }
 
   return (
-    <div className="mt-28 flex flex-col items-center justify-start gap-16 bg-primary-dark px-6">
-      <div className="text-center font-lora text-gray-100">
-        <h1 className="mt-3 text-5xl font-bold leading-none text-white">
-          <span className="block">MONI</span>
-          <span className="block italic font-normal">share</span>
+    <div className="flex min-h-screen flex-col gap-16 bg-primary-dark max-lg:items-center max-lg:justify-center max-lg:px-6 lg:flex-row">
+      <div className="flex-col text-gray-100 lg:flex lg:w-1/2 lg:justify-center lg:px-20">
+        <Link to="/" className="mb-10 hidden h-16 w-16 outline-none lg:grid ">
+          <Logo className="h-full w-full" />
+        </Link>
+        <BrandHeader />
+        <h1 className="my-6 hidden font-lora text-2xl lg:block">
+          Share your journey, share your car
         </h1>
+        <p className="mb-24 hidden font-lora text-lg italic text-gray-300/90 lg:block">
+          Join thousands of drivers making extra income while helping others get around sustainably.
+        </p>
       </div>
 
-      <div className="w-full max-w-sm">
-        <h3 className="mb-8 text-center font-lora text-xl font-medium text-white">Log in</h3>
+      <div className="flex w-1/2 flex-col justify-center from-primary-light via-primary to-primary-dark max-lg:w-full max-lg:max-w-md lg:h-screen lg:rounded-l-full lg:bg-gradient-to-br lg:px-20">
+        <h3 className="mb-8 text-center font-lora text-xl font-medium text-white lg:mb-12 lg:text-4xl">
+          Log in
+        </h3>
         <LoginForm handleSubmit={handleSubmit} loading={loading} error={error} />
       </div>
     </div>

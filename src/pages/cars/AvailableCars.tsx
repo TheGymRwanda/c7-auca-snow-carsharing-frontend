@@ -1,20 +1,26 @@
-import CarCard from '../components/cars/CarCard'
-import { useCarTypes, useCars } from '../hooks/index'
-import { useNavigate } from 'react-router-dom'
-import { ChevronBackIcon } from '../assets'
+import { useState } from 'react'
+import CarCard from '../../components/cars/CarCard'
+import { useCarTypes, useCars } from '../../hooks/index'
+import PageTitle from '../../components/PageTitle'
+import Button from '../../components/ui/Button'
+import CarSkeleton from '../../components/ui/CarSkeleton'
 
 function AvailableCars() {
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
   const [{ data: carTypes }] = useCarTypes()
-  const navigate = useNavigate()
+  const [visibleCount, setVisibleCount] = useState(12)
 
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
+  const visibleCars = cars?.slice(0, visibleCount) || []
+  const hasMore = cars && cars.length > visibleCount
 
   return carsLoading ? (
-    <div className="flex min-h-screen items-center justify-center bg-primary">
-      <div className="text-center">
-        <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
-        <p className="text-lg text-white">Loading ...</p>
+    <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
+      <div className="container grid justify-center">
+        <PageTitle title="Available Cars" />
+        <div className="grid px-4 pt-4 max-md:space-y-6 lg:grid-cols-3 lg:gap-6 lg:px-16">
+          <CarSkeleton count={6} />
+        </div>
       </div>
     </div>
   ) : carsError ? (
@@ -39,21 +45,11 @@ function AvailableCars() {
       </div>
     </div>
   ) : (
-    <div className="min-h-screen bg-primary pb-8 pt-24">
-      <div className="container mx-auto px-4">
-        <div className="mx-2 flex content-center text-center">
-          <button
-            onClick={() => navigate('/')}
-            className="cursor-pointer transition hover:opacity-80"
-          >
-            <ChevronBackIcon className="h-5 w-5 text-accent" />
-          </button>
-          <div className="w-full text-center">
-            <h1 className="font-lora text-3xl uppercase text-gray-200">Available Car</h1>
-          </div>
-        </div>
-        <div className="space-y-6">
-          {cars.map(car => {
+    <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
+      <div className="grid justify-center">
+        <PageTitle title="Available Cars" />
+        <div className="grid px-4 max-md:space-y-6 lg:grid-cols-2 lg:gap-8 lg:px-16 xl:grid-cols-3 xl:gap-6 3xl:grid-cols-4">
+          {visibleCars.map(car => {
             const carType = getCarType(car.carTypeId)
             return (
               <CarCard
@@ -67,6 +63,16 @@ function AvailableCars() {
             )
           })}
         </div>
+        {hasMore && (
+          <div className="mt-8 grid justify-center text-center">
+            <Button
+              text="Load More"
+              isPrimary
+              className="px-14 py-3"
+              onClick={() => setVisibleCount(prev => prev + 12)}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
