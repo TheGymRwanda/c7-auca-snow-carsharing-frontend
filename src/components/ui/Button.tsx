@@ -28,10 +28,10 @@ function Button({
         (loading || props.disabled) && variant !== 'delete'
           ? 'cursor-not-allowed bg-gray-200/80 text-primary-dark/100'
           : variant === 'delete'
-          ? 'border-2 border-delete text-delete'
-          : isPrimary
-          ? 'bg-gray-100 text-primary-dark'
-          : 'border-2 bg-primary-dark text-white'
+            ? 'border-2 border-delete text-delete'
+            : isPrimary
+              ? 'bg-gray-100 text-primary-dark'
+              : 'border-2 bg-primary-dark text-white'
       }`}
     >
       {loading ? (

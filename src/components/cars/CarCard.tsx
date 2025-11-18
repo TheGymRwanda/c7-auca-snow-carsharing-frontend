@@ -19,8 +19,8 @@ function getOwnerName(owner: unknown, loading: boolean, error: unknown, ownerId:
   return loading
     ? 'Loading...'
     : error
-    ? 'Unknown Owner'
-    : (owner as { name?: string })?.name || `Owner ${ownerId}`
+      ? 'Unknown Owner'
+      : (owner as { name?: string })?.name || `Owner ${ownerId}`
 }
 
 function HomeVariant({
