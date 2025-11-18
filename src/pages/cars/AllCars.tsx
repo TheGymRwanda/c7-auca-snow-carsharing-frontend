@@ -1,10 +1,10 @@
 import PageTitle from '../../components/PageTitle'
 import { useCars, useCarTypes } from '../../hooks'
-import LoaderComponent from '../../components/ui/Loader'
 import CarCard from '../../components/cars/CarCard'
+import CarSkeleton from '../../components/ui/CarSkeleton'
 
 const AllCars = () => {
-  const [{ data: cars, loading, error }, refetch] = useCars()
+  const [{ data: cars, loading }] = useCars()
   const [{ data: carTypes }] = useCarTypes()
 
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
@@ -15,7 +15,9 @@ const AllCars = () => {
 
       <div className="p-3">
         {loading ? (
-          <LoaderComponent />
+          <div className="space-y-3">
+            <CarSkeleton count={6} />
+          </div>
         ) : (
           cars?.map(car => (
             <CarCard key={car.id} car={car} carType={getCarType(car.carTypeId)} variant="details" />

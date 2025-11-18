@@ -5,6 +5,7 @@ import { Logo } from '../assets'
 import { apiUrl } from '../util/apiUrl'
 import axios from 'axios'
 import LoginForm from '../components/forms/Login'
+import { BrandHeader } from '../components/ui/BrandHeader'
 
 function Login() {
   const [loading, setLoading] = useState(false)
@@ -43,10 +44,7 @@ function Login() {
         <Link to="/" className="mb-10 hidden h-16 w-16 outline-none lg:grid ">
           <Logo className="h-full w-full" />
         </Link>
-        <div className="text-center font-lora text-5xl lg:text-start lg:text-6xl">
-          <h1 className="mt-3 font-bold">MONI</h1>
-          <h2 className="mb-6 italic lg:mb-8 lg:ml-14">Share</h2>
-        </div>
+        <BrandHeader />
         <h1 className="my-6 hidden font-lora text-2xl lg:block">
           Share your journey, share your car
         </h1>

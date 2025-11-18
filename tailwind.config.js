@@ -38,6 +38,9 @@ module.exports = {
       fontFamily: {
         lora: ['Lora', 'serif'],
       },
+      borderRadius: {
+        'carcard-box-radius': '10px',
+      },
       spacing: {
         'screen-10': '10vh',
         '1/2': '50%',
