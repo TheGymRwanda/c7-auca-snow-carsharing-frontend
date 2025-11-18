@@ -30,7 +30,7 @@ const Home = () => {
             text="Book Car"
             className="py-3"
             isPrimary
-            onClick={() => navigate('/available-cars')}
+            onClick={() => navigate('/book-car')}
           />
 
           <p className="mb-10 text-sm">or</p>

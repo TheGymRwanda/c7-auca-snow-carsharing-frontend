@@ -10,7 +10,7 @@ function DropDown() {
       <div>
         <ul>
           <Nav
-            to="/available-cars"
+            to="/book-car"
             icon={<CarIcon className="text-white" />}
             label="Book A Car"
             open={true}

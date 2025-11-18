@@ -18,7 +18,7 @@ interface DetailsProps {
 function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
   const detailItems = [
     {
-      icon: <ProfileIcon className="lg:h-full lg:w-full" />,
+      icon: <ProfileIcon className="lg:size-full" />,
       content: ownerLoading ? (
         <span className="flex items-center gap-2">
           <div className="size-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
@@ -28,18 +28,18 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
         <span>{owner?.name || `Owner ${car.ownerId}`}</span>
       ),
     },
-    { icon: <CarIcon className="lg:h-full lg:w-full" />, content: car.state },
-    { icon: <LicenseIcon className="ml-1 lg:h-full lg:w-full" />, content: car.licensePlate },
+    { icon: <CarIcon className="lg:size-full" />, content: car.state },
+    { icon: <LicenseIcon className="ml-1 lg:size-full" />, content: car.licensePlate },
     {
-      icon: <HorseIcon className="lg:h-full lg:w-full" />,
+      icon: <HorseIcon className="lg:size-full" />,
       content: car.horsepower ? `${car.horsepower} HP` : null,
     },
     {
-      icon: <FuelIcon className="lg:h-full lg:w-full" />,
+      icon: <FuelIcon className="lg:size-full" />,
       content: car.fuelType ? car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1) : null,
     },
     {
-      icon: <AttentionIcon className="ml-0.5 lg:h-full lg:w-full" />,
+      icon: <AttentionIcon className="ml-0.5 lg:size-full" />,
       content: car.info ? <span className="font-semibold">{car.info}</span> : null,
     },
   ]
@@ -49,11 +49,11 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
   }
   return (
     <div className="grid-cols-2 items-center lg:grid lg:px-16 lg:pt-14">
-      <div className="mt-4 h-64 w-64 scale-130 justify-self-center md:h-72 md:w-72 lg:ml-32 lg:mt-8 lg:h-96 lg:w-96 lg:scale-180">
+      <div className="mt-4 size-64 scale-130 justify-self-center md:size-72 lg:ml-32 lg:mt-8 lg:size-96 lg:scale-180">
         <img
           src={carType?.imageUrl || '/img/car.png'}
           alt={car.name}
-          className="h-full w-full object-cover"
+          className="size-full object-cover"
         />
       </div>
       <div className="px-10 tracking-wide lg:ml-32">
