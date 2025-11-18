@@ -27,7 +27,6 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
-          <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<MyBookings />} />
           <Route path="booking/management" element={<ManageBooking />} />
           <Route path="add-new-car" element={<AddNewCar />} />
