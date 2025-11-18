@@ -42,17 +42,17 @@ const DateTimePicker = ({ label, value, onChange, minDateTime }: DateTimePickerP
         </div>
       </div>
 
-      <Dialog 
-        open={open} 
-        onClose={handleCancel} 
-        fullWidth 
+      <Dialog
+        open={open}
+        onClose={handleCancel}
+        fullWidth
         maxWidth="sm"
         PaperProps={{
-          sx: { 
+          sx: {
             margin: 1,
             width: 'calc(100% - 16px)',
-            maxHeight: '90vh'
-          }
+            maxHeight: '90vh',
+          },
         }}
       >
         <DialogContent className="p-0">
@@ -66,10 +66,10 @@ const DateTimePicker = ({ label, value, onChange, minDateTime }: DateTimePickerP
                 layout: {
                   sx: {
                     '& .MuiPickersLayout-root': {
-                      fontSize: '1rem'
-                    }
-                  }
-                }
+                      fontSize: '1rem',
+                    },
+                  },
+                },
               }}
             />
           </div>
