@@ -1,14 +1,52 @@
 import { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import CarCard from '../../components/cars/CarCard'
-import { useCarTypes, useCars } from '../../hooks/index'
+import { useCarTypes, useCars, useCreateBooking } from '../../hooks/index'
+import { useAuth } from '../../context/AuthContext'
 import PageTitle from '../../components/PageTitle'
 import Button from '../../components/ui/Button'
 import CarSkeleton from '../../components/ui/CarSkeleton'
+import { CarDto } from '../../util/api'
 
 function AvailableCars() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { user } = useAuth()
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
   const [{ data: carTypes }] = useCarTypes()
+  const { createBooking, loading: bookingLoading } = useCreateBooking()
   const [visibleCount, setVisibleCount] = useState(12)
+  const [bookingCarId, setBookingCarId] = useState<number | null>(null)
+
+  const { start, end } = location.state || {}
+  const startDate = start ? new Date(start) : null
+  const endDate = end ? new Date(end) : null
+
+  const handleBookCar = async (car: CarDto) => {
+    if (!user || !startDate || !endDate) {
+      toast.error('Please login and select booking dates')
+      return
+    }
+
+    setBookingCarId(car.id)
+    try {
+      await createBooking({
+        carId: car.id,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+      })
+      toast.success('Car booked successfully!')
+      navigate('/bookings')
+    } catch (error: unknown) {
+      const message =
+        (error as { response?: { data?: { message?: string } } })?.response?.data?.message ||
+        'Failed to book car. Please try again.'
+      toast.error(message)
+    } finally {
+      setBookingCarId(null)
+    }
+  }
 
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
   const visibleCars = cars?.slice(0, visibleCount) || []
@@ -56,9 +94,9 @@ function AvailableCars() {
                 key={car.id}
                 car={car}
                 carType={carType}
-                buttonText="Book Car"
+                buttonText={bookingLoading && bookingCarId === car.id ? 'Booking...' : 'Book Car'}
                 primaryButton={true}
-                onButtonClick={() => {}}
+                onButtonClick={() => handleBookCar(car)}
               />
             )
           })}

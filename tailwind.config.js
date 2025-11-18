@@ -14,7 +14,7 @@ module.exports = {
           },
         },
         accent: '#F8FCAD',
-        delete: '#FFC28A',
+        error: '#FFC28A',
         nav: '#111827',
         text: {
           DEFAULT: '#F9FAFB',
@@ -65,7 +65,7 @@ module.exports = {
         dim: '2px -4px 49px -3px',
       },
       inset: {
-        22: "22px",
+        22: '22px',
       },
     },
   },
