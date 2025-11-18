@@ -20,7 +20,7 @@ const CarDetails = () => {
     return (
       <div className="mt-10 flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+          <div className="mx-auto mb-4 size-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
           <p className="text-lg text-white">Loading ...</p>
         </div>
       </div>

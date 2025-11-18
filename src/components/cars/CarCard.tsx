@@ -19,8 +19,8 @@ function getOwnerName(owner: unknown, loading: boolean, error: unknown, ownerId:
   return loading
     ? 'Loading...'
     : error
-    ? 'Unknown Owner'
-    : (owner as { name?: string })?.name || `Owner ${ownerId}`
+      ? 'Unknown Owner'
+      : (owner as { name?: string })?.name || `Owner ${ownerId}`
 }
 
 function HomeVariant({
@@ -61,12 +61,12 @@ function DetailsVariant({
   owner: UserDto | null | undefined
 }) {
   return (
-    <div className="min-h-60 shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light p-4">
+    <div className="shadow-card mt-8 flex min-h-60 w-full flex-col self-center rounded-2xl bg-primary-light p-4">
       <div className="grid grid-cols-2 gap-20">
         <div className="my-1 flex w-52 items-center justify-center pr-4">
           <img src={carType?.imageUrl} alt={`${car.name}'s Picture`} className="max-h-full" />
         </div>
-        <div className="min-h-52 flex flex-col justify-around gap-4">
+        <div className="flex min-h-52 flex-col justify-around gap-4">
           <div className="flex flex-col gap-4">
             <h2 className="overflow-wrap-anywhere mt-2 whitespace-normal font-lora text-xl font-medium leading-tight text-white">
               {car.name}
@@ -130,7 +130,7 @@ function CarCard({
   return (
     <div
       key={car.id}
-      className="min-h-60 shadow-card mt-8 flex w-full flex-col self-center rounded-2xl bg-primary-light px-8 py-4 transition-all duration-500 ease-in-out lg:hover:scale-105"
+      className="shadow-card mt-8 flex min-h-60 w-full flex-col self-center rounded-2xl bg-primary-light px-8 py-4 transition-all duration-500 ease-in-out lg:hover:scale-105"
     >
       <div className="grid grid-cols-2 gap-20">
         <div className="my-1 flex w-52 items-center justify-center pr-4 max-md:-ml-4">
@@ -142,7 +142,7 @@ function CarCard({
             } transition-all duration-500 ease-in-out`}
           />
         </div>
-        <div className="min-h-52 flex flex-col justify-around gap-y-8">
+        <div className="flex min-h-52 flex-col justify-around gap-y-8">
           <div className="flex flex-col gap-4">
             <h2 className="overflow-wrap-anywhere mt-2 whitespace-normal font-lora text-xl font-medium leading-tight text-white">
               {car.name}

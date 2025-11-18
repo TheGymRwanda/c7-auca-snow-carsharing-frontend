@@ -12,7 +12,7 @@ function LoginForm({ error, loading, handleSubmit }: LoginFormProps) {
     <form onSubmit={handleSubmit} className="space-y-14 xl:mx-10">
       <div className="space-y-3">
         <div className="relative">
-          <ProfileIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white" />
+          <ProfileIcon className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-white" />
           <input
             type="text"
             placeholder="Username / e-mail"
@@ -23,7 +23,7 @@ function LoginForm({ error, loading, handleSubmit }: LoginFormProps) {
         </div>
 
         <div className="relative">
-          <KeyIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 stroke-white" />
+          <KeyIcon className="absolute left-3 top-1/2 size-5 -translate-y-1/2 stroke-white" />
           <input
             type="password"
             placeholder="Password"

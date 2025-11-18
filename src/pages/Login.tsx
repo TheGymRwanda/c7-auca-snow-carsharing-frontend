@@ -41,8 +41,8 @@ function Login() {
   return (
     <div className="flex min-h-screen flex-col gap-16 bg-primary-dark max-lg:items-center max-lg:justify-center max-lg:px-6 lg:flex-row">
       <div className="flex-col text-gray-100 lg:flex lg:w-1/2 lg:justify-center lg:px-20">
-        <Link to="/" className="mb-10 hidden h-16 w-16 outline-none lg:grid ">
-          <Logo className="h-full w-full" />
+        <Link to="/" className="mb-10 hidden size-16 outline-none lg:grid ">
+          <Logo className="size-full" />
         </Link>
         <BrandHeader />
         <h1 className="my-6 hidden font-lora text-2xl lg:block">
