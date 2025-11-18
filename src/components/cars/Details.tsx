@@ -16,45 +16,61 @@ interface DetailsProps {
 }
 
 function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
-  const imageUrl = (carType?.imageUrl ?? '').trim()
-  const imageSrc = imageUrl || '/images/car.png'
+  const detailItems = [
+    {
+      icon: <ProfileIcon className="lg:h-full lg:w-full" />,
+      content: ownerLoading ? (
+        <span className="flex items-center gap-2">
+          <div className="size-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+          Loading...
+        </span>
+      ) : (
+        <span>{owner?.name || `Owner ${car.ownerId}`}</span>
+      ),
+    },
+    { icon: <CarIcon className="lg:h-full lg:w-full" />, content: car.state },
+    { icon: <LicenseIcon className="ml-1 lg:h-full lg:w-full" />, content: car.licensePlate },
+    {
+      icon: <HorseIcon className="lg:h-full lg:w-full" />,
+      content: car.horsepower ? `${car.horsepower} HP` : null,
+    },
+    {
+      icon: <FuelIcon className="lg:h-full lg:w-full" />,
+      content: car.fuelType ? car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1) : null,
+    },
+    {
+      icon: <AttentionIcon className="ml-0.5 lg:h-full lg:w-full" />,
+      content: car.info ? <span className="font-semibold">{car.info}</span> : null,
+    },
+  ]
 
   if (!car || !carType || !carType.name) {
     return null
   }
+
   return (
-    <div className="items-center space-y-1 lg:gap-64">
-      <img src={imageSrc} alt={car.name} className="h-80 w-fit justify-self-center" />
-      <div className="px-6">
-        <h2 className="font-lora text-3xl font-medium">{car.name}</h2>
-        <ul className="text-md mt-7 space-y-2 md:text-xl">
-          <li className="flex items-center gap-2">
-            <ProfileIcon />
-            {ownerLoading ? (
-              <span className="flex items-center gap-2">
-                <div className="size-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
-                Loading...
-              </span>
-            ) : (
-              <span>{owner?.name || `Owner ${car.ownerId}`}</span>
-            )}
-          </li>
-          <li className="flex items-center gap-2">
-            <CarIcon /> {car.state}
-          </li>
-          <li className="flex items-center gap-2">
-            <LicenseIcon /> {car.licensePlate || 'No license plate'}
-          </li>
-          <li className="flex items-center gap-2">
-            <HorseIcon /> {car.horsepower ? `${car.horsepower} HP` : 'N/A'}
-          </li>
-          <li className="flex items-center gap-2">
-            <FuelIcon /> {car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1)}
-          </li>
-          <li className="flex items-center gap-2">
-            <AttentionIcon className="h-6 w-6" />
-            <p className="overflow-wrap-anywhere">{car.info || carType?.name || 'N/A'}</p>
-          </li>
+    <div className="grid-cols-2 items-center lg:grid lg:px-16 lg:pt-14">
+      <div className="mt-4 h-64 w-64 scale-130 justify-self-center md:h-72 md:w-72 lg:ml-32 lg:mt-8 lg:h-96 lg:w-96 lg:scale-180">
+        <img
+          src={carType?.imageUrl || '/img/car.png'}
+          alt={car.name}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="px-10 tracking-wide lg:ml-32">
+        <h2 className="font-lora text-xl font-thin lg:text-3xl lg:font-bold">{car.name}</h2>
+        <ul className="mt-7 space-y-2 text-sm md:text-base lg:space-y-4 lg:text-2xl">
+          {detailItems
+            .filter(
+              item =>
+                item.content && (typeof item.content === 'string' ? item.content.trim() : true),
+            )
+            .map((item, index) => (
+              <li key={index} className="flex min-w-0 items-center gap-3 lg:items-start">
+                <span className="shrink-0 lg:mt-1.5">{item.icon}</span>
+                <span className="min-w-0 flex-1">{item.content}</span>
+              </li>
+            ))}
         </ul>
       </div>
     </div>
