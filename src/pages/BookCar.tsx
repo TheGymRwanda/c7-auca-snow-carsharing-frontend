@@ -4,6 +4,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import type { Dayjs } from 'dayjs'
 import { useState } from 'react'
 import BookCarForm from '../components/forms/BookCar'
+import PageTitle from '../components/PageTitle'
 
 const BookCar = () => {
   const [startDate, setStartDate] = useState<Dayjs | null>(null)
@@ -15,14 +16,14 @@ const BookCar = () => {
     e.preventDefault()
     if (!startDate || !endDate) return alert('Choose both start and end dates')
     if (!endDate.isAfter(startDate)) return alert('End must be after start')
-    navigate('/cars', {
+    navigate('/available-cars', {
       state: { start: startDate.toISOString(), end: endDate.toISOString() },
     })
   }
   return (
-    <div className="mt-24 flex flex-col">
-      <div className="px-6 text-white">
-        <h1 className="text-center font-lora text-3xl mb-20">BOOK CAR</h1>
+    <div className=" flex flex-col">
+      <PageTitle title="Book Car" />
+      <div className="px-6 mt-28 text-white">
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <BookCarForm
