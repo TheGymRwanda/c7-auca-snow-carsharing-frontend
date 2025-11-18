@@ -1,5 +1,12 @@
 import { CarDto, CarTypeDto, UserDto } from '../../util/api'
-import { CarIcon, HorseIcon, FuelIcon, XIcon, ProfileIcon } from '../../assets/index'
+import {
+  CarIcon,
+  HorseIcon,
+  FuelIcon,
+  ProfileIcon,
+  AttentionIcon,
+  LicenseIcon,
+} from '../../assets/index'
 
 interface DetailsProps {
   car: CarDto
@@ -36,7 +43,7 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
             <CarIcon /> {car.state}
           </li>
           <li className="flex items-center gap-2">
-            <CarIcon /> {car.licensePlate || 'No license plate'}
+            <LicenseIcon /> {car.licensePlate || 'No license plate'}
           </li>
           <li className="flex items-center gap-2">
             <HorseIcon /> {car.horsepower ? `${car.horsepower} HP` : 'N/A'}
@@ -45,7 +52,7 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
             <FuelIcon /> {car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1)}
           </li>
           <li className="flex items-center gap-2">
-            <XIcon className="h-6 w-6" />
+            <AttentionIcon className="h-6 w-6" />
             <p className="overflow-wrap-anywhere">{car.info || carType?.name || 'N/A'}</p>
           </li>
         </ul>

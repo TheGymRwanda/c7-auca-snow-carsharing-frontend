@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ChevronBackIcon } from '../assets/index'
-import { useCars, useCarTypes, useUser } from '../hooks/index'
-import Details from '../components/cars/Details'
+import { useCars, useCarTypes, useUser } from '../../hooks/index'
+import Details from '../../components/cars/Details'
+import PageTitle from '../../components/PageTitle'
 
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()
@@ -43,15 +43,8 @@ const CarDetails = () => {
   }
 
   return (
-    <div className=" min-h-screen space-y-4 overflow-y-hidden px-6 pt-20 text-[#F9FAFB]">
-      <div className="flex content-center text-center">
-        <button onClick={() => navigate(-1)} className="cursor-pointer transition hover:opacity-80">
-          <ChevronBackIcon className="h-5 w-5 text-accent" />
-        </button>
-        <div className="w-full text-center">
-          <h1 className="font-lora text-3xl uppercase text-gray-200">Details</h1>
-        </div>
-      </div>
+    <div className=" min-h-screen space-y-4 overflow-y-hidden text-[#F9FAFB]">
+      <PageTitle title="Details" />
       <Details car={car} carType={carType} owner={owner} ownerLoading={ownerLoading} />
     </div>
   )

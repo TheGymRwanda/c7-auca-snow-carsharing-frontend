@@ -4,12 +4,11 @@ interface ConfirmModalProps {
   isOpen: boolean
   title: string
   message: string
-  onConfirm: () => void
-  onCancel: () => void
+  onClick: () => void
   loading?: boolean
 }
 
-function ConfirmModal({ isOpen, title, message, onConfirm, onCancel, loading }: ConfirmModalProps) {
+function MessageModal({ isOpen, title, message, onClick, loading }: ConfirmModalProps) {
   if (!isOpen) return null
 
   return (
@@ -19,20 +18,11 @@ function ConfirmModal({ isOpen, title, message, onConfirm, onCancel, loading }: 
         <p className="mb-6 text-gray-200">{message}</p>
         <div className="flex gap-3">
           <Button
-            text="Cancel"
+            text="OK"
             isPrimary={false}
-            onClick={onCancel}
+            onClick={onClick}
             disabled={loading}
             className="bg-primary-light"
-          />
-          <Button
-            text="Delete"
-            isPrimary={true}
-            loadingText="Deleting ..."
-            loading={loading}
-            variant="delete"
-            onClick={onConfirm}
-            disabled={loading}
           />
         </div>
       </div>
@@ -40,4 +30,4 @@ function ConfirmModal({ isOpen, title, message, onConfirm, onCancel, loading }: 
   )
 }
 
-export default ConfirmModal
+export default MessageModal
