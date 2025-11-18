@@ -55,7 +55,7 @@ function Login() {
         </p>
       </div>
 
-      <div className="flex w-1/2 flex-col justify-center from-primary-light via-primary to-primary-dark max-lg:w-full max-md:max-w-sm lg:h-screen lg:rounded-l-full lg:bg-gradient-to-br lg:px-20">
+      <div className="flex w-1/2 flex-col justify-center from-primary-light via-primary to-primary-dark max-lg:w-full max-lg:max-w-md lg:h-screen lg:rounded-l-full lg:bg-gradient-to-br lg:px-20">
         <h3 className="mb-8 text-center font-lora text-xl font-medium text-white lg:mb-12 lg:text-4xl">
           Log in
         </h3>

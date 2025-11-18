@@ -22,7 +22,7 @@ function LandingPage() {
   return (
     <>
       <div className="flex h-screen flex-col items-center justify-center overflow-y-hidden bg-primary-dark px-6 py-10 lg:flex-row">
-        <div className="flex flex-col lg:ml-12 lg:w-1/2">
+        <div className="flex flex-col max-lg:max-w-sm lg:ml-12 lg:w-1/2">
           <div className="mb-32 grid space-y-14 lg:mb-1">
             <div className="flex-col text-gray-100 lg:flex lg:justify-items-start ">
               <div className="text-center font-lora text-5xl lg:text-start lg:text-6xl 2xl:text-7xl">
