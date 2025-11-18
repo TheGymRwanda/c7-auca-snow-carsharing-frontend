@@ -10,6 +10,7 @@ import MyCars from './pages/MyCars'
 import Profile from './pages/Profile'
 import AddNewCar from './pages/addNewCar'
 import LandingPage from './pages/Landing'
+import BookCar from './pages/BookCar'
 
 configure({
   defaultOptions: {
@@ -26,6 +27,7 @@ function App() {
           <Route path="menu" element={<h1>Menu</h1>} />
           <Route path="bookings" element={<h1>Bookings</h1>} />
           <Route path="add-new-car" element={<AddNewCar />} />
+          <Route path="book-car" element={<BookCar />} />
           <Route path="car" element={<AvailableCars />} />
           <Route path="my-cars" element={<MyCars />} />
           <Route path="profile" element={<Profile />} />
