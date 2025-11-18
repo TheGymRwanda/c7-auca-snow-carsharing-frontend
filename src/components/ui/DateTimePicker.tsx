@@ -33,10 +33,8 @@ const DateTimePicker = ({ label, value, onChange, minDateTime }: DateTimePickerP
   return (
     <>
       <div className="flex flex-col">
-        <label className="mb-1 text-sm text-white">
-          {label}
-        </label>
-        <div 
+        <label className="mb-1 text-sm text-white">{label}</label>
+        <div
           className="cursor-pointer rounded-full bg-primary-light-formButtons p-4 text-start text-white"
           onClick={handleClick}
         >
@@ -46,17 +44,35 @@ const DateTimePicker = ({ label, value, onChange, minDateTime }: DateTimePickerP
 
       <Dialog 
         open={open} 
-        onClose={handleCancel}
-        fullWidth
-        className="w-[100vw]"
-        maxWidth={false}
+        onClose={handleCancel} 
+        fullWidth 
+        maxWidth="sm"
+        PaperProps={{
+          sx: { 
+            margin: 1,
+            width: 'calc(100% - 16px)',
+            maxHeight: '90vh'
+          }
+        }}
       >
         <DialogContent className="p-0">
-          <StaticDateTimePicker
-            value={tempDate || dayjs()}
-            onChange={setTempDate}
-            minDateTime={minDateTime ?? dayjs()}
-          />
+          <div className="origin-top overflow-hidden">
+            <StaticDateTimePicker
+              value={tempDate || dayjs()}
+              onChange={setTempDate}
+              minDateTime={minDateTime ?? dayjs()}
+              slotProps={{
+                actionBar: { actions: [] },
+                layout: {
+                  sx: {
+                    '& .MuiPickersLayout-root': {
+                      fontSize: '1rem'
+                    }
+                  }
+                }
+              }}
+            />
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>CANCEL</Button>

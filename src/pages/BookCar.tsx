@@ -5,6 +5,7 @@ import type { Dayjs } from 'dayjs'
 import { useState } from 'react'
 import BookCarForm from '../components/forms/BookCar'
 import PageTitle from '../components/PageTitle'
+import Patterns from '../components/ui/Patterns'
 
 const BookCar = () => {
   const [startDate, setStartDate] = useState<Dayjs | null>(null)
@@ -21,10 +22,10 @@ const BookCar = () => {
     })
   }
   return (
-    <div className=" flex flex-col">
+    <div className=" flex flex-col relative h-screen overflow-hidden">
+      <Patterns />
       <PageTitle title="Book Car" />
-      <div className="px-6 mt-28 text-white">
-
+      <div className="px-6 max-lg:mt-28 text-white lg:h-screen lg:grid lg:items-center lg:-mt-screen-10">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <BookCarForm
             startDate={startDate}
