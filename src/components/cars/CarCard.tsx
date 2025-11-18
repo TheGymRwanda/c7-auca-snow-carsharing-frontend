@@ -19,8 +19,8 @@ function getOwnerName(owner: unknown, loading: boolean, error: unknown, ownerId:
   return loading
     ? 'Loading...'
     : error
-    ? 'Unknown Owner'
-    : (owner as { name?: string })?.name || `Owner ${ownerId}`
+      ? 'Unknown Owner'
+      : (owner as { name?: string })?.name || `Owner ${ownerId}`
 }
 
 function CarCard({
@@ -37,12 +37,19 @@ function CarCard({
   const { user } = useAuth()
   const { open } = useSidebar()
 
+  const imageUrl = (carType?.imageUrl ?? '').trim()
+  const imageSrc = imageUrl || '/images/car.png'
+
+  if (!car || !carType || !carType.name) {
+    return null
+  }
+
   if (variant === 'home') {
     return (
       <div className="w-70 shrink-0 rounded-2xl bg-primary-dark p-6">
         <div className="mb-4 flex items-center justify-center">
           <img
-            src={carType?.imageUrl || ''}
+            src={imageSrc}
             alt={`${car.name} picture`}
             className="h-24 scale-200 object-contain"
           />
@@ -67,7 +74,7 @@ function CarCard({
         <div className="grid grid-cols-2 gap-20">
           <div className="my-1 flex w-52 items-center justify-center pr-4 max-md:-ml-4">
             <img
-              src={carType?.imageUrl || ''}
+              src={imageSrc}
               alt={`${car.name}'s Picture`}
               className={`max-h-full ${
                 open ? '' : 'lg:scale-115'
