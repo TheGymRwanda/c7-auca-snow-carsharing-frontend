@@ -47,7 +47,6 @@ function Details({ car, carType, ownerLoading, owner }: DetailsProps) {
   if (!car || !carType || !carType.name) {
     return null
   }
-
   return (
     <div className="grid-cols-2 items-center lg:grid lg:px-16 lg:pt-14">
       <div className="mt-4 h-64 w-64 scale-130 justify-self-center md:h-72 md:w-72 lg:ml-32 lg:mt-8 lg:h-96 lg:w-96 lg:scale-180">
