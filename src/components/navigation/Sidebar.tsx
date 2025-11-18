@@ -32,7 +32,7 @@ const Sidebar = () => {
 
       <nav className="mt-screen-10 flex flex-1 flex-col justify-between">
         <ul className="space-y-2 px-2">
-          <Nav to="/car" icon={<CarIcon />} label="Book A Car" open={open} />
+          <Nav to="/available-cars" icon={<CarIcon />} label="Book A Car" open={open} />
           <Nav to="/bookings" icon={<MenuIcon />} label="My Bookings" open={open} />
           <Nav to="/my-cars" icon={<CarsIcon />} label="See My Cars" open={open} />
           <Nav to="/booking/management" icon={<ListIcon />} label="My Cars Bookings" open={open} />
