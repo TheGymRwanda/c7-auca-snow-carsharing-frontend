@@ -83,6 +83,7 @@ function AddNewCarForm({
           text="Cancel"
           isPrimary={false}
           disabled={loading}
+          className="py-3"
           onClick={() => navigate('/my-cars', { replace: true })}
         />
         <Button
@@ -90,6 +91,7 @@ function AddNewCarForm({
           loadingText="Adding Car ..."
           loading={loading}
           isPrimary
+          className="py-3"
           type="submit"
         />
       </div>
