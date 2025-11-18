@@ -65,7 +65,7 @@ module.exports = {
         dim: '2px -4px 49px -3px',
       },
       inset: {
-        22: "22px",
+        22: '22px',
       },
     },
   },
