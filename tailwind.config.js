@@ -52,6 +52,7 @@ module.exports = {
         '-5%': '-5%',
         '18%': '18%',
         '25%': '25%',
+        22: '22px',
       },
       height: {
         '77vh': '77vh',
@@ -63,9 +64,6 @@ module.exports = {
       },
       boxShadow: {
         dim: '2px -4px 49px -3px',
-      },
-      inset: {
-        22: '22px',
       },
     },
   },
