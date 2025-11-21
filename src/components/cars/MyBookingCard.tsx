@@ -1,3 +1,4 @@
+// components/cars/MyBookingCard.tsx
 import { useEffect } from 'react'
 import { BookingState, BookingWithReferences } from '../../util/api'
 import { formatBookingStatus } from '../../util/booking'
@@ -19,6 +20,7 @@ function MyBookingCard({ booking }: Props) {
     closeModal,
     bookingState,
     setBookingState,
+    isLoading,
     handleBookingAction,
     handleCarAction,
   } = useBookingActions(booking.id, booking.car.id)
@@ -53,20 +55,36 @@ function MyBookingCard({ booking }: Props) {
 
           {currentState === BookingState.ACCEPTED && (
             <>
-              <p className="text-amber-200">{formatBookingStatus(currentState)}</p>
-              <Button isPrimary text="Pick Up" onClick={() => handleBookingAction('PICK_UP')} />
+              <p className="px-8 text-amber-200">{formatBookingStatus(currentState)}</p>
+              <Button
+                isPrimary
+                text={isLoading ? 'Loading...' : 'Pick Up'}
+                onClick={() => handleBookingAction('PICK_UP')}
+                disabled={isLoading}
+              />
             </>
           )}
 
           {currentState === BookingState.PICKED_UP && (
             <>
               <p className="text-amber-200">{formatBookingStatus(currentState)}</p>
-              <Button isPrimary text="Unlock" onClick={() => handleCarAction('UNLOCK')} />
-              <Button isPrimary={false} text="Lock" onClick={() => handleCarAction('LOCK')} />
+              <Button
+                isPrimary
+                text={isLoading ? 'Loading...' : 'Unlock'}
+                onClick={() => handleCarAction('UNLOCK')}
+                disabled={isLoading}
+              />
               <Button
                 isPrimary={false}
-                text="Return"
+                text={isLoading ? 'Loading...' : 'Lock'}
+                onClick={() => handleCarAction('LOCK')}
+                disabled={isLoading}
+              />
+              <Button
+                isPrimary={false}
+                text={isLoading ? 'Loading...' : 'Return'}
                 onClick={() => handleBookingAction('RETURN')}
+                disabled={isLoading}
               />
             </>
           )}
