@@ -8,7 +8,6 @@ import { apiUrl } from '../../util/apiUrl'
 import { getAuthToken } from '../../util/auth'
 import { useState } from 'react'
 import MessageModal from '../ui/MessageModal'
-import { getAuthToken } from '../../util/auth'
 
 function ManageBookingCard({
   booking,
