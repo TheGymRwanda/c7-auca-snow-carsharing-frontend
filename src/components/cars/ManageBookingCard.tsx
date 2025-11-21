@@ -7,6 +7,7 @@ import Button from '../ui/Button'
 import { apiUrl } from '../../util/apiUrl'
 import { useState } from 'react'
 import MessageModal from '../ui/MessageModal'
+import { getAuthToken } from '../../util/auth'
 
 function ManageBookingCard({
   booking,
@@ -16,10 +17,16 @@ function ManageBookingCard({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [modalText, setModalText] = useState<string>('')
   const [modalTitle, setModalTitle] = useState<string>('')
+  const token = getAuthToken()
+
   const handleClick = (bookingId: number, action: 'A' | 'D') => {
     const state = action === 'A' ? BookingState.ACCEPTED : BookingState.DECLINED
     axios
-      .patch(`${apiUrl}/bookings/${bookingId}`, { state })
+      .patch(
+        `${apiUrl}/bookings/${bookingId}`,
+        { state },
+        { headers: { Authorization: `Bearer ${token}` } },
+      )
       .then(() => {
         setIsModalOpen(true)
         const textResponse =
