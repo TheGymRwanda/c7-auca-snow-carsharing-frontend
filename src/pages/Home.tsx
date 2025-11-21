@@ -7,9 +7,11 @@ import HomeCarsRow from '../components/home/HomeCarsRow'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-  const [{ data: cars, loading }] = useCars()
+  const [{ data: cars, loading: carsLoading }] = useCars()
   const [{ data: carTypes }] = useCarTypes()
-  const { data: bookings } = useBookings()
+  const { data: bookings, loading: bookingsLoading } = useBookings()
+
+  const loading = carsLoading || bookingsLoading
   const { user } = useAuth()
   const navigate = useNavigate()
 

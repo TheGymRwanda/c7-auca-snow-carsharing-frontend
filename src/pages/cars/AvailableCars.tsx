@@ -51,7 +51,7 @@ function AvailableCars() {
   const { user } = useAuth()
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
   const [{ data: carTypes }] = useCarTypes()
-  const { data: bookings } = useBookings()
+  const { data: bookings, loading: bookingsLoading } = useBookings()
   const { createBooking, loading: bookingLoading } = useCreateBooking()
   const [visibleCount, setVisibleCount] = useState(12)
   const [bookingCarId, setBookingCarId] = useState<number | null>(null)
@@ -99,7 +99,7 @@ function AvailableCars() {
   const visibleCars = availableCars.slice(0, visibleCount)
   const hasMore = availableCars.length > visibleCount
 
-  if (carsLoading) return <LoadingSkeleton />
+  if (carsLoading || bookingsLoading) return <LoadingSkeleton />
   if (carsError) return <ErrorDisplay error={carsError} onRetry={() => refetchCars()} />
   if (!availableCars || availableCars.length === 0) return <EmptyState />
 
