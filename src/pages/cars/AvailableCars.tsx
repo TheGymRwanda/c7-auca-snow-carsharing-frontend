@@ -2,12 +2,48 @@ import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import CarCard from '../../components/cars/CarCard'
-import { useCarTypes, useCars, useCreateBooking } from '../../hooks/index'
+import { useBookings, useCarTypes, useCars, useCreateBooking } from '../../hooks/index'
 import { useAuth } from '../../context/AuthContext'
 import PageTitle from '../../components/PageTitle'
 import Button from '../../components/ui/Button'
 import CarSkeleton from '../../components/ui/CarSkeleton'
 import { CarDto } from '../../util/api'
+
+const LoadingSkeleton = () => (
+  <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
+    <div className="container grid justify-center">
+      <PageTitle title="Available Cars" />
+      <div className="grid px-4 pt-4 max-md:space-y-6 lg:grid-cols-3 lg:gap-6 lg:px-16">
+        <CarSkeleton count={6} />
+      </div>
+    </div>
+  </div>
+)
+
+const ErrorDisplay = ({ error, onRetry }: { error: { message?: string }; onRetry: () => void }) => (
+  <div className="flex min-h-screen items-center justify-center bg-primary">
+    <div className="rounded-lg bg-red-900/20 p-6 text-center backdrop-blur">
+      <h3 className="mb-2 text-xl font-semibold text-white">Failed to Load Cars</h3>
+      <p className="mb-4 text-red-200">
+        {error.message || 'An error occurred while fetching cars'}
+      </p>
+      <button
+        onClick={onRetry}
+        className="rounded-lg bg-white px-6 py-2 text-primary transition hover:bg-gray-100"
+      >
+        Try Again
+      </button>
+    </div>
+  </div>
+)
+
+const EmptyState = () => (
+  <div className="flex min-h-screen items-center justify-center bg-primary">
+    <div className="text-center">
+      <h3 className="mb-2 text-2xl font-semibold text-white">No Cars Available</h3>
+    </div>
+  </div>
+)
 
 function AvailableCars() {
   const location = useLocation()
@@ -15,6 +51,7 @@ function AvailableCars() {
   const { user } = useAuth()
   const [{ data: cars, loading: carsLoading, error: carsError }, refetchCars] = useCars()
   const [{ data: carTypes }] = useCarTypes()
+  const { data: bookings, loading: bookingsLoading } = useBookings()
   const { createBooking, loading: bookingLoading } = useCreateBooking()
   const [visibleCount, setVisibleCount] = useState(12)
   const [bookingCarId, setBookingCarId] = useState<number | null>(null)
@@ -49,40 +86,24 @@ function AvailableCars() {
   }
 
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
-  const visibleCars = cars?.slice(0, visibleCount) || []
-  const hasMore = cars && cars.length > visibleCount
 
-  return carsLoading ? (
-    <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
-      <div className="container grid justify-center">
-        <PageTitle title="Available Cars" />
-        <div className="grid px-4 pt-4 max-md:space-y-6 lg:grid-cols-3 lg:gap-6 lg:px-16">
-          <CarSkeleton count={6} />
-        </div>
-      </div>
-    </div>
-  ) : carsError ? (
-    <div className="flex min-h-screen items-center justify-center bg-primary">
-      <div className="rounded-lg bg-red-900/20 p-6 text-center backdrop-blur">
-        <h3 className="mb-2 text-xl font-semibold text-white">Failed to Load Cars</h3>
-        <p className="mb-4 text-red-200">
-          {carsError.message || 'An error occurred while fetching cars'}
-        </p>
-        <button
-          onClick={() => refetchCars()}
-          className="rounded-lg bg-white px-6 py-2 text-primary transition hover:bg-gray-100"
-        >
-          Try Again
-        </button>
-      </div>
-    </div>
-  ) : !cars || cars.length === 0 ? (
-    <div className="flex min-h-screen items-center justify-center bg-primary">
-      <div className="text-center">
-        <h3 className="mb-2 text-2xl font-semibold text-white">No Cars Available</h3>
-      </div>
-    </div>
-  ) : (
+  const availableCars =
+    cars?.filter(car => {
+      if (car.ownerId === user?.id) return false
+      const isBooked = bookings?.some(
+        booking => booking.carId === car.id && booking.renterId === user?.id,
+      )
+      return !isBooked
+    }) || []
+
+  const visibleCars = availableCars.slice(0, visibleCount)
+  const hasMore = availableCars.length > visibleCount
+
+  if (carsLoading || bookingsLoading) return <LoadingSkeleton />
+  if (carsError) return <ErrorDisplay error={carsError} onRetry={() => refetchCars()} />
+  if (!availableCars || availableCars.length === 0) return <EmptyState />
+
+  return (
     <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
       <div className="grid justify-center">
         <PageTitle title="Available Cars" />
