@@ -15,11 +15,13 @@ const BookCar = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    e.preventDefault()
     if (!startDate || !endDate) return toast.error('Choose both start and end dates')
     if (!endDate.isAfter(startDate)) return toast.error('End must be after start')
     navigate('/available-cars', {
-      state: { start: startDate.toISOString(), end: endDate.toISOString() },
+      state: {
+        start: startDate.toDate().toISOString(),
+        end: endDate.toDate().toISOString(),
+      },
     })
   }
   return (
