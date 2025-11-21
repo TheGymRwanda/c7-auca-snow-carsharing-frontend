@@ -1,5 +1,5 @@
 import { KeyIcon, ProfileIcon } from '../../assets'
-import ButtonComponent from '../ui/Button'
+import Button from '../ui/Button'
 
 interface LoginFormProps {
   error: string
@@ -7,28 +7,28 @@ interface LoginFormProps {
   handleSubmit: (e: React.FormEvent) => void
 }
 
-export default function LoginForm({ error, loading, handleSubmit }: LoginFormProps) {
+function LoginForm({ error, loading, handleSubmit }: LoginFormProps) {
   return (
-    <form onSubmit={handleSubmit} className="space-y-14">
+    <form onSubmit={handleSubmit} className="space-y-14 xl:mx-10">
       <div className="space-y-3">
         <div className="relative">
-          <ProfileIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white" />
+          <ProfileIcon className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-white" />
           <input
             type="text"
             placeholder="Username / e-mail"
             name="username"
-            className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70"
+            className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70 lg:text-base"
             required
           />
         </div>
 
         <div className="relative">
-          <KeyIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 stroke-white" />
+          <KeyIcon className="absolute left-3 top-1/2 size-5 -translate-y-1/2 stroke-white" />
           <input
             type="password"
             placeholder="Password"
             name="password"
-            className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70"
+            className="w-full rounded-full border-none bg-white/20 py-3 pl-12 pr-4 text-white outline-none placeholder:text-white/70 lg:text-base"
             required
           />
         </div>
@@ -36,8 +36,9 @@ export default function LoginForm({ error, loading, handleSubmit }: LoginFormPro
 
       {error && <p className="text-center text-sm text-red-200">{error}</p>}
 
-      <ButtonComponent
+      <Button
         text="Login"
+        className="py-3 lg:text-base"
         isPrimary={true}
         loadingText="Logging In ..."
         loading={loading}
@@ -45,3 +46,5 @@ export default function LoginForm({ error, loading, handleSubmit }: LoginFormPro
     </form>
   )
 }
+
+export default LoginForm
