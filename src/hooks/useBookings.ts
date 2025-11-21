@@ -22,37 +22,65 @@ function useBookingData() {
       setLoading(true)
       setError(null)
 
-      const fetchCarAndUser = async (booking: BookingDto) => {
-        const [renterResponse, carResponse] = await Promise.all([
-          axios<UserDto>({
-            url: `${apiUrl}/users/${booking.renterId}`,
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          axios<CarDto>({
-            url: `${apiUrl}/cars/${booking.carId}`,
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-        ])
-
-        const ownerResponse = await axios<UserDto>({
-          url: `${apiUrl}/users/${carResponse.data.ownerId}`,
-          headers: { Authorization: `Bearer ${token}` },
-        })
-
-        return {
-          ...booking,
-          car: {
-            ...carResponse.data,
-            owner: ownerResponse.data,
-          },
-          renter: renterResponse.data,
-        }
-      }
-
       const fetchAllData = async () => {
         try {
-          const bookingPromises = bookingsData.map(fetchCarAndUser)
-          const bookingDetails = await Promise.all(bookingPromises)
+          const renterIds = [...new Set(bookingsData.map(b => b.renterId))]
+          const carIds = [...new Set(bookingsData.map(b => b.carId))]
+
+          const [rentersResponses, carsResponses] = await Promise.all([
+            Promise.all(
+              renterIds.map(id =>
+                axios<UserDto>({
+                  url: `${apiUrl}/users/${id}`,
+                  headers: { Authorization: `Bearer ${token}` },
+                }),
+              ),
+            ),
+            Promise.all(
+              carIds.map(id =>
+                axios<CarDto>({
+                  url: `${apiUrl}/cars/${id}`,
+                  headers: { Authorization: `Bearer ${token}` },
+                }),
+              ),
+            ),
+          ])
+
+          const ownerIds = [...new Set(carsResponses.map(r => r.data.ownerId))]
+
+          const ownersResponses = await Promise.all(
+            ownerIds.map(id =>
+              axios<UserDto>({
+                url: `${apiUrl}/users/${id}`,
+                headers: { Authorization: `Bearer ${token}` },
+              }),
+            ),
+          )
+
+          const rentersMap = new Map(rentersResponses.map(r => [r.data.id, r.data]))
+          const carsMap = new Map(carsResponses.map(r => [r.data.id, r.data]))
+          const ownersMap = new Map(ownersResponses.map(r => [r.data.id, r.data]))
+
+          const bookingDetails = bookingsData.map(booking => {
+            const car = carsMap.get(booking.carId)
+            const renter = rentersMap.get(booking.renterId)
+
+            if (!car || !renter) {
+              throw new Error('Missing car or renter data')
+            }
+
+            const owner = ownersMap.get(car.ownerId)
+            if (!owner) {
+              throw new Error('Missing owner data')
+            }
+
+            return {
+              ...booking,
+              car: { ...car, owner },
+              renter,
+            }
+          })
+
           setData(bookingDetails)
           setLoading(false)
         } catch (err) {

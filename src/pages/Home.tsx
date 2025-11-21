@@ -17,7 +17,6 @@ const Home = () => {
 
   const myCars = cars?.filter(c => c.ownerId === user?.id) || []
 
-  // Filter available cars (exclude user's own cars and booked cars)
   const availableCars =
     cars?.filter(car => {
       if (car.ownerId === user?.id) return false
