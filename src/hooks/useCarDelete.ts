@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import axios from 'axios'
 import { apiUrl } from '../util/apiUrl'
-import { getAuthToken } from '../util/auth'
+import axios, { getErrorMessage } from '../util/apiClient'
 
 export function useCarDelete(refetch: () => Promise<void>) {
   const [deletingCar, setDeletingCar] = useState<number | null>(null)
@@ -17,14 +16,12 @@ export function useCarDelete(refetch: () => Promise<void>) {
     if (!carToDelete) return
     setDeletingCar(carToDelete)
     try {
-      const res = await axios.delete(`${apiUrl}/cars/${carToDelete}`, {
-        headers: { Authorization: `Bearer ${getAuthToken()}` },
-      })
+      const res = await axios.delete(`${apiUrl}/cars/${carToDelete}`)
       if (res.status !== 200) {
         return new Error('Failed to delete the car')
       }
     } catch (error) {
-      console.error('Error from deleting: ', error)
+      console.error('Error from deleting: ', getErrorMessage(error))
     } finally {
       await refetch()
       setDeletingCar(null)

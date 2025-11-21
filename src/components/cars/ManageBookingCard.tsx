@@ -19,6 +19,8 @@ function ManageBookingCard({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [modalText, setModalText] = useState<string>('')
   const [modalTitle, setModalTitle] = useState<string>('')
+  const token = getAuthToken()
+
   const handleClick = (bookingId: number, action: 'A' | 'D') => {
     const state = action === 'A' ? BookingState.ACCEPTED : BookingState.DECLINED
     axios
