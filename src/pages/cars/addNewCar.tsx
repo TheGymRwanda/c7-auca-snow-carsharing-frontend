@@ -6,6 +6,7 @@ import { getAuthToken } from '../../util/auth'
 import { useCarTypes } from '../../hooks'
 import AddNewCarForm from '../../components/forms/AddNewCar'
 import Patterns from '../../components/ui/Patterns'
+import { toast } from 'react-toastify'
 
 const AddNewCar = () => {
   const [carTypeId, setCarTypeId] = useState(0)
@@ -40,6 +41,7 @@ const AddNewCar = () => {
       navigate('/my-cars')
     } catch (err) {
       console.error('Error creating car:', err)
+      toast.error('Failed to add the Car')
     } finally {
       setLoading(false)
     }
