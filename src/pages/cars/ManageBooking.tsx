@@ -9,7 +9,7 @@ import { BookingState, BookingWithReferences } from '../../util/api'
 export default function ManageBooking() {
   const navigate = useNavigate()
   const { user } = useAuth()
-  const { data: bookings, loading, error } = useBookings()
+  const { data: bookings, loading, error, refetch } = useBookings()
   const [{ data: carTypes }] = useCarTypes()
 
   if (loading) return <Loader />
@@ -50,7 +50,7 @@ export default function ManageBooking() {
             {bookingsForCarOfCurrentUser.map(booking => (
               <>
                 <li key={booking.id}>
-                  <ManageBookingCard booking={booking} />
+                  <ManageBookingCard booking={booking} onUpdate={refetch} />
                 </li>
                 <hr />
               </>

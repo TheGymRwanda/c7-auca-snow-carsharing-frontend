@@ -11,9 +11,11 @@ function useBookingData() {
   const [error, setError] = useState<unknown>(null)
   const token = getAuthToken()
 
-  const [{ data: bookingsData, loading: bookingsLoading, error: bookingsError }] = useAxios<
-    BookingDto[]
-  >({ url: `${apiUrl}/bookings`, headers: { Authorization: `Bearer ${token}` } })
+  const [{ data: bookingsData, loading: bookingsLoading, error: bookingsError }, refetchBookings] =
+    useAxios<BookingDto[]>({
+      url: `${apiUrl}/bookings`,
+      headers: { Authorization: `Bearer ${token}` },
+    })
 
   useEffect(() => {
     if (bookingsData) {
@@ -21,34 +23,30 @@ function useBookingData() {
       setError(null)
 
       const fetchCarAndUser = async (booking: BookingDto) => {
-        const renterResponse = await axios<UserDto>({
-          url: `${apiUrl}/users/${booking.renterId}`,
+        const [renterResponse, carResponse] = await Promise.all([
+          axios<UserDto>({
+            url: `${apiUrl}/users/${booking.renterId}`,
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          axios<CarDto>({
+            url: `${apiUrl}/cars/${booking.carId}`,
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+        ])
+
+        const ownerResponse = await axios<UserDto>({
+          url: `${apiUrl}/users/${carResponse.data.ownerId}`,
           headers: { Authorization: `Bearer ${token}` },
         })
-        const renterData = renterResponse.data
 
-        const carResponse = await axios<CarDto>({
-          url: `${apiUrl}/cars/${booking.carId}`,
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        const carData = carResponse.data
-
-        const userResponse = await axios<UserDto>({
-          url: `${apiUrl}/users/${carData.ownerId}`,
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        const userData = userResponse.data
-
-        const bookingWithDetails = {
+        return {
           ...booking,
           car: {
-            ...carData,
-            owner: userData,
+            ...carResponse.data,
+            owner: ownerResponse.data,
           },
-          renter: renterData,
+          renter: renterResponse.data,
         }
-
-        return bookingWithDetails
       }
 
       const fetchAllData = async () => {
@@ -72,7 +70,11 @@ function useBookingData() {
 
   const isLoading = bookingsLoading || loading
 
-  return { data, loading: isLoading, error }
+  const refetch = () => {
+    refetchBookings()
+  }
+
+  return { data, loading: isLoading, error, refetch }
 }
 
 export default useBookingData
