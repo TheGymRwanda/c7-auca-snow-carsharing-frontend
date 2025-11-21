@@ -2,16 +2,30 @@ import Button from '../components/ui/Button'
 import { useAuth } from '../context/AuthContext'
 import useCars from '../hooks/useCars'
 import useCarTypes from '../hooks/useCarTypes'
+import { useBookings } from '../hooks/index'
 import HomeCarsRow from '../components/home/HomeCarsRow'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-  const [{ data: cars, loading }] = useCars()
+  const [{ data: cars, loading: carsLoading }] = useCars()
   const [{ data: carTypes }] = useCarTypes()
+  const { data: bookings, loading: bookingsLoading } = useBookings()
+
+  const loading = carsLoading || bookingsLoading
   const { user } = useAuth()
   const navigate = useNavigate()
 
   const myCars = cars?.filter(c => c.ownerId === user?.id) || []
+
+  const availableCars =
+    cars?.filter(car => {
+      if (car.ownerId === user?.id) return false
+
+      const isBooked = bookings?.some(
+        booking => booking.carId === car.id && booking.renterId === user?.id,
+      )
+      return !isBooked
+    }) || []
 
   return (
     <div className="flex flex-col justify-start bg-primary-dark text-center text-white max-lg:mt-28 lg:text-start">
@@ -52,10 +66,10 @@ const Home = () => {
         <div className="max-lg:hidden">
           <HomeCarsRow
             title="Available Cars"
-            cars={cars}
+            cars={availableCars}
             loading={loading}
             carTypes={carTypes}
-            seeMoreLink="/car"
+            seeMoreLink="/book-car"
           />
           <HomeCarsRow
             title="My Cars"

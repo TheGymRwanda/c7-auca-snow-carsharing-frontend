@@ -5,14 +5,17 @@ import { formatBookingStatus } from '../../util/booking'
 import { convertMonth, timeFormatter } from '../../util/date'
 import Button from '../ui/Button'
 import { apiUrl } from '../../util/apiUrl'
+import { getAuthToken } from '../../util/auth'
 import { useState } from 'react'
 import MessageModal from '../ui/MessageModal'
 import { getAuthToken } from '../../util/auth'
 
 function ManageBookingCard({
   booking,
+  onUpdate,
 }: {
   booking: BookingWithReferences & { imageUrl: string | null; state: BookingState }
+  onUpdate?: () => void
 }) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [modalText, setModalText] = useState<string>('')
@@ -25,7 +28,9 @@ function ManageBookingCard({
       .patch(
         `${apiUrl}/bookings/${bookingId}`,
         { state },
-        { headers: { Authorization: `Bearer ${token}` } },
+        {
+          headers: { Authorization: `Bearer ${getAuthToken()}` },
+        },
       )
       .then(() => {
         setIsModalOpen(true)
@@ -33,6 +38,7 @@ function ManageBookingCard({
           action === 'A' ? 'Booking successfully accepted' : 'Booking successfully declined'
         setModalText(textResponse)
         setModalTitle('Success')
+        onUpdate?.()
       })
       .catch(error => {
         setIsModalOpen(true)

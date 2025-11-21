@@ -51,7 +51,7 @@ function LandingPage() {
         </div>
         <div className="relative hidden h-screen w-1/2 lg:flex">
           <img
-            className="left--15% top--2% xl:-left-18% xl:-top-5% absolute h-77vh w-39vw max-lg:h-77vh"
+            className="absolute left--15% top--2% h-77vh w-39vw max-lg:h-77vh xl:-left-18% xl:-top-5%"
             src="https://res.cloudinary.com/dgwh59vry/image/upload/c_pad,ar_1:1/v1725970827/Hyundai-Tucson-Car_o70jlc.webp"
             alt="Hyundai Tucson car available for sharing"
             loading="eager"
@@ -60,7 +60,7 @@ function LandingPage() {
             height="624"
           />
           <img
-            className="left-18% top-25% absolute h-79vh w-39vw max-lg:h-77vh"
+            className="absolute left-18% top-25% h-79vh w-39vw max-lg:h-77vh"
             src="https://res.cloudinary.com/dgwh59vry/image/upload/c_pad,ar_1:1/v1725970842/Mercedes-Benz-Car_vsm9cu.webp"
             alt="Mercedes-Benz car available for sharing"
             loading="lazy"
