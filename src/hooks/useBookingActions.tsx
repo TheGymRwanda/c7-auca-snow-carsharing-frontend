@@ -1,32 +1,13 @@
-import axios, { AxiosError } from 'axios'
 import { useState } from 'react'
 import { BookingState, CarState } from '../util/api'
 import { apiUrl } from '../util/apiUrl'
+import axios, { getErrorMessage } from '../util/apiClient'
 import { getAuthToken } from '../util/auth'
 
 type ModalState = {
   isOpen: boolean
   text: string
   title: string
-}
-
-const getErrorMessage = (error: AxiosError): string => {
-  switch (error.response?.status) {
-    case 400:
-      return 'Invalid request. Please try again.'
-    case 401:
-      return 'Session expired. Please login again.'
-    case 403:
-      return 'You are not allowed to perform this action.'
-    case 404:
-      return 'Booking not found.'
-    case 409:
-      return 'This action is not available for the current booking state.'
-    case 500:
-      return 'Server error. Please try again later.'
-    default:
-      return 'An unexpected error occurred.'
-  }
 }
 
 export function useBookingActions(bookingId: number, carId: number) {
@@ -63,9 +44,7 @@ export function useBookingActions(bookingId: number, carId: number) {
           action === 'PICK_UP' ? 'Car picked up successfully' : 'Car returned successfully'
         showModal('Success', text)
       })
-      .catch((error: AxiosError) => {
-        showModal('Error', getErrorMessage(error))
-      })
+      .catch(error => showModal('Error', getErrorMessage(error)))
       .finally(() => setIsLoading(false))
   }
 
@@ -82,9 +61,7 @@ export function useBookingActions(bookingId: number, carId: number) {
         const text = action === 'LOCK' ? 'Car locked successfully' : 'Car unlocked successfully'
         showModal('Success', text)
       })
-      .catch((error: AxiosError) => {
-        showModal('Error', getErrorMessage(error))
-      })
+      .catch(error => showModal('Error', getErrorMessage(error)))
       .finally(() => setIsLoading(false))
   }
 
