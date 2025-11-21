@@ -1,7 +1,7 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { BookingState, CarState } from '../util/api'
 import { apiUrl } from '../util/apiUrl'
+import axios, { getErrorMessage } from '../util/apiClient'
 
 type ModalState = {
   isOpen: boolean
@@ -35,7 +35,7 @@ export function useBookingActions(bookingId: number, carId: number) {
           action === 'PICK_UP' ? 'Car picked up successfully' : 'Car returned successfully'
         showModal('Success', text)
       })
-      .catch(error => showModal('Error', error.message))
+      .catch(error => showModal('Error', getErrorMessage(error)))
   }
 
   const handleCarAction = (action: 'LOCK' | 'UNLOCK') => {
@@ -46,7 +46,7 @@ export function useBookingActions(bookingId: number, carId: number) {
         const text = action === 'LOCK' ? 'Car locked successfully' : 'Car unlocked successfully'
         showModal('Success', text)
       })
-      .catch(error => showModal('Error', error.message))
+      .catch(error => showModal('Error', getErrorMessage(error)))
   }
 
   return {

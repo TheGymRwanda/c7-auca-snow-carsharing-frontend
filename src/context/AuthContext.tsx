@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { getAuthToken } from '../util/auth'
 import { UserDto } from '../util/api'
-import { apiUrl } from '../util/apiUrl'
-import axios from 'axios'
+import axios, { getErrorMessage } from '../util/apiClient'
 
 interface AuthContextType {
   user: UserDto | null
@@ -26,12 +25,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const response = await axios.get<UserDto>(`${apiUrl}/auth`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      const response = await axios.get<UserDto>('/auth')
       setUser(response.data)
     } catch (error) {
-      console.error('Failed to fetch user:', error)
+      console.error('Failed to fetch user:', getErrorMessage(error))
       localStorage.removeItem('token')
       setUser(null)
     } finally {
