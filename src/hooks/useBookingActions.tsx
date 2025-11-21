@@ -1,12 +1,32 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useState } from 'react'
 import { BookingState, CarState } from '../util/api'
 import { apiUrl } from '../util/apiUrl'
+import { getAuthToken } from '../util/auth'
 
 type ModalState = {
   isOpen: boolean
   text: string
   title: string
+}
+
+const getErrorMessage = (error: AxiosError): string => {
+  switch (error.response?.status) {
+    case 400:
+      return 'Invalid request. Please try again.'
+    case 401:
+      return 'Session expired. Please login again.'
+    case 403:
+      return 'You are not allowed to perform this action.'
+    case 404:
+      return 'Booking not found.'
+    case 409:
+      return 'This action is not available for the current booking state.'
+    case 500:
+      return 'Server error. Please try again later.'
+    default:
+      return 'An unexpected error occurred.'
+  }
 }
 
 export function useBookingActions(bookingId: number, carId: number) {
@@ -16,6 +36,9 @@ export function useBookingActions(bookingId: number, carId: number) {
     title: '',
   })
   const [bookingState, setBookingState] = useState<BookingState | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const token = getAuthToken()
 
   const showModal = (title: string, text: string) => {
     setModalState({ isOpen: true, title, text })
@@ -27,26 +50,42 @@ export function useBookingActions(bookingId: number, carId: number) {
 
   const handleBookingAction = (action: 'PICK_UP' | 'RETURN') => {
     const state = action === 'PICK_UP' ? BookingState.PICKED_UP : BookingState.RETURNED
+    setIsLoading(true)
     axios
-      .patch(`${apiUrl}/bookings/${bookingId}`, { state })
+      .patch(
+        `${apiUrl}/bookings/${bookingId}`,
+        { state },
+        { headers: { Authorization: `Bearer ${token}` } },
+      )
       .then(() => {
         setBookingState(state)
         const text =
           action === 'PICK_UP' ? 'Car picked up successfully' : 'Car returned successfully'
         showModal('Success', text)
       })
-      .catch(error => showModal('Error', error.message))
+      .catch((error: AxiosError) => {
+        showModal('Error', getErrorMessage(error))
+      })
+      .finally(() => setIsLoading(false))
   }
 
   const handleCarAction = (action: 'LOCK' | 'UNLOCK') => {
     const state = action === 'LOCK' ? CarState.LOCKED : CarState.UNLOCKED
+    setIsLoading(true)
     axios
-      .patch(`${apiUrl}/cars/${carId}`, { state })
+      .patch(
+        `${apiUrl}/cars/${carId}`,
+        { state },
+        { headers: { Authorization: `Bearer ${token}` } },
+      )
       .then(() => {
         const text = action === 'LOCK' ? 'Car locked successfully' : 'Car unlocked successfully'
         showModal('Success', text)
       })
-      .catch(error => showModal('Error', error.message))
+      .catch((error: AxiosError) => {
+        showModal('Error', getErrorMessage(error))
+      })
+      .finally(() => setIsLoading(false))
   }
 
   return {
@@ -54,6 +93,7 @@ export function useBookingActions(bookingId: number, carId: number) {
     closeModal,
     bookingState,
     setBookingState,
+    isLoading,
     handleBookingAction,
     handleCarAction,
   }
