@@ -38,7 +38,7 @@ export default function ManageBooking() {
           <ul className="mt-10 space-y-4 px-5">
             {bookingsForCarOfCurrentUser.map(booking => (
               <>
-                <li key={booking.id}>
+                <li className="pt-14" key={booking.id}>
                   <ManageBookingCard booking={booking} onUpdate={refetch} />
                 </li>
                 <hr />

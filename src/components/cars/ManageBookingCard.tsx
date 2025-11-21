@@ -67,28 +67,42 @@ function ManageBookingCard({
   }
   return (
     <>
-      <div className="flex flex-col justify-center">
-        <div className="w-72 text-text">
-          <div className="flex justify-center  ">
-            <img src={booking.imageUrl || undefined} alt="" className="w-60 " />
-          </div>
-          <div>
+      <div className="flex flex-col justify-center text-gray-100 lg:grid lg:grid-cols-2">
+        <div className="flex justify-center">
+          <img
+            src={booking.imageUrl || undefined}
+            alt=""
+            className="w-60 scale-115 lg:w-72 lg:scale-150 "
+          />
+        </div>
+        <div>
+          <div className="px-6">
             <p className="font-lora text-xl font-medium">{booking.car.name}</p>
             <p>Requested by: {booking.renter.name}</p>
           </div>
-          <div className="flex justify-between py-5 text-sm">
+          <div className="flex justify-between px-6 py-5 text-sm">
             <DateDisplay date={booking.startDate} label="from" />
             <DateDisplay date={booking.endDate} label="to" />
           </div>
+          {booking.state === BookingState.PENDING ? (
+            <div className="flex flex-col items-center justify-center gap-2 py-5">
+              <Button
+                isPrimary
+                text="Accept"
+                className="py-3"
+                onClick={() => handleClick(booking.id, 'A')}
+              />
+              <Button
+                isPrimary={false}
+                text="Decline"
+                className="py-3"
+                onClick={() => handleClick(booking.id, 'D')}
+              />
+            </div>
+          ) : (
+            <p className="px-6 text-amber-200">{formatBookingStatus(booking.state)}</p>
+          )}
         </div>
-        {booking.state === BookingState.PENDING ? (
-          <div className="flex flex-col items-center justify-center gap-2 py-5">
-            <Button isPrimary text="Accept" onClick={() => handleClick(booking.id, 'A')} />
-            <Button isPrimary={false} text="Decline" onClick={() => handleClick(booking.id, 'D')} />
-          </div>
-        ) : (
-          <p className="text-amber-200">{formatBookingStatus(booking.state)}</p>
-        )}
       </div>
       <ConfirmModal
         isOpen={isModalOpen}

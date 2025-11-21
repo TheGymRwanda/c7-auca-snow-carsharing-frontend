@@ -37,7 +37,7 @@ function ConfirmModal({
               isPrimary={false}
               onClick={onClick}
               disabled={loading}
-              className="bg-primary-light"
+              className="bg-primary-light py-3"
             />
           ) : (
             <>
@@ -55,6 +55,7 @@ function ConfirmModal({
                   loadingText="Deleting ..."
                   loading={loading}
                   variant="delete"
+                  className="py-3"
                   onClick={onConfirm}
                   disabled={loading}
                 />
@@ -66,6 +67,7 @@ function ConfirmModal({
                   loadingText={`${text}ing ...`}
                   loading={loading}
                   onClick={onConfirm}
+                  className="py-3"
                   disabled={loading}
                 />
               )}
