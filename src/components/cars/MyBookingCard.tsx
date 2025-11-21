@@ -1,10 +1,9 @@
-// components/cars/MyBookingCard.tsx
 import { useEffect } from 'react'
 import { BookingState, BookingWithReferences } from '../../util/api'
 import { formatBookingStatus } from '../../util/booking'
 import { useBookingActions } from '../../hooks/useBookingActions'
 import Button from '../ui/Button'
-import MessageModal from '../ui/MessageModal'
+import ConfirmModal from '../ui/ConfirmModal'
 import BookingDateInfo from './BookingDateInfo'
 
 type Props = {
@@ -95,11 +94,12 @@ function MyBookingCard({ booking }: Props) {
         </div>
       </div>
 
-      <MessageModal
+      <ConfirmModal
         isOpen={modalState.isOpen}
         message={modalState.text}
         title={modalState.title}
         onClick={closeModal}
+        variant="message"
       />
     </>
   )

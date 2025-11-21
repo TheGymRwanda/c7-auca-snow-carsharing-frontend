@@ -19,6 +19,7 @@ module.exports = {
         text: {
           DEFAULT: '#F9FAFB',
         },
+        delete: '#FFC28A',
       },
       width: {
         70: '17rem',

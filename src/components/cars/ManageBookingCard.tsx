@@ -7,7 +7,21 @@ import Button from '../ui/Button'
 import { apiUrl } from '../../util/apiUrl'
 import { getAuthToken } from '../../util/auth'
 import { useState } from 'react'
-import MessageModal from '../ui/MessageModal'
+import ConfirmModal from '../ui/ConfirmModal'
+
+const DateDisplay = ({ date, label }: { date: Date; label: string }) => (
+  <div>
+    <p>{label}</p>
+    <div className="flex items-center gap-2 py-2">
+      <CalendarIcon />
+      <p>{`${date.getDate()} ${convertMonth(date.getMonth())} ${date.getFullYear()}`}</p>
+    </div>
+    <div className="flex items-center gap-2">
+      <TimeIcon />
+      <p>{timeFormatter(date)}</p>
+    </div>
+  </div>
+)
 
 function ManageBookingCard({
   booking,
@@ -19,30 +33,36 @@ function ManageBookingCard({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [modalText, setModalText] = useState<string>('')
   const [modalTitle, setModalTitle] = useState<string>('')
+  const [pendingAction, setPendingAction] = useState<(() => void) | null>(null)
+  const [text, setText] = useState('')
   const token = getAuthToken()
 
   const handleClick = (bookingId: number, action: 'A' | 'D') => {
+    const actionText = action === 'A' ? 'accept' : 'decline'
+    setText(actionText)
+    setModalTitle(`Confirm ${actionText}`)
+    setModalText(`Are you sure you want to ${actionText} this booking?`)
+    setPendingAction(() => () => executeAction(bookingId, action))
+    setIsModalOpen(true)
+  }
+
+  const executeAction = (bookingId: number, action: 'A' | 'D') => {
     const state = action === 'A' ? BookingState.ACCEPTED : BookingState.DECLINED
     axios
       .patch(
         `${apiUrl}/bookings/${bookingId}`,
         { state },
         {
-          headers: { Authorization: `Bearer ${getAuthToken()}` },
+          headers: { Authorization: `Bearer ${token}` },
         },
       )
       .then(() => {
-        setIsModalOpen(true)
-        const textResponse =
-          action === 'A' ? 'Booking successfully accepted' : 'Booking successfully declined'
-        setModalText(textResponse)
-        setModalTitle('Success')
         onUpdate?.()
+        setIsModalOpen(false)
       })
       .catch(error => {
-        setIsModalOpen(true)
-        setModalText(error.message)
-        setModalTitle('Error')
+        console.error('Error updating booking:', error)
+        setIsModalOpen(false)
       })
   }
   return (
@@ -57,34 +77,8 @@ function ManageBookingCard({
             <p>Requested by: {booking.renter.name}</p>
           </div>
           <div className="flex justify-between py-5 text-sm">
-            <div>
-              <p>from</p>
-              <div className="flex items-center gap-2 py-2">
-                <CalendarIcon />
-                <p>{`${booking.startDate.getDate()}  ${convertMonth(
-                  booking.startDate.getMonth(),
-                )} ${booking.startDate.getFullYear()}`}</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <TimeIcon />
-                <p>{timeFormatter(booking.startDate)}</p>
-              </div>
-            </div>
-            <div>
-              <p>to</p>
-              <div className="flex items-center gap-2 py-2">
-                <CalendarIcon />
-                <p>
-                  {`${booking.endDate.getDate()} ${convertMonth(
-                    booking.endDate.getMonth(),
-                  )} ${booking.endDate.getFullYear()}`}
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <TimeIcon />
-                <p>{timeFormatter(booking.endDate)}</p>
-              </div>
-            </div>
+            <DateDisplay date={booking.startDate} label="from" />
+            <DateDisplay date={booking.endDate} label="to" />
           </div>
         </div>
         {booking.state === BookingState.PENDING ? (
@@ -96,14 +90,15 @@ function ManageBookingCard({
           <p className="text-amber-200">{formatBookingStatus(booking.state)}</p>
         )}
       </div>
-      {
-        <MessageModal
-          isOpen={isModalOpen}
-          message={modalText}
-          onClick={() => setIsModalOpen(false)}
-          title={modalTitle}
-        />
-      }
+      <ConfirmModal
+        isOpen={isModalOpen}
+        title={modalTitle}
+        text={text}
+        message={modalText}
+        variant="default"
+        onConfirm={() => pendingAction?.()}
+        onCancel={() => setIsModalOpen(false)}
+      />
     </>
   )
 }
