@@ -31,7 +31,7 @@ function MyBookingCard({ booking }: Props) {
 
   return (
     <>
-      <div className="flex flex-col justify-center md:flex-row md:items-center md:gap-8">
+      <div className="">
         <div className="w-72 text-text md:w-80">
           <div className="flex justify-center">
             <img src={booking.imageUrl || undefined} alt="" className="w-60 md:w-72" />
@@ -46,7 +46,7 @@ function MyBookingCard({ booking }: Props) {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-2 md:min-w-40">
+        <div className="">
           {currentState === BookingState.PENDING && (
             <p className="text-error">Booking request pending.</p>
           )}
