@@ -69,10 +69,9 @@ export type BookingWithReferences = BookingDto & {
 }
 
 interface NewBookingDto {
-  startDate: Date
-  endDate: Date
   carId: number
-  renterId: number
+  startDate: string
+  endDate: string
 }
 
 interface ChangeBookingStateDto {

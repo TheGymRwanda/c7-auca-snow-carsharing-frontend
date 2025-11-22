@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ChevronBackIcon } from '../assets/index'
-import { useCars, useCarTypes, useUser } from '../hooks/index'
-import Details from '../components/cars/Details'
+import { useCars, useCarTypes, useUser } from '../../hooks/index'
+import Details from '../../components/cars/Details'
+import PageTitle from '../../components/PageTitle'
+import Patterns from '../../components/ui/Patterns'
 
 const CarDetails = () => {
   const { id } = useParams<{ id: string }>()
@@ -19,7 +20,7 @@ const CarDetails = () => {
     return (
       <div className="mt-10 flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
+          <div className="mx-auto mb-4 size-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
           <p className="text-lg text-white">Loading ...</p>
         </div>
       </div>
@@ -43,15 +44,9 @@ const CarDetails = () => {
   }
 
   return (
-    <div className=" min-h-screen space-y-4 overflow-y-hidden px-6 pt-20 text-[#F9FAFB]">
-      <div className="flex content-center text-center">
-        <button onClick={() => navigate(-1)} className="cursor-pointer transition hover:opacity-80">
-          <ChevronBackIcon className="h-5 w-5 text-accent" />
-        </button>
-        <div className="w-full text-center">
-          <h1 className="font-lora text-3xl uppercase text-gray-200">Details</h1>
-        </div>
-      </div>
+    <div className=" relative min-h-screen space-y-4 overflow-hidden text-[#F9FAFB]  max-lg:mx-auto max-lg:max-w-md ">
+      <Patterns />
+      <PageTitle title="Details" />
       <Details car={car} carType={carType} owner={owner} ownerLoading={ownerLoading} />
     </div>
   )

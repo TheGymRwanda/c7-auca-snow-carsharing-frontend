@@ -1,9 +1,9 @@
-import axios from 'axios'
 import useAxios from 'axios-hooks'
 import { useEffect, useState } from 'react'
 import { BookingDto, BookingWithReferences, CarDto, UserDto } from '../util/api'
 import { apiUrl } from '../util/apiUrl'
 import { getAuthToken } from '../util/auth'
+import axios from '../util/apiClient'
 
 function useBookingData() {
   const [data, setData] = useState<BookingWithReferences[] | null>(null)
@@ -11,50 +11,76 @@ function useBookingData() {
   const [error, setError] = useState<unknown>(null)
   const token = getAuthToken()
 
-  const [{ data: bookingsData, loading: bookingsLoading, error: bookingsError }] = useAxios<
-    BookingDto[]
-  >({ url: `${apiUrl}/bookings`, headers: { Authorization: `Bearer ${token}` } })
+  const [{ data: bookingsData, loading: bookingsLoading, error: bookingsError }, refetchBookings] =
+    useAxios<BookingDto[]>({
+      url: `${apiUrl}/bookings`,
+      headers: { Authorization: `Bearer ${token}` },
+    })
 
   useEffect(() => {
     if (bookingsData) {
       setLoading(true)
       setError(null)
 
-      const fetchCarAndUser = async (booking: BookingDto) => {
-        const renterResponse = await axios<UserDto>({
-          url: `${apiUrl}/users/${booking.renterId}`,
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        const renterData = renterResponse.data
-
-        const carResponse = await axios<CarDto>({
-          url: `${apiUrl}/cars/${booking.carId}`,
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        const carData = carResponse.data
-
-        const userResponse = await axios<UserDto>({
-          url: `${apiUrl}/users/${carData.ownerId}`,
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        const userData = userResponse.data
-
-        const bookingWithDetails = {
-          ...booking,
-          car: {
-            ...carData,
-            owner: userData,
-          },
-          renter: renterData,
-        }
-
-        return bookingWithDetails
-      }
-
       const fetchAllData = async () => {
         try {
-          const bookingPromises = bookingsData.map(fetchCarAndUser)
-          const bookingDetails = await Promise.all(bookingPromises)
+          const renterIds = [...new Set(bookingsData.map(b => b.renterId))]
+          const carIds = [...new Set(bookingsData.map(b => b.carId))]
+
+          const [rentersResponses, carsResponses] = await Promise.all([
+            Promise.all(
+              renterIds.map(id =>
+                axios<UserDto>({
+                  url: `${apiUrl}/users/${id}`,
+                  headers: { Authorization: `Bearer ${token}` },
+                }),
+              ),
+            ),
+            Promise.all(
+              carIds.map(id =>
+                axios<CarDto>({
+                  url: `${apiUrl}/cars/${id}`,
+                  headers: { Authorization: `Bearer ${token}` },
+                }),
+              ),
+            ),
+          ])
+
+          const ownerIds = [...new Set(carsResponses.map(r => r.data.ownerId))]
+
+          const ownersResponses = await Promise.all(
+            ownerIds.map(id =>
+              axios<UserDto>({
+                url: `${apiUrl}/users/${id}`,
+                headers: { Authorization: `Bearer ${token}` },
+              }),
+            ),
+          )
+
+          const rentersMap = new Map(rentersResponses.map(r => [r.data.id, r.data]))
+          const carsMap = new Map(carsResponses.map(r => [r.data.id, r.data]))
+          const ownersMap = new Map(ownersResponses.map(r => [r.data.id, r.data]))
+
+          const bookingDetails = bookingsData.map(booking => {
+            const car = carsMap.get(booking.carId)
+            const renter = rentersMap.get(booking.renterId)
+
+            if (!car || !renter) {
+              throw new Error('Missing car or renter data')
+            }
+
+            const owner = ownersMap.get(car.ownerId)
+            if (!owner) {
+              throw new Error('Missing owner data')
+            }
+
+            return {
+              ...booking,
+              car: { ...car, owner },
+              renter,
+            }
+          })
+
           setData(bookingDetails)
           setLoading(false)
         } catch (err) {
@@ -72,7 +98,11 @@ function useBookingData() {
 
   const isLoading = bookingsLoading || loading
 
-  return { data, loading: isLoading, error }
+  const refetch = () => {
+    refetchBookings()
+  }
+
+  return { data, loading: isLoading, error, refetch }
 }
 
 export default useBookingData
