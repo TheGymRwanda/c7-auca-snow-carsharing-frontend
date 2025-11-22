@@ -1,6 +1,6 @@
 import { useBookings, useCarTypes } from '../../hooks'
 import { useAuth } from '../../context/AuthContext'
-import Loader from '../../components/ui/Loader'
+import BookingSkeleton from '../../components/cars/BookingSkeleton'
 import { BookingState, BookingWithReferences } from '../../util/api'
 import BookingCard from '../../components/cars/BookingCard'
 import PageTitle from '../../components/PageTitle'
@@ -10,7 +10,25 @@ function ManageBooking() {
   const { data: bookings, loading, error } = useBookings()
   const [{ data: carTypes }] = useCarTypes()
 
-  if (loading) return <Loader />
+  if (loading) {
+    return (
+      <>
+        <PageTitle title="My Bookings" />
+        <div className="lg:px-12">
+          <ul className="mt-14 space-y-4 px-5">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <>
+                <li className="lg:pt-14" key={index}>
+                  <BookingSkeleton variant="my" />
+                </li>
+                <hr />
+              </>
+            ))}
+          </ul>
+        </div>
+      </>
+    )
+  }
   if (error || !bookings || !user) return <div>Error</div>
 
   const bookingsForCarOfCurrentUser = (
