@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import CarCard from '../../components/cars/CarCard'
 import { useBookings, useCarTypes, useCars, useCreateBooking } from '../../hooks/index'
 import { useAuth } from '../../context/AuthContext'
@@ -133,6 +133,7 @@ function AvailableCars() {
           </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   )
 }

@@ -1,13 +1,11 @@
-import { useNavigate } from 'react-router-dom'
-import { ChevronBackIcon } from '../../assets'
 import { useBookings, useCarTypes } from '../../hooks'
 import { useAuth } from '../../context/AuthContext'
-import ManageBookingCard from '../../components/cars/ManageBookingCard'
+import BookingCard from '../../components/cars/BookingCard'
 import Loader from '../../components/ui/Loader'
 import { BookingState, BookingWithReferences } from '../../util/api'
+import PageTitle from '../../components/PageTitle'
 
 export default function ManageBooking() {
-  const navigate = useNavigate()
   const { user } = useAuth()
   const { data: bookings, loading, error, refetch } = useBookings()
   const [{ data: carTypes }] = useCarTypes()
@@ -31,26 +29,17 @@ export default function ManageBooking() {
     })
 
   return (
-    <div className="pt-24">
-      <div className="relative px-5 ">
-        <div
-          className=" absolute inset-3 inline cursor-pointer text-text"
-          onClick={() => navigate(-1)}
-        >
-          <ChevronBackIcon />
-        </div>
-        <h1 className=" text-center text-3xl font-medium  text-text"> MANAGE BOOKINGS</h1>
-      </div>
-
-      <div>
+    <>
+      <PageTitle title="Manage Bookings" />
+      <div className="lg:px-12">
         {bookingsForCarOfCurrentUser.length === 0 ? (
           <p className="mt-10 text-center text-text">No bookings for your cars.</p>
         ) : (
           <ul className="mt-10 space-y-4 px-5">
             {bookingsForCarOfCurrentUser.map(booking => (
               <>
-                <li key={booking.id}>
-                  <ManageBookingCard booking={booking} onUpdate={refetch} />
+                <li className="lg:pt-14" key={booking.id}>
+                  <BookingCard booking={booking} variant="manage" onUpdate={refetch} />
                 </li>
                 <hr />
               </>
@@ -58,6 +47,6 @@ export default function ManageBooking() {
           </ul>
         )}
       </div>
-    </div>
+    </>
   )
 }
