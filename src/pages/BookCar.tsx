@@ -6,7 +6,7 @@ import { useState } from 'react'
 import BookCarForm from '../components/forms/BookCar'
 import PageTitle from '../components/PageTitle'
 import Patterns from '../components/ui/Patterns'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 
 const BookCar = () => {
   const [startDate, setStartDate] = useState<Dayjs | null>(null)
@@ -15,8 +15,14 @@ const BookCar = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!startDate || !endDate) return toast.error('Choose both start and end dates')
-    if (!endDate.isAfter(startDate)) return toast.error('End must be after start')
+    if (!startDate || !endDate) {
+      toast.error('Choose both start and end dates')
+      return null
+    }
+    if (!endDate.isAfter(startDate)) {
+      toast.error('End must be after start')
+      return null
+    }
     navigate('/available-cars', {
       state: {
         start: startDate.toDate().toISOString(),
@@ -39,6 +45,7 @@ const BookCar = () => {
           />
         </LocalizationProvider>
       </div>
+      <ToastContainer position="top-right" />
     </div>
   )
 }

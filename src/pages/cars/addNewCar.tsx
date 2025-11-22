@@ -6,7 +6,7 @@ import { getAuthToken } from '../../util/auth'
 import { useCarTypes } from '../../hooks'
 import AddNewCarForm from '../../components/forms/AddNewCar'
 import Patterns from '../../components/ui/Patterns'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 
 const AddNewCar = () => {
   const [carTypeId, setCarTypeId] = useState(0)
@@ -63,6 +63,7 @@ const AddNewCar = () => {
           loading={loading}
         />
       </div>
+      <ToastContainer />
     </div>
   )
 }

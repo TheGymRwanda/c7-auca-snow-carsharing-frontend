@@ -46,7 +46,7 @@ function ConfirmModal({
                 isPrimary={false}
                 onClick={onCancel}
                 disabled={loading}
-                className="bg-primary-light"
+                className="bg-primary-light py-3"
               />
               {variant === 'delete' && (
                 <Button
