@@ -9,9 +9,17 @@ interface HomeCarsRowProps {
   carTypes: CarTypeDto[] | undefined
   seeMoreLink?: string
   loading?: boolean
+  onButtonClick?: (car: CarDto) => void
 }
 
-function HomeCarsRow({ title, cars, carTypes, seeMoreLink, loading }: HomeCarsRowProps) {
+function HomeCarsRow({
+  title,
+  cars,
+  carTypes,
+  seeMoreLink,
+  loading,
+  onButtonClick,
+}: HomeCarsRowProps) {
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
 
   if (loading) {
@@ -61,7 +69,15 @@ function HomeCarsRow({ title, cars, carTypes, seeMoreLink, loading }: HomeCarsRo
         <div className="flex gap-4">
           {cars.map(car => {
             const carType = getCarType(car.carTypeId)
-            return <CarCard key={car.id} car={car} carType={carType} variant="home" />
+            return (
+              <CarCard
+                key={car.id}
+                car={car}
+                carType={carType}
+                variant="home"
+                onButtonClick={onButtonClick ? () => onButtonClick(car) : undefined}
+              />
+            )
           })}
         </div>
       </div>

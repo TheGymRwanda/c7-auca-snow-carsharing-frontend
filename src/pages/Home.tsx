@@ -1,19 +1,19 @@
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import { Button, BrandHeader } from '../components/ui'
 import { useAuth } from '../context/AuthContext'
 import useCars from '../hooks/useCars'
 import useCarTypes from '../hooks/useCarTypes'
 import { useBookings } from '../hooks/index'
 import HomeCarsRow from '../components/home/HomeCarsRow'
-import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate = useNavigate()
+  const { user } = useAuth()
   const [{ data: cars, loading: carsLoading }] = useCars()
   const [{ data: carTypes }] = useCarTypes()
   const { data: bookings, loading: bookingsLoading } = useBookings()
-
   const loading = carsLoading || bookingsLoading
-  const { user } = useAuth()
-  const navigate = useNavigate()
 
   const myCars = cars?.filter(c => c.ownerId === user?.id) || []
 
@@ -69,6 +69,7 @@ const Home = () => {
             loading={loading}
             carTypes={carTypes}
             seeMoreLink="/book-car"
+            onButtonClick={() => navigate('/book-car')}
           />
           <HomeCarsRow
             title="My Cars"
@@ -79,6 +80,7 @@ const Home = () => {
           />
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

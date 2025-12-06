@@ -54,12 +54,14 @@ function HomeVariant({
   imageSrc,
   ownerName,
   user,
+  onButtonClick,
 }: {
   car: CarDto
   carType: CarTypeDto
   imageSrc: string
   ownerName: string
   user: UserDto | null | undefined
+  onButtonClick?: () => void
 }) {
   return (
     <div className="w-70 shrink-0 rounded-2xl bg-primary-dark p-6">
@@ -71,7 +73,7 @@ function HomeVariant({
         Show details
       </Link>
       <div className="mt-2 text-xs">
-        {ownerName !== user?.name && <Button text="Book Now" isPrimary />}
+        {ownerName !== user?.name && <Button text="Book Now" isPrimary onClick={onButtonClick} />}
       </div>
     </div>
   )
