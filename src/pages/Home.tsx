@@ -69,7 +69,6 @@ const Home = () => {
             loading={loading}
             carTypes={carTypes}
             seeMoreLink="/book-car"
-            onButtonClick={() => navigate('/book-car')}
           />
           <HomeCarsRow
             title="My Cars"

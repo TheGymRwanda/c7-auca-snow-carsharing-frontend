@@ -12,14 +12,7 @@ interface HomeCarsRowProps {
   onButtonClick?: (car: CarDto) => void
 }
 
-function HomeCarsRow({
-  title,
-  cars,
-  carTypes,
-  seeMoreLink,
-  loading,
-  onButtonClick,
-}: HomeCarsRowProps) {
+function HomeCarsRow({ title, cars, carTypes, seeMoreLink, loading }: HomeCarsRowProps) {
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
 
   if (loading) {
@@ -69,15 +62,7 @@ function HomeCarsRow({
         <div className="flex gap-4">
           {cars.map(car => {
             const carType = getCarType(car.carTypeId)
-            return (
-              <CarCard
-                key={car.id}
-                car={car}
-                carType={carType}
-                variant="home"
-                onButtonClick={onButtonClick ? () => onButtonClick(car) : undefined}
-              />
-            )
+            return <CarCard key={car.id} car={car} carType={carType} variant="home" />
           })}
         </div>
       </div>

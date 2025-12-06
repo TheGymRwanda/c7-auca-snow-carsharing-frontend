@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSidebar, useUser } from '../../hooks'
 import { CarDto, CarTypeDto, UserDto } from '../../util/api'
 import { CarIcon, ProfileIcon } from '../../assets'
@@ -54,7 +54,6 @@ function HomeVariant({
   imageSrc,
   ownerName,
   user,
-  onButtonClick,
 }: {
   car: CarDto
   carType: CarTypeDto
@@ -63,6 +62,7 @@ function HomeVariant({
   user: UserDto | null | undefined
   onButtonClick?: () => void
 }) {
+  const navigate = useNavigate()
   return (
     <div className="w-70 shrink-0 rounded-2xl bg-primary-dark p-6">
       <div className="mb-4 flex items-center justify-center">
@@ -73,7 +73,9 @@ function HomeVariant({
         Show details
       </Link>
       <div className="mt-2 text-xs">
-        {ownerName !== user?.name && <Button text="Book Now" isPrimary onClick={onButtonClick} />}
+        {ownerName !== user?.name && (
+          <Button text="Book Now" isPrimary onClick={() => navigate('/book-car')} />
+        )}
       </div>
     </div>
   )
