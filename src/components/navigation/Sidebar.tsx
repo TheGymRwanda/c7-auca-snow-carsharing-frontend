@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
-import { CarIcon, MenuIcon, CarsIcon, CarPlusIcon, LogoutIcon, ListIcon, Logo } from '../../assets'
+import { CarIcon, MenuIcon, CarsIcon, CarPlusIcon, LogoutIcon, ListIcon } from '../../assets'
 import useSidebar from '../../hooks/useSidebar'
 import { useAuth } from '../../context/AuthContext'
 import Nav from './Nav'
+import { BrandHeader } from '../ui'
 
 const navItems = [
   { to: '/book-car', icon: <CarIcon />, label: 'Book A Car' },
@@ -24,20 +24,7 @@ const Sidebar = () => {
         open ? 'w-64' : 'w-20'
       }`}
     >
-      <div className="flex items-center justify-center gap-2 px-6 2xl:py-6">
-        {open && <span className="border-b border-white/30 pb-2 font-lora text-2xl">MONI</span>}
-        <Link to="/" className="flex items-center gap-3 pt-6 lg:gap-4">
-          <div
-            className={`rounded-full border-b-2 border-white/30 px-3 py-6 ${open ? 'bg-nav' : ''}`}
-          >
-            <Logo />
-          </div>
-        </Link>
-        {open && (
-          <span className="border-b border-white/30 pb-2 font-lora text-2xl italic">Share</span>
-        )}
-      </div>
-
+      <BrandHeader variant="sidebar" open={open} />
       <nav className="mt-screen-10 flex flex-1 flex-col justify-between">
         <ul className="space-y-2 px-2">
           {navItems.map(item => (
