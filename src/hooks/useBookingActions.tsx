@@ -4,7 +4,7 @@ import { apiUrl } from '../util/apiUrl'
 import axios, { getErrorMessage } from '../util/apiClient'
 import { getAuthToken } from '../util/auth'
 
-type ModalState = {
+interface ModalState {
   isOpen: boolean
   text: string
   title: string

@@ -4,6 +4,14 @@ import useSidebar from '../../hooks/useSidebar'
 import { useAuth } from '../../context/AuthContext'
 import Nav from './Nav'
 
+const navItems = [
+  { to: '/book-car', icon: <CarIcon />, label: 'Book A Car' },
+  { to: '/bookings', icon: <MenuIcon />, label: 'My Bookings' },
+  { to: '/my-cars', icon: <CarsIcon />, label: 'See My Cars' },
+  { to: '/booking/management', icon: <ListIcon />, label: 'My Cars Bookings' },
+  { to: '/add-new-car', icon: <CarPlusIcon />, label: 'Add New Car' },
+]
+
 const Sidebar = () => {
   const { open, setOpen } = useSidebar()
   const { logout } = useAuth()
@@ -32,11 +40,11 @@ const Sidebar = () => {
 
       <nav className="mt-screen-10 flex flex-1 flex-col justify-between">
         <ul className="space-y-2 px-2">
-          <Nav to="/book-car" icon={<CarIcon />} label="Book A Car" open={open} />
-          <Nav to="/bookings" icon={<MenuIcon />} label="My Bookings" open={open} />
-          <Nav to="/my-cars" icon={<CarsIcon />} label="See My Cars" open={open} />
-          <Nav to="/booking/management" icon={<ListIcon />} label="My Cars Bookings" open={open} />
-          <Nav to="/add-new-car" icon={<CarPlusIcon />} label="Add New Car" open={open} />
+          {navItems.map(item => (
+            <li key={item.to}>
+              <Nav {...item} open={open} />
+            </li>
+          ))}
         </ul>
 
         <div className="mb-6 px-2">

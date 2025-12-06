@@ -1,11 +1,9 @@
-import React from 'react'
-
 interface CarSkeletonProps {
   variant?: 'home' | 'default'
   count?: number
 }
 
-const CarSkeleton: React.FC<CarSkeletonProps> = ({ variant = 'default', count = 3 }) => {
+function CarSkeleton({ variant = 'default', count = 3 }: CarSkeletonProps) {
   if (variant === 'home') {
     return (
       <div className="flex gap-6">

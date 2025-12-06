@@ -17,12 +17,10 @@ export default function ManageBooking() {
         <div className="lg:px-12">
           <ul className="mt-10 space-y-4 px-5">
             {Array.from({ length: 3 }).map((_, index) => (
-              <>
-                <li className="lg:pt-14" key={index}>
-                  <BookingSkeleton variant="manage" />
-                </li>
-                <hr />
-              </>
+              <li className="lg:pt-14" key={index}>
+                <BookingSkeleton variant="manage" />
+                {index < 2 && <hr />}
+              </li>
             ))}
           </ul>
         </div>
@@ -36,7 +34,7 @@ export default function ManageBooking() {
   )
     .filter(booking => booking.car.ownerId === user.id)
     .map(booking => {
-      const bookingState = booking.state /// add booking state as a state
+      const bookingState = booking.state
       return {
         ...booking,
         state: bookingState,
@@ -54,13 +52,11 @@ export default function ManageBooking() {
           <p className="mt-10 text-center text-text">No bookings for your cars.</p>
         ) : (
           <ul className="mt-10 space-y-4 px-5">
-            {bookingsForCarOfCurrentUser.map(booking => (
-              <>
-                <li className="lg:pt-14" key={booking.id}>
-                  <BookingCard booking={booking} variant="manage" onUpdate={refetch} />
-                </li>
-                <hr />
-              </>
+            {bookingsForCarOfCurrentUser.map((booking, index) => (
+              <li className="lg:pt-14" key={booking.id}>
+                <BookingCard booking={booking} variant="manage" onUpdate={refetch} />
+                {index < bookingsForCarOfCurrentUser.length - 1 && <hr />}
+              </li>
             ))}
           </ul>
         )}

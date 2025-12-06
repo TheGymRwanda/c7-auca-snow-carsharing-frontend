@@ -27,12 +27,7 @@ const ErrorDisplay = ({ error, onRetry }: { error: { message?: string }; onRetry
       <p className="mb-4 text-red-200">
         {error.message || 'An error occurred while fetching cars'}
       </p>
-      <button
-        onClick={onRetry}
-        className="rounded-lg bg-white px-6 py-2 text-primary transition hover:bg-gray-100"
-      >
-        Try Again
-      </button>
+      <Button text="Try Again" isPrimary onClick={onRetry} className="px-6 py-2" />
     </div>
   </div>
 )

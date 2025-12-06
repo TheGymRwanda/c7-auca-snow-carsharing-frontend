@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import ButtonComponent from '../components/ui/Button'
-import { BrandHeader } from '../components/ui/BrandHeader'
+import { Button, BrandHeader } from '../components/ui'
 
 function LandingPage() {
   const navigate = useNavigate()
@@ -41,7 +40,7 @@ function LandingPage() {
             </p>
           </div>
           <div className="block font-bold lg:w-5/12">
-            <ButtonComponent
+            <Button
               text="Log In -->"
               className="py-3"
               isPrimary

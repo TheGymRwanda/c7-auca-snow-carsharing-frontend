@@ -7,7 +7,7 @@ import { formatBookingStatus } from '../../util/booking'
 import Button from '../ui/Button'
 import ConfirmModal from '../ui/ConfirmModal'
 
-type ManageBookingActionsProps = {
+interface ManageBookingActionsProps {
   bookingId: number
   state: BookingState
   onUpdate?: () => void
