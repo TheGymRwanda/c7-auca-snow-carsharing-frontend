@@ -11,13 +11,7 @@ interface HomeCarsRowProps {
   loading?: boolean
 }
 
-const HomeCarsRow: React.FC<HomeCarsRowProps> = ({
-  title,
-  cars,
-  carTypes,
-  seeMoreLink,
-  loading,
-}) => {
+function HomeCarsRow({ title, cars, carTypes, seeMoreLink, loading }: HomeCarsRowProps) {
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
 
   if (loading) {
