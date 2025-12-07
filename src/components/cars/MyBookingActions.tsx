@@ -39,32 +39,51 @@ function MyBookingActions({ bookingId, carId, state }: MyBookingActionsProps) {
         </>
       )}
 
+      {currentState === BookingState.ACCEPTED && (
+        <>
+          <p className="mb-4 px-6 text-amber-200 lg:text-base lg:font-extralight lg:tracking-wider">
+            {formatBookingStatus(currentState)}
+          </p>
+          <div className="space-y-3 px-6 lg:px-0">
+            <Button
+              isPrimary
+              text={isLoading ? 'Loading...' : 'Pick Up'}
+              onClick={() => handleBookingAction('PICK_UP')}
+              className="w-full py-3"
+              disabled={isLoading}
+            />
+          </div>
+        </>
+      )}
+
       {currentState === BookingState.PICKED_UP && (
         <>
           <p className="mb-4 px-6 text-amber-200 lg:text-base lg:font-extralight lg:tracking-wider">
             {formatBookingStatus(currentState)}
           </p>
-          <Button
-            isPrimary
-            text={isLoading ? 'Loading...' : 'Unlock'}
-            onClick={() => handleCarAction('UNLOCK')}
-            className="py-3"
-            disabled={isLoading}
-          />
-          <Button
-            isPrimary={false}
-            text={isLoading ? 'Loading...' : 'Lock'}
-            onClick={() => handleCarAction('LOCK')}
-            className="py-3"
-            disabled={isLoading}
-          />
-          <Button
-            isPrimary={false}
-            text={isLoading ? 'Loading...' : 'Return'}
-            onClick={() => handleBookingAction('RETURN')}
-            className="py-3"
-            disabled={isLoading}
-          />
+          <div className="flex flex-col gap-3">
+            <Button
+              isPrimary
+              text={isLoading ? 'Loading...' : 'Unlock'}
+              onClick={() => handleCarAction('UNLOCK')}
+              className="w-full"
+              disabled={isLoading}
+            />
+            <Button
+              isPrimary={false}
+              text={isLoading ? 'Loading...' : 'Lock'}
+              onClick={() => handleCarAction('LOCK')}
+              className="w-full"
+              disabled={isLoading}
+            />
+            <Button
+              isPrimary={false}
+              text={isLoading ? 'Loading...' : 'Return'}
+              onClick={() => handleBookingAction('RETURN')}
+              className="w-full"
+              disabled={isLoading}
+            />
+          </div>
         </>
       )}
 
