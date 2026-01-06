@@ -17,12 +17,10 @@ function ManageBooking() {
         <div className="lg:px-12">
           <ul className="mt-14 space-y-4 px-5">
             {Array.from({ length: 3 }).map((_, index) => (
-              <>
-                <li className="lg:pt-14" key={index}>
-                  <BookingSkeleton variant="my" />
-                </li>
-                <hr />
-              </>
+              <li className="lg:pt-14" key={index}>
+                <BookingSkeleton variant="my" />
+                {index < 2 && <hr />}
+              </li>
             ))}
           </ul>
         </div>
@@ -54,13 +52,11 @@ function ManageBooking() {
           <p className="mt-10 text-center text-text">You have not book a cart yet.</p>
         ) : (
           <ul className="mt-10 space-y-4 px-5">
-            {bookingsForCarOfCurrentUser.map(booking => (
-              <>
-                <li className="lg:pt-14" key={booking.id}>
-                  <BookingCard booking={booking} variant="my" />
-                </li>
-                <hr />
-              </>
+            {bookingsForCarOfCurrentUser.map((booking, index) => (
+              <li className="lg:pt-14" key={booking.id}>
+                <BookingCard booking={booking} variant="my" />
+                {index < bookingsForCarOfCurrentUser.length - 1 && <hr />}
+              </li>
             ))}
           </ul>
         )}

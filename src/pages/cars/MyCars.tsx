@@ -94,6 +94,7 @@ function MyCars() {
         message="Are you sure you want to delete this car? This action cannot be undone."
         onConfirm={handleConfirmDelete}
         onCancel={handleCancelDelete}
+        variant="delete"
         loading={deletingCar === carToDelete}
       />
     </div>

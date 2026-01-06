@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import React from 'react'
 
 interface NavProps {
   to: string
@@ -9,7 +8,7 @@ interface NavProps {
   variant?: 'sidebar' | 'dropdown'
 }
 
-const Nav: React.FC<NavProps> = ({ to, icon, label, open, variant = 'sidebar' }) => {
+function Nav({ to, icon, label, open, variant = 'sidebar' }: NavProps) {
   const isSidebar = variant === 'sidebar'
 
   const linkClass = isSidebar
@@ -23,16 +22,14 @@ const Nav: React.FC<NavProps> = ({ to, icon, label, open, variant = 'sidebar' })
     : 'flex-none'
 
   return (
-    <li>
-      <Link to={to} className={linkClass}>
-        <div className={iconContainerClass}>{icon}</div>
-        {isSidebar ? (
-          open && <span className="block">{label}</span>
-        ) : (
-          <span className="block">{label}</span>
-        )}
-      </Link>
-    </li>
+    <Link to={to} className={linkClass}>
+      <div className={iconContainerClass}>{icon}</div>
+      {isSidebar ? (
+        open && <span className="block">{label}</span>
+      ) : (
+        <span className="block">{label}</span>
+      )}
+    </Link>
   )
 }
 

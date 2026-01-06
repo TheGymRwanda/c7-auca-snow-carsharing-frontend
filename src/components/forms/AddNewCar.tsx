@@ -1,7 +1,5 @@
 import { SetStateAction } from 'react'
-import Button from '../ui/Button'
-import FormInput from '../ui/FormInput'
-import FormSelect from '../ui/FormSelect'
+import { Button, FormInput, FormSelect } from '../ui'
 import { useNavigate } from 'react-router-dom'
 import { CarTypeDto } from '../../util/api'
 

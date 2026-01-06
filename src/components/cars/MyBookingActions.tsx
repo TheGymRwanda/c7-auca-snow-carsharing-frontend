@@ -4,7 +4,7 @@ import { useBookingActions } from '../../hooks/useBookingActions'
 import Button from '../ui/Button'
 import ConfirmModal from '../ui/ConfirmModal'
 
-type MyBookingActionsProps = {
+interface MyBookingActionsProps {
   bookingId: number
   carId: number
   state: BookingState
