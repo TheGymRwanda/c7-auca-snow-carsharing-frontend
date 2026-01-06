@@ -4,6 +4,7 @@ import App from './App'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { AuthProvider } from './context/AuthContext'
+import { SidebarProvider } from './context/SidebarContext'
 
 const rootElement = document.getElementById('root')
 if (rootElement) {
@@ -11,7 +12,9 @@ if (rootElement) {
   root.render(
     <StrictMode>
       <AuthProvider>
-        <App />
+        <SidebarProvider>
+          <App />
+        </SidebarProvider>
       </AuthProvider>
     </StrictMode>,
   )

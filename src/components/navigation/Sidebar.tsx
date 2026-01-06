@@ -1,0 +1,53 @@
+import { CarIcon, MenuIcon, CarsIcon, CarPlusIcon, LogoutIcon, ListIcon } from '../../assets'
+import useSidebar from '../../hooks/useSidebar'
+import { useAuth } from '../../context/AuthContext'
+import Nav from './Nav'
+import { BrandHeader } from '../ui'
+
+const navItems = [
+  { to: '/book-car', icon: <CarIcon />, label: 'Book A Car' },
+  { to: '/bookings', icon: <MenuIcon />, label: 'My Bookings' },
+  { to: '/my-cars', icon: <CarsIcon />, label: 'See My Cars' },
+  { to: '/booking/management', icon: <ListIcon />, label: 'My Cars Bookings' },
+  { to: '/add-new-car', icon: <CarPlusIcon />, label: 'Add New Car' },
+]
+
+const Sidebar = () => {
+  const { open, setOpen } = useSidebar()
+  const { logout } = useAuth()
+
+  return (
+    <aside
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      className={`duration-400 fixed left-0 top-0 z-40 hidden h-screen flex-col overflow-hidden rounded-r-3xl bg-nav text-white transition-all lg:flex ${
+        open ? 'w-64' : 'w-20'
+      }`}
+    >
+      <BrandHeader variant="sidebar" open={open} />
+      <nav className="mt-screen-10 flex flex-1 flex-col justify-between">
+        <ul className="space-y-2 px-2">
+          {navItems.map(item => (
+            <li key={item.to}>
+              <Nav {...item} open={open} />
+            </li>
+          ))}
+        </ul>
+
+        <div className="mb-6 px-2">
+          <button
+            onClick={logout}
+            className="flex w-full items-center gap-4 truncate border-t border-white/30 px-3 py-2 text-left hover:bg-primary-light-hover/20"
+          >
+            <div className={`flex-none p-1 ${open ? 'mr-2' : 'mx-auto'}`}>
+              <LogoutIcon />
+            </div>
+            {open && <span>Log Out</span>}
+          </button>
+        </div>
+      </nav>
+    </aside>
+  )
+}
+
+export default Sidebar

@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
-import { apiUrl } from '../util/apiUrl'
-import { getAuthToken } from '../util/auth'
-import { useCarTypes } from '../hooks'
-import AddNewCarForm from '../components/forms/AddNewCarForm'
+import { apiUrl } from '../../util/apiUrl'
+import { getAuthToken } from '../../util/auth'
+import { useCarTypes } from '../../hooks'
+import AddNewCarForm from '../../components/forms/AddNewCar'
+import Patterns from '../../components/ui/Patterns'
+import { toast, ToastContainer } from 'react-toastify'
 
 const AddNewCar = () => {
   const [carTypeId, setCarTypeId] = useState(0)
@@ -39,12 +41,14 @@ const AddNewCar = () => {
       navigate('/my-cars')
     } catch (err) {
       console.error('Error creating car:', err)
+      toast.error('Failed to add the Car')
     } finally {
       setLoading(false)
     }
   }
   return (
-    <div className="mt-24 flex flex-col items-center justify-start">
+    <div className="relative flex flex-col items-center justify-center max-lg:mt-24 lg:h-screen lg:overflow-hidden">
+      <Patterns />
       <div className="px-6 text-white">
         <h1 className="text-center font-lora text-3xl">NEW CAR</h1>
         <AddNewCarForm
@@ -59,6 +63,7 @@ const AddNewCar = () => {
           loading={loading}
         />
       </div>
+      <ToastContainer />
     </div>
   )
 }
