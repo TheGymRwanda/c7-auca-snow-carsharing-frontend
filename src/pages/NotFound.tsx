@@ -17,7 +17,7 @@ function NotFound() {
           Try something else until we fix it.
         </p>
         <Button
-          text="Go back"
+          text="Go Back To Home"
           className="py-3 text-lg"
           isPrimary={true}
           onClick={() => navigate('/')}

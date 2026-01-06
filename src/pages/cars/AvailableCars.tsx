@@ -27,12 +27,7 @@ const ErrorDisplay = ({ error, onRetry }: { error: { message?: string }; onRetry
       <p className="mb-4 text-red-200">
         {error.message || 'An error occurred while fetching cars'}
       </p>
-      <button
-        onClick={onRetry}
-        className="rounded-lg bg-white px-6 py-2 text-primary transition hover:bg-gray-100"
-      >
-        Try Again
-      </button>
+      <Button text="Try Again" isPrimary onClick={onRetry} className="px-6 py-2" />
     </div>
   </div>
 )
@@ -104,7 +99,7 @@ function AvailableCars() {
   if (!availableCars || availableCars.length === 0) return <EmptyState />
 
   return (
-    <div className="min-h-screen bg-primary pb-8 pt-12 lg:pt-0">
+    <div className="min-h-screen bg-primary-dark pb-8 pt-12 lg:pt-0">
       <div className="grid justify-center">
         <PageTitle title="Available Cars" />
         <div className="grid px-4 max-md:space-y-6 lg:grid-cols-2 lg:gap-8 lg:px-16 xl:grid-cols-3 xl:gap-6 3xl:grid-cols-4">

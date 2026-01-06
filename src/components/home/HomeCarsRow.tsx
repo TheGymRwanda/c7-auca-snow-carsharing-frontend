@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { CarDto, CarTypeDto } from '../../util/api'
 import CarCard from '../cars/CarCard'
@@ -10,15 +9,10 @@ interface HomeCarsRowProps {
   carTypes: CarTypeDto[] | undefined
   seeMoreLink?: string
   loading?: boolean
+  onButtonClick?: (car: CarDto) => void
 }
 
-const HomeCarsRow: React.FC<HomeCarsRowProps> = ({
-  title,
-  cars,
-  carTypes,
-  seeMoreLink,
-  loading,
-}) => {
+function HomeCarsRow({ title, cars, carTypes, seeMoreLink, loading }: HomeCarsRowProps) {
   const getCarType = (carTypeId: number) => carTypes?.find(type => type.id === carTypeId)
 
   if (loading) {
@@ -68,16 +62,7 @@ const HomeCarsRow: React.FC<HomeCarsRowProps> = ({
         <div className="flex gap-4">
           {cars.map(car => {
             const carType = getCarType(car.carTypeId)
-            return (
-              <CarCard
-                key={car.id}
-                car={car}
-                carType={carType}
-                buttonText="Book"
-                onButtonClick={() => {}}
-                variant="home"
-              />
-            )
+            return <CarCard key={car.id} car={car} carType={carType} variant="home" />
           })}
         </div>
       </div>

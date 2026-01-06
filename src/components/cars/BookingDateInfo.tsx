@@ -1,12 +1,12 @@
 import { CalendarIcon, TimeIcon } from '../../assets'
 import { convertMonth, timeFormatter } from '../../util/date'
 
-type Props = {
+interface BookingDateInfoProps {
   label: string
   date: Date
 }
 
-function BookingDateInfo({ label, date }: Props) {
+function BookingDateInfo({ label, date }: BookingDateInfoProps) {
   return (
     <div>
       <p>{label}</p>

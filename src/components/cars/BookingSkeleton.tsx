@@ -1,4 +1,4 @@
-type BookingSkeletonProps = {
+interface BookingSkeletonProps {
   variant: 'manage' | 'my'
 }
 

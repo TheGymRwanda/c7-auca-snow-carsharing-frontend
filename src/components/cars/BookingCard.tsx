@@ -17,10 +17,19 @@ function BookingCard({ booking, variant, onUpdate }: BookingCardProps) {
   return (
     <div className="flex flex-col justify-center text-gray-100 lg:grid lg:grid-cols-2 lg:px-28">
       <div className="flex justify-center">
-        <img
-          src={booking.imageUrl || undefined}
-          className="w-60 scale-115 md:w-72 md:scale-150 lg:w-80"
-        />
+        {booking.imageUrl ? (
+          <img
+            src={booking.imageUrl}
+            alt={`${booking.car.name} - ${booking.car.owner.name}'s car`}
+            className="w-60 scale-115 md:w-72 md:scale-150 lg:w-80"
+          />
+        ) : (
+          <div className="flex h-48 w-full max-w-sm flex-col items-center justify-center rounded-2xl bg-primary-light/30 backdrop-blur-sm md:h-48 md:w-72 lg:h-52 lg:w-80">
+            <p className="px-4 text-center text-sm text-gray-100/90">
+              No image available for this car
+            </p>
+          </div>
+        )}
       </div>
       <div className="max-w-md">
         <div className="px-6">

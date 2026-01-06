@@ -1,19 +1,19 @@
-import Button from '../components/ui/Button'
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import { Button, BrandHeader } from '../components/ui'
 import { useAuth } from '../context/AuthContext'
 import useCars from '../hooks/useCars'
 import useCarTypes from '../hooks/useCarTypes'
 import { useBookings } from '../hooks/index'
 import HomeCarsRow from '../components/home/HomeCarsRow'
-import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate = useNavigate()
+  const { user } = useAuth()
   const [{ data: cars, loading: carsLoading }] = useCars()
   const [{ data: carTypes }] = useCarTypes()
   const { data: bookings, loading: bookingsLoading } = useBookings()
-
   const loading = carsLoading || bookingsLoading
-  const { user } = useAuth()
-  const navigate = useNavigate()
 
   const myCars = cars?.filter(c => c.ownerId === user?.id) || []
 
@@ -30,10 +30,9 @@ const Home = () => {
   return (
     <div className="flex flex-col justify-start bg-primary-dark text-center text-white max-lg:mt-28 lg:text-start">
       <div className="z-50 items-center bg-primary-dark p-6 lg:p-10 xl:p-12 2xl:p-16 ">
-        <h1 className="mb-8 mt-3 font-lora text-5xl font-bold leading-none text-white lg:hidden">
-          <span className="block">MONI</span>
-          <span className="block font-normal italic">share</span>
-        </h1>
+        <div className="lg:hidden">
+          <BrandHeader />
+        </div>
 
         <p className="mb-12 font-lora text-xl lg:space-y-2 lg:text-3xl 2xl:text-5xl">
           {`Hello ${user?.name} !`} <br />
@@ -80,6 +79,7 @@ const Home = () => {
           />
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

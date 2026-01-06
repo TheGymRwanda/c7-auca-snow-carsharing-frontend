@@ -1,4 +1,3 @@
-import React from 'react'
 import LoaderComponent from './Loader'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
