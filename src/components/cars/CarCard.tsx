@@ -1,9 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useSidebar, useUser } from '../../hooks'
-import { CarDto, CarTypeDto, UserDto } from '../../util/api'
-import { CarIcon, ProfileIcon } from '../../assets'
-import { Button } from '../ui'
+import { CarDto, CarTypeDto } from '../../util/api'
+import Button from '../ui/Button'
 import { useAuth } from '../../context/AuthContext'
+import CarInfo from './CarInfo'
+import HomeVariant from './HomeVariant'
+import DetailsVariant from './DetailsVariant'
+import getOwnerName from '../../util/utils'
 
 interface CarCardProps {
   car: CarDto
@@ -13,102 +16,6 @@ interface CarCardProps {
   buttonVariant?: 'delete' | 'default'
   onButtonClick?: () => void
   variant?: 'home' | 'default' | 'details'
-}
-
-interface CarInfoProps {
-  car: CarDto
-  carType: CarTypeDto
-  ownerName: string
-}
-
-function getOwnerName(owner: unknown, loading: boolean, error: unknown, ownerId: number) {
-  return loading
-    ? 'Loading...'
-    : error
-      ? 'Unknown Owner'
-      : (owner as { name?: string })?.name || `Owner ${ownerId}`
-}
-
-function CarInfo({ car, carType, ownerName }: CarInfoProps) {
-  return (
-    <div className="flex flex-col gap-4">
-      <h2 className="overflow-wrap-anywhere mt-2 whitespace-normal font-lora text-xl font-medium leading-tight text-white">
-        {car.name}
-      </h2>
-      <div className="text-14 flex flex-col gap-4 font-normal text-gray-100">
-        <div className="flex items-center gap-3">
-          <ProfileIcon className="size-7" />
-          <span className="lg:text-lg">{ownerName}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <CarIcon className="size-7" />
-          <span className="lg:text-17">{carType?.name || 'Unknown Type'}</span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function HomeVariant({
-  car,
-  imageSrc,
-  ownerName,
-  user,
-}: {
-  car: CarDto
-  carType: CarTypeDto
-  imageSrc: string
-  ownerName: string
-  user: UserDto | null | undefined
-  onButtonClick?: () => void
-}) {
-  const navigate = useNavigate()
-  return (
-    <div className="w-70 shrink-0 rounded-2xl bg-primary-dark p-6">
-      <div className="mb-4 flex items-center justify-center">
-        <img src={imageSrc} alt={`${car.name} picture`} className="h-24 scale-200 object-contain" />
-      </div>
-      <h3 className="text-xl font-medium text-white">{car.name}</h3>
-      <Link to={`/car/${car.id}`} className="font-medium text-accent">
-        Show details
-      </Link>
-      <div className="mt-2 text-xs">
-        {ownerName !== user?.name && (
-          <Button text="Book Now" isPrimary onClick={() => navigate('/book-car')} />
-        )}
-      </div>
-    </div>
-  )
-}
-
-function DetailsVariant({
-  car,
-  carType,
-  imageSrc,
-  ownerName,
-}: {
-  car: CarDto
-  carType: CarTypeDto
-  imageSrc: string
-  ownerName: string
-}) {
-  return (
-    <div className="shadow-card mt-8 flex min-h-60 w-full flex-col self-center rounded-2xl bg-primary-light p-4">
-      <div className="grid grid-cols-2 gap-20">
-        <div className="my-1 flex w-52 items-center justify-center pr-4">
-          <img src={imageSrc} alt={`${car.name}'s Picture`} className="max-h-full" />
-        </div>
-        <div className="flex min-h-52 flex-col justify-around gap-4">
-          <CarInfo car={car} carType={carType} ownerName={ownerName} />
-          <div className="mb-4 font-semibold">
-            <Link to={`/car/${car.id}`} className="text-17 text-accent">
-              Show details
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
 }
 
 function CarCard({
@@ -124,6 +31,7 @@ function CarCard({
   const ownerName = getOwnerName(owner, loading, error, car.ownerId)
   const { user } = useAuth()
   const { open } = useSidebar()
+  const navigate = useNavigate()
   const imageUrl = (carType?.imageUrl ?? '').trim()
   const imageSrc = imageUrl || '/images/car.png'
 
@@ -137,6 +45,7 @@ function CarCard({
         imageSrc={imageSrc}
         ownerName={ownerName}
         user={user}
+        onNavigate={() => navigate('/book-car')}
       />
     )
   }
